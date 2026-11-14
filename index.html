@@ -85,6 +85,8 @@ section{padding:72px 28px}
 .special h2{margin:10px 0 10px;font-size:clamp(28px,3.2vw,40px);line-height:1.15;font-weight:800;color:#faf6ec}
 .special p{margin:0 0 24px;font-size:17px;line-height:1.55;color:#e6dcc8}
 .btn[aria-disabled="true"]{background:#5b4a3a;color:#f3ead8;cursor:default}
+.special-preview.has-img{aspect-ratio:16/9;border:0;padding:0;overflow:hidden;display:block;box-shadow:0 10px 24px rgba(0,0,0,.35)}.special-preview.has-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}.special-preview.has-img:hover img{transform:scale(1.03)}
+.special-actions{display:flex;flex-wrap:wrap;gap:12px}.btn.ghost{background:transparent;color:#f3d58a;box-shadow:inset 0 0 0 2px #f3d58a}.btn.ghost:hover,.btn.ghost:focus-visible{background:#f3d58a;color:var(--chalk)}
 .board .special-link{margin-top:1.6cqw;color:#f3d58a;font-weight:700;font-size:1.35cqw;text-decoration:underline dashed;text-underline-offset:.35em}
 .board .special-link:hover,.board .special-link:focus-visible{color:#fff3c4}
 .board .special-link:focus-visible{outline:2px solid #fff3c4;outline-offset:4px;border-radius:4px}
@@ -222,7 +224,7 @@ html.intro-on{overflow:hidden}html.intro-on .intro{display:block}
     <h1>Fern Zhang</h1>
     <p class="role">Learning Design Manager</p>
     <p class="tag">Thoughtful learning design, brewed with care, data, and learning science principles</p>
-    <a class="special-link" href="#special">Today's special: 3D Gamification of a Site Walk &rarr;</a>
+    <a class="special-link" href="projects/3d-gamification-of-a-site-walk.html">Today's special: 3D Gamification of a Site Walk &rarr;</a>
   </div>
   <div class="scene">
     <div class="bubble" id="bubble" role="dialog" aria-label="Fernnie says hi">
@@ -243,13 +245,12 @@ html.intro-on{overflow:hidden}html.intro-on .intro{display:block}
 <section class="special" id="special" aria-labelledby="specialTitle">
   <div class="wrap">
     <div class="special-board">
-      <div class="special-preview">Preview image or short looping video goes here</div>
+      <a class="special-preview has-img" href="projects/3d-gamification-of-a-site-walk.html" tabindex="-1" aria-hidden="true"><img src="projects/img/site-walk-start.webp" alt="" width="1280" height="720" loading="lazy"></a>
       <div>
         <span class="eyebrow">Today's special</span>
         <h2 id="specialTitle">3D Gamification of a Site Walk</h2>
         <p>A gamified walkthrough where learners explore a food site, spot the risks and practice the right call, designed and built with AI.</p>
-        <a class="btn" aria-disabled="true" role="link">Coming soon on GitHub</a>
-        <!-- Placeholder: swap in the GitHub link when the project is published. -->
+        <div class="special-actions"><a class="btn" href="projects/3d-gamification-of-a-site-walk.html">Read the case study</a><a class="btn ghost" href="site-walk/">Play the walk</a></div>
       </div>
     </div>
   </div>
@@ -297,10 +298,11 @@ const P = {
  7:["Revision Assessment with AI","An AI-based assessment type recommender and an AI literacy course for instructors at the University of Tasmania, Australia","projects/revision-assessment-with-ai.html"],
  8:["Introductory Financial Literacy E-Learning Course","An e-learning course for first-year college students to navigate their finances","projects/introductory-financial-literacy-e-learning-course.html"],
  9:["Mandarin Bridge Course with a Focus on Motivation and Engagement","An innovative Mandarin Bridge Course (Instructor-led) for students at Environmental Charter School, Pittsburgh","projects/mandarin-bridge-course.html"],
+ 11:["3D Gamification of a Site Walk","An immersive, hands-on food safety walk built in 3D with AI in under 2 hours","projects/3d-gamification-of-a-site-walk.html"],
  10:["Tools For Online Learning","A collection of mini projects using different e-learning tools, such as Articulate Rise, xAPI, and Python","projects/tools-for-online-learning.html"]
 };
 const CATS = [
- {cat:"Game Cat",title:"Learn by Playing",desc:"Games, simulations and branching scenarios where people practice by doing.",drink:"Caramel macchiato",img:"game-cat",cup:"#c98a4b",p:[1,2,6]},
+ {cat:"Game Cat",title:"Learn by Playing",desc:"Games, simulations and branching scenarios where people practice by doing.",drink:"Caramel macchiato",img:"game-cat",cup:"#c98a4b",p:[11,1,2,6]},
  {cat:"Professor Cat",title:"Making Complex Topics Simple",desc:"Data, machine learning and networking made approachable for anyone.",drink:"Espresso",img:"professor-cat",cup:"#5a3a26",p:[4,5]},
  {cat:"Robot Cat",title:"Smart Learning Tools",desc:"Tools and guides that help instructors and learners work smarter.",drink:"Matcha latte",img:"robot-cat",cup:"#7f9a5a",p:[3,7,10]},
  {cat:"Teacher Cat",title:"End-to-End Course Design",desc:"Full courses built from needs analysis through evaluation.",drink:"Chai latte",img:"teacher-cat",cup:"#b46a3c",p:[8,9]}

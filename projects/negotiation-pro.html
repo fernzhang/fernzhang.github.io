@@ -36,15 +36,18 @@ nav.site a:focus-visible{outline:2px solid #fff3c4;outline-offset:3px;border-rad
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);width:min(var(--wrap),100% - 2*var(--gut));margin:auto;align-items:center}
 .grid.cols{align-items:start}
 .mod{min-width:0}
-.sec{padding:calc(var(--pt) * 1.2px) 0 calc(var(--pb) * 1.2px)}
+.sec{padding:max(calc(var(--pt) * 1.2px),32px) 0 calc(var(--pb) * 1.2px)}
 .prose .m-text>*{max-width:68ch}
 
 /* type */
-h1,h2,h3,h4{color:var(--ink);font-weight:800;line-height:1.2;margin:0 0 .6em;text-wrap:balance}
-h1{font-size:clamp(36px,4.6vw,56px);letter-spacing:-.01em;line-height:1.1;font-weight:800}
+h1,h2,h3,h4{color:var(--ink);font-weight:800;line-height:1.2;margin:0 0 .6em;text-wrap:pretty}
+h1{font-size:clamp(34px,3.6vw,48px);letter-spacing:-.01em;line-height:1.12;font-weight:800}
 h2{font-size:clamp(26px,2.8vw,34px)}
 h3{font-size:clamp(22px,2vw,25px);color:var(--accent)}
 h4{font-size:20px}
+.h3{font-size:clamp(22px,2vw,25px);color:var(--accent)}
+.h4{font-size:20px;color:var(--ink)}
+.hero.long h1{font-size:clamp(32px,3.1vw,42px)}
 .mod>*+h3,.mod>*+h2{margin-top:1.4em}
 p{margin:0 0 1em;text-wrap:pretty}
 .mod>:last-child{margin-bottom:0}
@@ -55,18 +58,22 @@ li>p{margin:0}
 li::marker{color:var(--accent)}
 ol>li::marker{font-weight:800}
 hr{width:min(var(--wrap),100% - 2*var(--gut));height:22px;margin:0 auto;border:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22' fill='%23c98a4b'%3E%3Cellipse cx='12' cy='15' rx='5.2' ry='4.6'/%3E%3Cellipse cx='5' cy='9' rx='2.2' ry='2.8'/%3E%3Cellipse cx='9.3' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='14.7' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='19' cy='9' rx='2.2' ry='2.8'/%3E%3C/svg%3E") center/22px 20px no-repeat,linear-gradient(var(--line),var(--line)) left center/calc(50% - 24px) 1px no-repeat,linear-gradient(var(--line),var(--line)) right center/calc(50% - 24px) 1px no-repeat}
-.callout{margin:0;background:var(--paper);border:1px solid var(--card-line);border-left:6px solid var(--accent-soft);border-radius:18px;padding:clamp(22px,3vw,34px) clamp(22px,3.4vw,40px);font-size:clamp(21px,2.2vw,26px);line-height:1.42;font-weight:700;color:var(--ink);box-shadow:0 2px 0 var(--card-line)}
+.callout{margin:0;background:var(--chalk);color:#f3ead8;border:12px solid #8a5a33;border-radius:16px;padding:clamp(22px,3vw,32px) clamp(24px,3.4vw,40px);box-shadow:inset 0 0 40px rgba(0,0,0,.35),0 14px 30px rgba(70,40,15,.18);font-size:clamp(17px,1.5vw,19px);line-height:1.6;font-weight:600}
+.callout::before{content:"Result";display:block;margin-bottom:8px;color:#f3d58a;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
 
-/* hero */
-.hero{padding:clamp(48px,7vw,96px) 0 clamp(48px,7vw,96px);min-height:min(520px,70vh)}
-.hero.no-media{min-height:0}
-.hero.no-media .hero-text{grid-column:1/11!important}
-.tagline{font-size:clamp(20px,2.1vw,26px);line-height:1.38;color:var(--accent);font-weight:600;margin:0;max-width:30ch}
-.hero-text h1{margin-bottom:.45em}
+/* hero standard: 6 + 6 columns, media fills its half, text never squeezed */
+.hero{padding:clamp(40px,5.5vw,72px) 0 clamp(40px,5vw,64px)}
+.hero .hero-media{padding-left:clamp(0px,2.2vw,28px)}
+.hero .hero-media.on-left{padding-left:0;padding-right:clamp(0px,2.2vw,28px)}
+.hero .hero-media .pic img{width:100%;max-width:100%}
+.hero.no-media .hero-text{grid-column:1/13!important}
+.hero.no-media h1{max-width:24ch}
+.tagline{font-size:clamp(18px,1.7vw,22px);line-height:1.45;color:var(--accent);font-weight:600;margin:0;max-width:none;text-wrap:pretty}
+.hero-text h1{margin-bottom:.4em}
 
 /* figures */
 figure{margin:0}
-.pic img{max-width:min(100%,var(--w));margin:auto;border-radius:10px}
+.pic img{width:100%;max-width:min(100%,calc(var(--w) * 1.5));margin:auto;border-radius:10px}
 .zoom{all:unset;display:block;cursor:zoom-in;border-radius:2px}
 .zoom:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;color:var(--muted)}
@@ -100,7 +107,9 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 .track{list-style:none;margin:0;padding:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:24px;align-items:center}
 .track::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;scroll-snap-align:center;margin:0;padding:0}
-.slide img{max-height:72vh;width:auto;object-fit:contain}
+.slide img{max-height:72vh;width:auto;max-width:100%;object-fit:contain}
+.slide .zoom{display:flex;justify-content:center}
+.mod .m-text h2,.m-text h2,.m-column h2{font-size:clamp(22px,2vw,25px);color:var(--accent)}
 .ctrl{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:20px}
 .ctrl button{width:44px;height:44px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:50%;font:inherit;font-size:18px;cursor:pointer;transition:background .2s ease-out,color .2s ease-out}
 .ctrl button:hover{background:var(--chalk);border-color:var(--chalk);color:#f3ead8}
@@ -113,7 +122,7 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 .quote p{font-size:clamp(22px,2.4vw,30px);line-height:1.38;color:var(--ink);font-weight:700;margin-bottom:18px}
 .quote cite{font-style:normal;color:var(--accent);font-size:17px;font-weight:700}
 .cta{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
-.cta h4{font-size:22px}
+.cta .h4{font-size:22px}
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff8ec;text-decoration:none;padding:14px 26px;border-radius:99px;font-weight:800;box-shadow:0 6px 16px -8px rgba(168,83,44,.7);font-size:17px;transition:background .2s ease-out}
 .btn:hover{background:#8a4122}
 
@@ -142,7 +151,8 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 .foot a{color:#f3d58a;font-weight:700}
 .foot a:focus-visible{outline-color:#fff3c4}
 .foot .base{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:36px;padding-top:18px;border-top:1px solid rgba(243,234,216,.2);font-size:14px;color:#cfc3ad}
-.foot .base a{color:#e9dfcc;font-weight:600}
+.foot .base a{color:#e9dfcc;font-weight:600;display:inline-flex;align-items:center;min-height:44px}
+.foot .base{align-items:center}
 
 /* lightbox */
 dialog.lb{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh;overflow:visible}
@@ -154,8 +164,8 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
   .grid{row-gap:28px}
   .grid.cols{row-gap:16px}
   .grid>.mod{grid-column:1/-1!important;grid-row:auto!important}
-  .sec{padding:calc(var(--pt) * 1px) 0 calc(var(--pb) * 1px)}
-  .hero{min-height:0}
+  .sec{padding:max(calc(var(--pt) * 1px),24px) 0 calc(var(--pb) * 1px)}
+  .hero .hero-media,.hero .hero-media.on-left{padding:0}
   .hero .hero-media{order:-1}
   .process ol{grid-template-columns:1fr;gap:0;width:min(420px,100% - 2*var(--gut))}
   .process li{text-align:left;padding-bottom:22px}
@@ -187,21 +197,21 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
   <ul><li><a href="../index.html#menu">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
 </nav>
 <main id="main">
-<header class="hero grid"><div class="mod hero-text" style="grid-row:1;grid-column:1/8"><h1>Negotiation Pro</h1><p class="tagline">An interactive negotiation learning platform for sales professionals using Articulate and GPTS</p></div><div class="mod hero-media" style="grid-row:1;grid-column:8/13"><figure class="device laptop"><div class="screen"><img src="img/22d64daaabfe.webp" alt="Negotiation Pro course screen" width="1328" height="945" fetchpriority=high decoding="async"></div><div class="base"></div></figure></div></header>
-<section class="sec sec-columns" id="s1" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h3>Project Overview</h3></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><p>This is a course project for <strong>Tools for Online Learning</strong>. I leveraged the benefits of different EdTech tools to solve a problem in <strong>professional training.</strong></p></div></div></section>
-<section class="sec sec-columns" id="s2" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h3>Problem</h3><p>Sales professionals often need to negotiate with their clients. However, they face the problem of <strong>a lack of education or training in negotiation</strong>. The traditional training methods are often time-consuming, lack personalized feedback, and fail to provide real-time, scenario-based learning experiences.&nbsp;</p><p>This results in a gap in <strong>skills application</strong> under dynamic market conditions and customer expectations, directly impacting sales success and long-term business relationships.&nbsp;</p></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><h3>Solution</h3><p>We designed a tool for <strong>learning and practicing negotiation skills to reach win-win solutions using psychological factors of influence</strong>.</p></div></div></section>
-<section class="sec sec-columns" id="s3" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/4"><h3>Tools</h3><ul><li><p>Articulate Rise</p></li><li><p>Figma</p></li><li><p>ChatGPTS</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:4/7"><h3>Team</h3><ul><li><p>1 Project Manager</p></li><li><p>1 Instructional Designer (Me)</p></li><li><p>1 UX Designer</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:7/10"><h3>My Role</h3><ul><li><p>Instructional Design</p></li><li><p>Background Research</p></li><li><p>Prompt Engineering</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:10/13"><h3>Timeline</h3><ul><li><p>Feb 2024 - May 2024</p></li></ul></div></div></section>
+<header class="hero grid"><div class="mod hero-text" style="grid-row:1;grid-column:1/7"><h1>Negotiation Pro</h1><p class="tagline">An interactive negotiation learning platform for sales professionals using Articulate and GPTS</p></div><div class="mod hero-media" style="grid-row:1;grid-column:7/13"><figure class="device laptop"><div class="screen"><img src="img/22d64daaabfe.webp" alt="Negotiation Pro course screen" width="1328" height="945" fetchpriority=high decoding="async"></div><div class="base"></div></figure></div></header>
+<section class="sec sec-columns" id="s1" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h2 class="h3">Project Overview</h2></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><p>This is a course project for <strong>Tools for Online Learning</strong>. I leveraged the benefits of different EdTech tools to solve a problem in <strong>professional training.</strong></p></div></div></section>
+<section class="sec sec-columns" id="s2" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h2 class="h3">Problem</h2><p>Sales professionals often need to negotiate with their clients. However, they face the problem of <strong>a lack of education or training in negotiation</strong>. The traditional training methods are often time-consuming, lack personalized feedback, and fail to provide real-time, scenario-based learning experiences.&nbsp;</p><p>This results in a gap in <strong>skills application</strong> under dynamic market conditions and customer expectations, directly impacting sales success and long-term business relationships.&nbsp;</p></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><h2 class="h3">Solution</h2><p>We designed a tool for <strong>learning and practicing negotiation skills to reach win-win solutions using psychological factors of influence</strong>.</p></div></div></section>
+<section class="sec sec-columns" id="s3" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/4"><h2 class="h3">Tools</h2><ul><li><p>Articulate Rise</p></li><li><p>Figma</p></li><li><p>ChatGPTS</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:4/7"><h2 class="h3">Team</h2><ul><li><p>1 Project Manager</p></li><li><p>1 Instructional Designer (Me)</p></li><li><p>1 UX Designer</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:7/10"><h2 class="h3">My Role</h2><ul><li><p>Instructional Design</p></li><li><p>Background Research</p></li><li><p>Prompt Engineering</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:10/13"><h2 class="h3">Timeline</h2><ul><li><p>Feb 2024 - May 2024</p></li></ul></div></div></section>
 <section class="sec sec-header" id="s4" style="--pt:30;--pb:30"><div class="grid"><div class="mod" style="grid-column:1/13"><h2 class="sec-title">My Design Process</h2></div></div></section>
 <section class="sec sec-process" style="--pt:30;--pb:30"><nav class="process" aria-label="Design process steps"><ol style="--n:4"><li><a href="#s6"><span class="n" aria-hidden="true">1</span><span class="l">Learning Science Principles</span></a></li><li><a href="#s7"><span class="n" aria-hidden="true">2</span><span class="l">Implementation</span></a></li><li><a href="#s14"><span class="n" aria-hidden="true">3</span><span class="l">Demo</span></a></li><li><a href="#s18"><span class="n" aria-hidden="true">4</span><span class="l">User Feedback</span></a></li></ol></nav></section>
-<section class="sec sec-general" id="s6" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/6"><h3>Learning Science Principles</h3><p>After understanding our learners, sales professionals, we chose <strong>six learning science principles</strong> that worked for their contexts to guide our design.</p></div><div class="mod m-media" style="grid-row:1;grid-column:7/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/5a69ff0cbc52.webp" aria-label="Enlarge image: 6 Principles Used in Negotiation Pro"><img src="img/5a69ff0cbc52.webp" alt="6 Principles Used in Negotiation Pro" width="1600" height="704" loading=lazy decoding="async"></button><figcaption>6 Principles Used in Negotiation Pro</figcaption></figure></div></div></section>
-<section class="sec sec-general" id="s7" style="--pt:30;--pb:0"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>Implementation</h3><p>Ideally, we aimed to build <strong>a platform that would incorporate onboarding, negotiation course content, and AI negotiation scenarios</strong> so that learners can learn and practice. However, due to time and technical constraints, we built our prototypes on several platforms, including Figma (UI design), Articulate Rise (course content), and Chat GPTS (negotiation practice).</p></div></div></section>
+<section class="sec sec-general" id="s6" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/6"><h2 class="h3">Learning Science Principles</h2><p>After understanding our learners, sales professionals, we chose <strong>six learning science principles</strong> that worked for their contexts to guide our design.</p></div><div class="mod m-media" style="grid-row:1;grid-column:7/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/5a69ff0cbc52.webp" aria-label="Enlarge image: 6 Principles Used in Negotiation Pro"><img src="img/5a69ff0cbc52.webp" alt="6 Principles Used in Negotiation Pro" width="1600" height="704" loading=lazy decoding="async"></button><figcaption>6 Principles Used in Negotiation Pro</figcaption></figure></div></div></section>
+<section class="sec sec-general" id="s7" style="--pt:30;--pb:0"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">Implementation</h2><p>Ideally, we aimed to build <strong>a platform that would incorporate onboarding, negotiation course content, and AI negotiation scenarios</strong> so that learners can learn and practice. However, due to time and technical constraints, we built our prototypes on several platforms, including Figma (UI design), Articulate Rise (course content), and Chat GPTS (negotiation practice).</p></div></div></section>
 <section class="sec sec-general" id="s8" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-column:3/11"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/b6ef19de54df.webp" aria-label="Enlarge image: Tools and Technologies"><img src="img/b6ef19de54df.webp" alt="Tools and Technologies" width="1600" height="563" loading=lazy decoding="async"></button><figcaption>Tools and Technologies</figcaption></figure></div></div></section>
-<section class="sec sec-general" id="s14" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-row:1;grid-column:1/8"><figure class="embed video"><iframe src="https://www.youtube.com/embed/tmBoZ-ORC6I" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div><div class="mod m-text" style="grid-row:1;grid-column:9/13"><h3>Onboarding</h3><p>To increase learners' motivation, the course uses a <strong>gamification element</strong>: learners will earn coins to unlock new courses if they reach a negotiation.</p><p><strong>The channeling principle</strong> is also employed to limit learners' choices: learners cannot choose the next course unless they finish the current course.</p></div></div></section>
-<section class="sec sec-general" id="s16" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/5"><h3>Articulate Course Demo</h3><p>The negotiation course uses content from Cialdini's <strong><em>Influence: The Psychology of Persuasion</em></strong>, introducing 6 principles of persuasion. The courses are designed to be <strong>micro lessons</strong>: sales professionals are busy with their work, so the learning should be effective and short.</p></div><div class="mod m-media" style="grid-row:1;grid-column:6/13"><figure class="embed video"><iframe src="https://www.youtube.com/embed/TTxculEFm2M" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div></div></section>
-<section class="sec sec-general" id="s17" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-row:1;grid-column:1/8"><figure class="embed video"><iframe src="https://www.youtube.com/embed/7v5AUksBAbA" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div><div class="mod m-text" style="grid-row:1;grid-column:9/13"><h3>Negotiation Process</h3><p>The negotiation process provides a <strong>conversational experience</strong> for learners. I drafted the prompt to detect if learners use the appropriate principle. Learners will have 3 attempts to apply the principle - otherwise the negotiation will end.</p><p>You can check out Reciprocity GPTS <a href="https://chatgpt.com/g/g-zQ4VOBcNt-negotiate-pro-reciprocity" target="_blank" rel="noopener">here</a>.</p></div></div></section>
-<section class="sec sec-general" id="s18" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>User Feedback</h3><p>Users have expressed mistakes in GPTS responses, and we fixed the GPTS prompts to accurately reflect the relevant negotiation principle.</p><p>On the negotiation course content, we received positive feedback on its clarity.</p></div></div></section>
+<section class="sec sec-general" id="s14" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-row:1;grid-column:1/8"><figure class="embed video"><iframe src="https://www.youtube.com/embed/tmBoZ-ORC6I" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div><div class="mod m-text" style="grid-row:1;grid-column:9/13"><h2 class="h3">Onboarding</h2><p>To increase learners' motivation, the course uses a <strong>gamification element</strong>: learners will earn coins to unlock new courses if they reach a negotiation.</p><p><strong>The channeling principle</strong> is also employed to limit learners' choices: learners cannot choose the next course unless they finish the current course.</p></div></div></section>
+<section class="sec sec-general" id="s16" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/5"><h2 class="h3">Articulate Course Demo</h2><p>The negotiation course uses content from Cialdini's <strong><em>Influence: The Psychology of Persuasion</em></strong>, introducing 6 principles of persuasion. The courses are designed to be <strong>micro lessons</strong>: sales professionals are busy with their work, so the learning should be effective and short.</p></div><div class="mod m-media" style="grid-row:1;grid-column:6/13"><figure class="embed video"><iframe src="https://www.youtube.com/embed/TTxculEFm2M" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div></div></section>
+<section class="sec sec-general" id="s17" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-row:1;grid-column:1/8"><figure class="embed video"><iframe src="https://www.youtube.com/embed/7v5AUksBAbA" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div><div class="mod m-text" style="grid-row:1;grid-column:9/13"><h2 class="h3">Negotiation Process</h2><p>The negotiation process provides a <strong>conversational experience</strong> for learners. I drafted the prompt to detect if learners use the appropriate principle. Learners will have 3 attempts to apply the principle - otherwise the negotiation will end.</p><p>You can check out Reciprocity GPTS <a href="https://chatgpt.com/g/g-zQ4VOBcNt-negotiate-pro-reciprocity" target="_blank" rel="noopener">here</a>.</p></div></div></section>
+<section class="sec sec-general" id="s18" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">User Feedback</h2><p>Users have expressed mistakes in GPTS responses, and we fixed the GPTS prompts to accurately reflect the relevant negotiation principle.</p><p>On the negotiation course content, we received positive feedback on its clarity.</p></div></div></section>
 <section class="sec sec-testimonial" style="--pt:30;--pb:30"><div class="grid"><div class="mod" style="grid-column:2/12"><blockquote class="quote"><p>The content is very straightforward and easy to follow</p><cite>P1, business student at CMU</cite></blockquote></div></div></section>
-<section class="sec sec-general" id="s22" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>Thank you for reading my case study!</h3></div></div></section>
+<section class="sec sec-general" id="s22" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">Thank you for reading my case study!</h2></div></div></section>
 </main>
 <section class="more" aria-labelledby="more-h"><div class="in">
   <span class="eyebrow">More from the menu</span>

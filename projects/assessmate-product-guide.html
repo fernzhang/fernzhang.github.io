@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AssessMate Product Guide | Fern Zhang</title>
+<meta name="description" content="A microlearning course in Articulate Storyline for AssessMate users to understand AI literacy and use the product to create effective assessment">
+<style>
+@font-face{font-family:"Nunito";src:url("../fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
+:root{--chalk:#1f3329;--cream:#f8f1e4;--paper:#fffaf1;--honey:#c98a4b;--rust:#a8532c;--ink:#3a2a1f;--muted:#7a6656;--sage:#8b9a7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:18px;line-height:1.65}
+a{color:var(--rust)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+.top{position:sticky;top:0;z-index:5;background:rgba(31,51,41,.96);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:10px clamp(16px,4vw,40px)}
+.top a{color:var(--cream);text-decoration:none;font-weight:700}
+.back{display:inline-flex;gap:8px;align-items:center;background:var(--honey);color:#2a1a0f!important;padding:8px 16px;border-radius:999px}
+.back:hover{background:#d99b5c}
+.top nav a{margin-left:20px;opacity:.9}.top nav a:hover{opacity:1;text-decoration:underline}
+header.hero{background:var(--chalk);color:var(--cream);padding:56px clamp(16px,5vw,48px) 0;text-align:center}
+header.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:0 auto 12px;max-width:900px}
+header.hero .sub{font-size:clamp(17px,2vw,21px);opacity:.9;max-width:760px;margin:0 auto 8px}
+header.hero .tag{color:var(--honey);font-weight:700;margin:0 auto 28px}
+header.hero p{max-width:760px}
+hr{border:0;border-top:1px solid #eadfcb;margin:24px 0}
+@media (max-width:1000px) and (min-width:761px){.cols.n4{grid-template-columns:repeat(2,1fr)}}
+.hero-img{display:block;width:min(1000px,100%);margin:20px auto 0;border-radius:16px 16px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
+main{max-width:1000px;margin:0 auto;background:var(--paper);padding:24px clamp(18px,5vw,64px) 48px;border-radius:0 0 16px 16px;box-shadow:0 10px 30px rgba(58,42,31,.08)}
+.block{margin:28px 0}
+h2{font-size:30px;line-height:1.2;margin:40px 0 12px;color:var(--chalk)}
+h3{font-size:23px;line-height:1.3;margin:28px 0 8px;color:var(--chalk)}
+.section-head h2{text-align:center;border-top:2px dashed var(--honey);padding-top:32px}
+p,li{max-width:72ch}
+strong{color:#2a1a0f}
+.cols{display:grid;gap:12px 36px}
+.cols.n2{grid-template-columns:repeat(2,1fr)}.cols.n3{grid-template-columns:repeat(3,1fr)}.cols.n4{grid-template-columns:repeat(4,1fr)}
+.cols .col h3{margin-top:12px}
+figure{margin:24px 0}figure img{width:100%;height:auto;border-radius:12px;border:1px solid #eadfcb;display:block}
+figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:8px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.gallery figure{margin:0}.gallery p:empty{display:none}
+.video{position:relative;aspect-ratio:16/9;margin:24px 0;border-radius:12px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.process{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:none}
+.process li{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid #eadfcb;border-radius:999px;padding:8px 18px 8px 8px;font-weight:700;max-width:none}
+.process span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;font-size:15px}
+.quote{margin:24px 0;padding:28px 32px;background:var(--chalk);color:var(--cream);border-radius:16px;font-size:21px;line-height:1.5}
+.quote p{margin:0 0 12px;max-width:none}.quote cite{color:var(--honey);font-style:normal;font-weight:700}
+.btn{display:inline-block;background:var(--rust);color:#fff;text-decoration:none;font-weight:700;padding:10px 20px;border-radius:999px}
+.pnav{max-width:1000px;margin:28px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 clamp(18px,3vw,0px)}
+.pn{display:block;background:var(--paper);border:1px solid #eadfcb;border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--ink);font-weight:700}
+.pn small{display:block;color:var(--muted);font-weight:600}.pn.next{text-align:right}.pn:hover{border-color:var(--honey)}
+footer{text-align:center;padding:36px 16px 48px;color:var(--muted)}
+@media (max-width:760px){body{font-size:17px}.cols.n2,.cols.n3,.cols.n4{grid-template-columns:1fr}.top nav{display:none}.pnav{grid-template-columns:1fr}.pn.next{text-align:left}header.hero{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body>
+<div class="top"><a class="back" href="../index.html#menu">&larr; Back to the cafe</a>
+<nav aria-label="Site"><a href="../index.html#menu">Projects</a><a href="../index.html#about">About</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="../index.html#contact">Contact</a></nav></div>
+<header class="hero"><h1>AssessMate Product Guide</h1><p class="sub">A microlearning course in Articulate Storyline for AssessMate users to understand AI literacy and use the product to create effective assessment</p><p class="tag"></p><img class="hero-img" src="img/aba0736b334e.webp" alt="AssessMate Product Guide cover"></header>
+<main>
+<section class="block"><p>A microlearning course in <strong>Articulate Storyline</strong> for AssessMate users to understand AI literacy and use the product to create effective assessment</p></section>
+<section class="block cols n2"><div class="col"><h3>Overview</h3>
+<p>Our client is <strong>Unversity of Tasmania</strong>. We have developed an <strong>LLM-powered smart assessment recommender</strong> to the instructors at UTas. However, we identified <strong>a need to create a product user guide</strong> of AssessMate along with AI Literacy education for our users to successfully use our product.</p></div><div class="col"><h3>Goal</h3>
+<p>We aim to solve the problem of low engagement rate among UTas faculty. By launching an<a href="https://storage.googleapis.com/fern_elearing_portfolio/AssessMate%20User%20Guide%20-%20Storyline%20output/story.html" target="_blank" rel="noopener"> e-learning course</a> introducing AssessMate features, our goal is to successfully <strong>increase user engagement rate by 20%</strong> over 3 months.</p></div></section>
+<section class="block"><h3>Try out the course here!</h3>
+<p>Link: https://storage.googleapis.com/fern_elearing_portfolio/AssessMate%20User%20Guide%20-%20Storyline%20output/story.html</p>
+<p>Course Link</p></section>
+<section class="block cols n4"><div class="col"><h3>Role</h3>
+<p>Lead learning experience designer</p></div><div class="col"><h3>Tools</h3>
+<p>Articulate Storyline</p></div><div class="col"><h3>Team</h3>
+<p>1 lead learning experience designer (me), 2 learning experience designers, 1 developer, 1 subject matter expert</p></div><div class="col"><h3>Timeline</h3>
+<p>May - Aug 2024 (3 months)</p></div></section>
+<section class="block"><ol class="process"><li><span>1</span>Analysis</li><li><span>2</span>Content Creation</li><li><span>3</span>Learning Experience Design</li><li><span>4</span>Evaluation</li></ol></section>
+<section class="block"><h3>Context Analysis</h3>
+<p>Our team has previously worked with our client to develop an AI-powered assessment tool, AssessMate, to enable users to create more innovative assessments. However, from our launch data, we found out that the user engagement rate was around 20%.</p>
+<p>Therefore, the business problem was to <strong>increase the user engagement rate</strong> and maintain the user retention rate.</p>
+<figure><a href="img/22b18240f218.webp" target="_blank" rel="noopener"><img src="img/22b18240f218.webp" alt="" loading="lazy"></a></figure></section>
+<section class="block"><h3>Training Needs Assessment</h3>
+<p>With the business problem identified, I led our team to conduct a training needs assessment.</p>
+<p><strong>Data Collection</strong></p>
+<ul>
+<li>We identified data sources from past user logs with AssessMate, task analysis, observation, interviews, and reviews of existing support materials.</li>
+</ul>
+<p><strong>Data Analysis</strong></p>
+<ul>
+<li>From interviews, we found out that our learners lacked expertise in Artificial Intelligence and Large Language Models. Therefore, they were uncertain about the trustworthiness of AI-powered tools, and reluctant to use them</li>
+<li>From observation and task analysis, we realized that there were multiple stages where user need to input information for AssessMate, users did not have enough information to understand how to work with AssessMate</li>
+<li>By reviewing the product log, product features, and current support materials, we found that AssessMate, as powered by LLM, required prompt engineering skills to refine results. However, UTas faculty did not possess this knowledge and could not maximize the benefit of such a tool. Sometimes, unsatisfactory results could lead to frustration of using the tool</li>
+</ul>
+<p><strong>Recommendation</strong></p>
+<ul>
+<li>Teach our learners about the basics of AI and LLMs, helping them understand the mechanisms behind AI-powered tools. In this way, learners will feel more comfortable using AssessMate</li>
+<li>Provide more detailed guidance of how and when to use AssessMate so that our users can take advantage of AssessMate, increasing user retention rate</li>
+</ul></section>
+<section class="block"><figure><a href="img/28cfb49410d1.webp" target="_blank" rel="noopener"><img src="img/28cfb49410d1.webp" alt="User quotes" loading="lazy"></a><figcaption>User quotes</figcaption></figure>
+
+<h3>Learner Analysis</h3>
+<p>After identifying the training needs, I dived deeper to learner analysis. I analyzed the learner demographic data, collected information from interviews and observations, putting together a learner profile.</p>
+<ul>
+<li>Our learners comprise faculty members from the University of Tasmania's College of Health and Medicine and College of Arts, Law, and Education, aged 30 to 60.</li>
+<li>They have varying degrees of familiarity with technology and artificial intelligence. Generally, their proficiency in and usage of AI is somewhat limited. <strong>Consequently, the course must be straightforward and easy to understand.</strong></li>
+<li>Given that our faculty members have demanding schedules, <strong>the course also needs to be accessible and concise, allowing them to absorb the material efficiently</strong>.</li>
+</ul>
+<p>With these considerations in mind, we opted to develop a <strong>30-minute microlearning e-learning course</strong>. This brief format and convenient delivery method are designed to maximize the course's utility for our learners.</p></section>
+<section class="block"><h3>Content Development</h3>
+<p>AI literacy is a relatively new domain, so I conducted a literature review to better inform the team about the topic.</p>
+<p>We have followed AI Literacy Guidelines to identify learning objectives and determine the course structure. Throughout the process, I managed the communication with SMEs to ensure content accuracy.</p>
+<figure><a href="img/645689753b04.webp" target="_blank" rel="noopener"><img src="img/645689753b04.webp" alt="AI literacy guidelines" loading="lazy"></a><figcaption>AI literacy guidelines</figcaption></figure></section>
+<section class="block"><h3>Learning Experience Design</h3>
+<p>We used several e-learning design techniques to engage our learners, including:</p>
+<ul>
+<li>Gamification</li>
+<li>Learn by Doing</li>
+<li>Personalization</li>
+<li>Multimedia</li>
+<li>Segmentation</li>
+</ul></section>
+<section class="block"><h3>Gamification</h3>
+<p>I incorporated gamification elements, such as scores, into the course to reward users for completing goals. Research has shown that points and scores can be used to create a sense of competition and <strong>motivate users to continue improving.</strong></p>
+<p>To maximize learning, I included <strong>immediate feedback</strong> for each question. In this way, learners can quickly correct misunderstandingss and strengthen correct memory.</p>
+<div class="video"><iframe src="https://www.youtube.com/embed/iMMQgDmYnPE" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div></section>
+<section class="block"><div class="video"><iframe src="https://www.youtube.com/embed/Ge4d-ki9BrA" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<h3>Learn by Doing</h3>
+<p>As the learning objective requires the learners to master using AssessMate, they need to acquire <strong>procedural knowledge</strong> through the course. Therefore, I decided to use the Learn by Doing principle to allow learners to gain <strong>hands-on practice</strong> with AssessMate.</p></section>
+<section class="block"><h3>Personalization</h3>
+<p>I designed several personalization elements for the course. For example, learners will enter their names at the start of the course. The content will use personalization and second-person narrative throughout the course.</p>
+<p>In this way, the course addresses the learner as an individual, creating <strong>a more engaging and focused experience</strong> by making them feel like the content is specifically tailored to their needs and situation, thus <strong>increasing their motivation and sense of ownership</strong> over their learning journey.</p>
+<div class="video"><iframe src="https://www.youtube.com/embed/31bdigDHWkk" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div></section>
+<section class="block"><div class="video"><iframe src="https://www.youtube.com/embed/DS08hnmgBsI" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<h3>Multimedia</h3>
+<p>To ensure the content is designed for different learners' needs, I created multimedia elements, such as videos, to demonstrate the process of using AssessMate. In this way, learners could easily capture the main information of learning to use the tool.</p></section>
+<section class="block"><h3>Segmentation</h3>
+<p>Since our target learners are busy instructors, I also decided to use segmentation to break down the course into smaller pieces. There are <strong>two benefits</strong>:</p>
+<p>First, the course becomes into more manageable smaller pieces. Learners will feel less deterred from the time commitment of the course.</p>
+<p>Second, segmentation also provides more flexibility, allowing learners to proceed the course at their own pace.</p>
+<figure><a href="img/930c14a6eaa3.webp" target="_blank" rel="noopener"><img src="img/930c14a6eaa3.webp" alt="" loading="lazy"></a></figure></section>
+<section class="block"><h3>Localization and Accessibility</h3>
+<p>We've also implemented localization for this project.</p>
+<p>Our client is based in Australia. To ensure that the content was tailored to our learners and maintained its accuracy, we've carefully adapted all English content to Australian English to make it clearer for learners to understand.</p>
+<ul>
+<li>We used several resources to support the localization, including Google Translate, GenAI translation, and native Australian English users, to ensure accuracy in the adaptation.</li>
+</ul>
+<p>Additionally, we've included captions in the videos to enhance accessibility.</p>
+<ul>
+<li>We used Adobe Express to generate captions for videos and conducted 3 Quality Assurance rounds to ensure caption accuracy.</li>
+</ul>
+<figure><a href="img/be41f58e1b6e.webp" target="_blank" rel="noopener"><img src="img/be41f58e1b6e.webp" alt="Video with captions" loading="lazy"></a><figcaption>Video with captions</figcaption></figure></section>
+<section class="block cols n2"><div class="col"><h3>Implementation</h3>
+<p>The course was launched at the university through their LMS.</p>
+<p>The pilot round of implementation involved 20 users to test out the support of the course to multiple learners at the same time and usability.</p>
+<p>After collecting feedback from the first implementation, we scaled up the project and implemented it for over 100 users in both colleges of UTas.</p></div><div class="col"><h3>Evaluation</h3>
+<p>There are four main pathways of our evaluation:</p>
+<ul>
+<li>We designed pre/post assessments for learners to measure quantitative immediate learning of using the course</li>
+<li>We sent out survey to collect qualitative feedback on the course experience</li>
+<li>We send out another survey to collect user experience on AsssessMate and connect this with transfer knowledge of course</li>
+<li>We tracked the user engagement rate with AssessMate</li>
+</ul></div></section>
+<section class="block"><h3>After deploying the course to University of Tasmania, we saw a 20% increase in user engagement with AssessMate over 3 months, indicating the course's effectiveness in educating instructors to use our product.</h3></section>
+<section class="block"><h3>Learnings</h3>
+<p>In this project, I enhanced my skills in creating content in <strong>Articulate Storyline</strong>, particularly in creating different variables for more engaging content.</p>
+<p>I also conducted usability testing with real learners, going through multiple rounds of iteration, which trained my <strong>time management</strong> and <strong>project management</strong> skills.</p></section>
+</main>
+<nav class="pnav" aria-label="More projects"><a class="pn" href="corporate-security-control-implementation.html"><small>&larr; Previous</small>Corporate Security Control Implementation</a><a class="pn next" href="interactive-learning-on-data-and-machine-learning.html"><small>Next &rarr;</small>Interactive Learning on Data and Machine Learning</a></nav>
+<footer>Thanks for stopping by the cafe. <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></footer>
+</body></html>

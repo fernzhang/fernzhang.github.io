@@ -176,16 +176,16 @@ footer a{font-weight:700}
 
 <script>
 const P = {
- 1:["Gamify Data Science Learning","A scenario-based e-learning data science program in Articulate Rise and Storyline for employees at Honda Research Institute USA","https://mingmeizhang.net/p/02e6a426"],
- 2:["Corporate Security Control Implementation","A gamified learning experience for cybersecurity training in Articulate Storyline","https://mingmeizhang.net/p/506434ed"],
- 3:["AssessMate Product Guide","A microlearning course in Articulate Storyline for AssessMate users to understand AI literacy and use the product to create effective assessment","https://mingmeizhang.net/p/59bd34d2"],
- 4:["Interactive Learning on Data and Machine Learning","Engaging eLearning Content for Non-Technical Learners","https://mingmeizhang.net/p/02171c12"],
- 5:["Adaptive learning on Subnetting","An intelligent tutor system project on teaching technical content of Networking and Subnetting","https://mingmeizhang.net/p/6c1d5f47"],
- 6:["Negotiation Pro","An interactive negotiation learning tool for sales professionals using Articulate and GPTS","https://mingmeizhang.net/p/020d35d2"],
- 7:["Revision Assessment with AI","An AI-based assessment type recommender and an AI literacy course for instructors at the University of Tasmania, Australia","https://mingmeizhang.net/p/02fe032f"],
- 8:["Introductory Financial Literacy E-Learning Course","An e-learning course for first-year college students to navigate their finances","https://mingmeizhang.net/p/02fe0314"],
- 9:["Mandarin Bridge Course with a Focus on Motivation and Engagement","An innovative Mandarin Bridge Course (Instructor-led) for students at Environmental Charter School, Pittsburgh","https://mingmeizhang.net/p/02e6a451"],
- 10:["Tools For Online Learning","A collection of mini projects using different e-learning tools, such as Articulate Rise, xAPI, and Python","https://mingmeizhang.net/p/02e6a43d"]
+ 1:["Gamify Data Science Learning","A scenario-based e-learning data science program in Articulate Rise and Storyline for employees at Honda Research Institute USA","projects/gamify-data-science-learning.html"],
+ 2:["Corporate Security Control Implementation","A gamified learning experience for cybersecurity training in Articulate Storyline","projects/corporate-security-control-implementation.html"],
+ 3:["AssessMate Product Guide","A microlearning course in Articulate Storyline for AssessMate users to understand AI literacy and use the product to create effective assessment","projects/assessmate-product-guide.html"],
+ 4:["Interactive Learning on Data and Machine Learning","Engaging eLearning Content for Non-Technical Learners","projects/interactive-learning-on-data-and-machine-learning.html"],
+ 5:["Adaptive learning on Subnetting","An intelligent tutor system project on teaching technical content of Networking and Subnetting","projects/adaptive-learning-on-subnetting.html"],
+ 6:["Negotiation Pro","An interactive negotiation learning tool for sales professionals using Articulate and GPTS","projects/negotiation-pro.html"],
+ 7:["Revision Assessment with AI","An AI-based assessment type recommender and an AI literacy course for instructors at the University of Tasmania, Australia","projects/revision-assessment-with-ai.html"],
+ 8:["Introductory Financial Literacy E-Learning Course","An e-learning course for first-year college students to navigate their finances","projects/introductory-financial-literacy-e-learning-course.html"],
+ 9:["Mandarin Bridge Course with a Focus on Motivation and Engagement","An innovative Mandarin Bridge Course (Instructor-led) for students at Environmental Charter School, Pittsburgh","projects/mandarin-bridge-course.html"],
+ 10:["Tools For Online Learning","A collection of mini projects using different e-learning tools, such as Articulate Rise, xAPI, and Python","projects/tools-for-online-learning.html"]
 };
 const CATS = [
  {cat:"Game Cat",title:"Gamified and Scenario-Based Learning",desc:"Learning games and branching scenarios where people practice by playing.",drink:"Caramel macchiato",img:"game-cat",cup:"#c98a4b",p:[1,2]},
@@ -204,7 +204,7 @@ const drawer=document.getElementById('drawer'), scrim=document.getElementById('s
 function openDrawer(i,from){
   const c=CATS[i]; lastFocus=from;
   dImg.src=`img/${c.img}.webp`; dKicker.textContent=`${c.cat}'s menu \u00b7 ${c.drink}`; dTitle.textContent=c.title;
-  dList.innerHTML=c.p.map(n=>`<li><a class="drink" href="${P[n][2]}" target="_blank" rel="noopener">${cup(c.cup)}<div><h3>${P[n][0]}</h3><p>${P[n][1]}</p><span class="v">View project &rarr;</span></div></a></li>`).join('');
+  dList.innerHTML=c.p.map(n=>`<li><a class="drink" href="${P[n][2]}"${/^https?:/.test(P[n][2])?' target="_blank" rel="noopener"':''}>${cup(c.cup)}<div><h3>${P[n][0]}</h3><p>${P[n][1]}</p><span class="v">View project &rarr;</span></div></a></li>`).join('');
   drawer.classList.add('open'); scrim.classList.add('open'); drawer.focus();
 }
 function closeDrawer(){drawer.classList.remove('open');scrim.classList.remove('open');lastFocus&&lastFocus.focus()}

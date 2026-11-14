@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adaptive learning on Subnetting | Fern Zhang</title>
+<meta name="description" content="">
+<style>
+@font-face{font-family:"Nunito";src:url("../fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
+:root{--chalk:#1f3329;--cream:#f8f1e4;--paper:#fffaf1;--honey:#c98a4b;--rust:#a8532c;--ink:#3a2a1f;--muted:#7a6656;--sage:#8b9a7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:18px;line-height:1.65}
+a{color:var(--rust)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+.top{position:sticky;top:0;z-index:5;background:rgba(31,51,41,.96);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:10px clamp(16px,4vw,40px)}
+.top a{color:var(--cream);text-decoration:none;font-weight:700}
+.back{display:inline-flex;gap:8px;align-items:center;background:var(--honey);color:#2a1a0f!important;padding:8px 16px;border-radius:999px}
+.back:hover{background:#d99b5c}
+.top nav a{margin-left:20px;opacity:.9}.top nav a:hover{opacity:1;text-decoration:underline}
+header.hero{background:var(--chalk);color:var(--cream);padding:56px clamp(16px,5vw,48px) 0;text-align:center}
+header.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:0 auto 12px;max-width:900px}
+header.hero .sub{font-size:clamp(17px,2vw,21px);opacity:.9;max-width:760px;margin:0 auto 8px}
+header.hero .tag{color:var(--honey);font-weight:700;margin:0 auto 28px}
+header.hero p{max-width:760px}
+hr{border:0;border-top:1px solid #eadfcb;margin:24px 0}
+@media (max-width:1000px) and (min-width:761px){.cols.n4{grid-template-columns:repeat(2,1fr)}}
+.hero-img{display:block;width:min(1000px,100%);margin:20px auto 0;border-radius:16px 16px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
+main{max-width:1000px;margin:0 auto;background:var(--paper);padding:24px clamp(18px,5vw,64px) 48px;border-radius:0 0 16px 16px;box-shadow:0 10px 30px rgba(58,42,31,.08)}
+.block{margin:28px 0}
+h2{font-size:30px;line-height:1.2;margin:40px 0 12px;color:var(--chalk)}
+h3{font-size:23px;line-height:1.3;margin:28px 0 8px;color:var(--chalk)}
+.section-head h2{text-align:center;border-top:2px dashed var(--honey);padding-top:32px}
+p,li{max-width:72ch}
+strong{color:#2a1a0f}
+.cols{display:grid;gap:12px 36px}
+.cols.n2{grid-template-columns:repeat(2,1fr)}.cols.n3{grid-template-columns:repeat(3,1fr)}.cols.n4{grid-template-columns:repeat(4,1fr)}
+.cols .col h3{margin-top:12px}
+figure{margin:24px 0}figure img{width:100%;height:auto;border-radius:12px;border:1px solid #eadfcb;display:block}
+figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:8px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.gallery figure{margin:0}.gallery p:empty{display:none}
+.video{position:relative;aspect-ratio:16/9;margin:24px 0;border-radius:12px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.process{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:none}
+.process li{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid #eadfcb;border-radius:999px;padding:8px 18px 8px 8px;font-weight:700;max-width:none}
+.process span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;font-size:15px}
+.quote{margin:24px 0;padding:28px 32px;background:var(--chalk);color:var(--cream);border-radius:16px;font-size:21px;line-height:1.5}
+.quote p{margin:0 0 12px;max-width:none}.quote cite{color:var(--honey);font-style:normal;font-weight:700}
+.btn{display:inline-block;background:var(--rust);color:#fff;text-decoration:none;font-weight:700;padding:10px 20px;border-radius:999px}
+.pnav{max-width:1000px;margin:28px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 clamp(18px,3vw,0px)}
+.pn{display:block;background:var(--paper);border:1px solid #eadfcb;border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--ink);font-weight:700}
+.pn small{display:block;color:var(--muted);font-weight:600}.pn.next{text-align:right}.pn:hover{border-color:var(--honey)}
+footer{text-align:center;padding:36px 16px 48px;color:var(--muted)}
+@media (max-width:760px){body{font-size:17px}.cols.n2,.cols.n3,.cols.n4{grid-template-columns:1fr}.top nav{display:none}.pnav{grid-template-columns:1fr}.pn.next{text-align:left}header.hero{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body>
+<div class="top"><a class="back" href="../index.html#menu">&larr; Back to the cafe</a>
+<nav aria-label="Site"><a href="../index.html#menu">Projects</a><a href="../index.html#about">About</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="../index.html#contact">Contact</a></nav></div>
+<header class="hero"><h1>Adaptive learning on Subnetting</h1><p class="sub"></p><p class="tag"></p><img class="hero-img" src="img/ecfb0cd42ebd.webp" alt="Adaptive learning on Subnetting cover"></header>
+<main>
+<section class="block"><p>An intelligent tutor system project on teaching technical content of Networking and Subnetting</p></section>
+<section class="block cols n2"><div class="col"><h3>Overview</h3>
+<p>This initiative was developed in collaboration with a community college in Pennsylvania to address significant learning challenges faced by learners.</p>
+<p>The current instructional strategies at the college have proven insufficient for fostering adequate comprehension and skill acquisition, which in turn poses increased difficulties for students as they progress to more advanced courses.</p></div><div class="col"><h3>Goal</h3>
+<p>This project aims to enhance the effectiveness of learning by integrating <strong>adaptive learning tools</strong> for learners' pain points, ensuring students are better prepared for subsequent educational demands.</p></div></section>
+<section class="block cols n4"><div class="col"><h3>Role</h3>
+<p>Lead learning experience designer</p>
+<p>Project manager</p></div><div class="col"><h3>Tools</h3>
+<p>Cognitive Tutor Authoring Tools (CTAT)</p></div><div class="col"><h3>Team</h3>
+<p>2 learning experience designers, 1 subject matter expert</p></div><div class="col"><h3>Timeline</h3>
+<p>Oct 2024 - Feb 2025</p></div></section>
+<section class="block"><ol class="process"><li><span>1</span>Interviews</li><li><span>2</span>E-Learning Design</li><li><span>3</span>Collaboration</li><li><span>4</span>Tutor Demo</li></ol></section>
+<section class="block"><h3>Interviews</h3>
+<p>During the ideation phase of the project, I conducted learner interviews to understand the pain points in learners' learning. I prepared think-aloud study with target learners, asking them to perform essential tasks on identifying networking classes and subnetting. By mapping out learners' thought processes and comparing them with SME's cognitive model, we were able to identify the knowledge gap and learning objectives for our project.</p>
+<p>Here are our findings:</p>
+<ul>
+<li>Our learners are <strong>non-traditional</strong> students. They have various backgrounds, and many of them have been out of school for years. Long text for them to read can be challenging.</li>
+<li>Learners have difficulty identifying the network to the right classes.</li>
+<li>Learners are not familiar with the use of the Cisco method.</li>
+<li>Learners do not fully understand the definition of the default gateway, thus finding it difficult to identify it through a network diagram.</li>
+</ul>
+<p>Based on the findings, we decided to create <strong>an interactive e-learning project</strong> with concise and effective feedback on the pain points. In this way, learners can proceed the course in their own pace, with necessary support and guidance to understand the content.</p></section>
+<section class="block"><figure><a href="img/0ad738f201f3.webp" target="_blank" rel="noopener"><img src="img/0ad738f201f3.webp" alt="Example of first layer of hint" loading="lazy"></a><figcaption>Example of first layer of hint</figcaption></figure>
+
+<h3>E-Learning Design</h3>
+<p>We leveraged multiple e-learning design principles for our interactive project. </p>
+<p>One emphasis is <strong>immediate feedback</strong>. Immediate feedback has proven to be helpful to correct learners' misunderstandings quickly and strengthen the correct understanding. </p>
+<p>What's unique about our feedback is we employ <strong>three layers of hints</strong> for our learners. Learners can always request a hint when they are unsure about the answer. </p>
+<ul>
+<li>The hints start with the most general hint, encouraging learners to think actively to solve the problem. </li>
+<li>The second layer of hints becomes more specific to guide learners in the right direction. </li>
+<li>The third layer of hint will provide the answer with explanation.</li>
+</ul></section>
+<section class="block"><h3>Collaboration</h3>
+<p>I have led the communication and collaboration with stakeholders throughout this project.</p>
+<ul>
+<li>We have been regularly meeting with the <strong>two clients at the community college</strong>, seeking their feedback and approval for the development of the project.</li>
+<li>I also organized weekly meetings with the instructional design team and the subject matter expert, ensuring the <strong>accuracy and relevancy of the technical content</strong> on networking.</li>
+<li>To ensure the <strong>usability of the project</strong>, I reached out to the target learner group for user testing recruitment, helping the team find testers at different phases of the project.</li>
+</ul></section>
+<section class="block"><div class="video"><iframe src="https://www.youtube.com/embed/VyOPA5qeoCc" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<h3>Tutor Demo</h3>
+<p>To better help learners understand the key features of the tutor, I also created this video demoing how learners can work with the tutor effectively.</p></section>
+<section class="block cols n2"><div class="col"><h3>Learnings</h3>
+<p>In this project, I have gained experience in the following aspects</p>
+<ul>
+<li>curating content for a diverse learner group, understanding their needs and differences than my previous learner group</li>
+<li>managing the communication with different stakeholders across organizations</li>
+<li>leading the whole cycle of delivering content, from ideation to deployment, data collection, and evaluation</li>
+</ul></div><div class="col"><h3>Next steps</h3>
+<p>We are now in the stage of analyzing our data. We will use our analysis to evaluate the content effectiveness, identifying areas for improvement for our next iteration.</p></div></section>
+</main>
+<nav class="pnav" aria-label="More projects"><a class="pn" href="interactive-learning-on-data-and-machine-learning.html"><small>&larr; Previous</small>Interactive Learning on Data and Machine Learning</a><a class="pn next" href="negotiation-pro.html"><small>Next &rarr;</small>Negotiation Pro</a></nav>
+<footer>Thanks for stopping by the cafe. <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></footer>
+</body></html>

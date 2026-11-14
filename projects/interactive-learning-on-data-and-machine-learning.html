@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interactive Learning on Data and Machine Learning | Fern Zhang</title>
+<meta name="description" content="Engaging eLearning Content for Non-Technical Learners">
+<style>
+@font-face{font-family:"Nunito";src:url("../fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
+:root{--chalk:#1f3329;--cream:#f8f1e4;--paper:#fffaf1;--honey:#c98a4b;--rust:#a8532c;--ink:#3a2a1f;--muted:#7a6656;--sage:#8b9a7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:18px;line-height:1.65}
+a{color:var(--rust)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+.top{position:sticky;top:0;z-index:5;background:rgba(31,51,41,.96);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:10px clamp(16px,4vw,40px)}
+.top a{color:var(--cream);text-decoration:none;font-weight:700}
+.back{display:inline-flex;gap:8px;align-items:center;background:var(--honey);color:#2a1a0f!important;padding:8px 16px;border-radius:999px}
+.back:hover{background:#d99b5c}
+.top nav a{margin-left:20px;opacity:.9}.top nav a:hover{opacity:1;text-decoration:underline}
+header.hero{background:var(--chalk);color:var(--cream);padding:56px clamp(16px,5vw,48px) 0;text-align:center}
+header.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:0 auto 12px;max-width:900px}
+header.hero .sub{font-size:clamp(17px,2vw,21px);opacity:.9;max-width:760px;margin:0 auto 8px}
+header.hero .tag{color:var(--honey);font-weight:700;margin:0 auto 28px}
+header.hero p{max-width:760px}
+hr{border:0;border-top:1px solid #eadfcb;margin:24px 0}
+@media (max-width:1000px) and (min-width:761px){.cols.n4{grid-template-columns:repeat(2,1fr)}}
+.hero-img{display:block;width:min(1000px,100%);margin:20px auto 0;border-radius:16px 16px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
+main{max-width:1000px;margin:0 auto;background:var(--paper);padding:24px clamp(18px,5vw,64px) 48px;border-radius:0 0 16px 16px;box-shadow:0 10px 30px rgba(58,42,31,.08)}
+.block{margin:28px 0}
+h2{font-size:30px;line-height:1.2;margin:40px 0 12px;color:var(--chalk)}
+h3{font-size:23px;line-height:1.3;margin:28px 0 8px;color:var(--chalk)}
+.section-head h2{text-align:center;border-top:2px dashed var(--honey);padding-top:32px}
+p,li{max-width:72ch}
+strong{color:#2a1a0f}
+.cols{display:grid;gap:12px 36px}
+.cols.n2{grid-template-columns:repeat(2,1fr)}.cols.n3{grid-template-columns:repeat(3,1fr)}.cols.n4{grid-template-columns:repeat(4,1fr)}
+.cols .col h3{margin-top:12px}
+figure{margin:24px 0}figure img{width:100%;height:auto;border-radius:12px;border:1px solid #eadfcb;display:block}
+figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:8px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.gallery figure{margin:0}.gallery p:empty{display:none}
+.video{position:relative;aspect-ratio:16/9;margin:24px 0;border-radius:12px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.process{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:none}
+.process li{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid #eadfcb;border-radius:999px;padding:8px 18px 8px 8px;font-weight:700;max-width:none}
+.process span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;font-size:15px}
+.quote{margin:24px 0;padding:28px 32px;background:var(--chalk);color:var(--cream);border-radius:16px;font-size:21px;line-height:1.5}
+.quote p{margin:0 0 12px;max-width:none}.quote cite{color:var(--honey);font-style:normal;font-weight:700}
+.btn{display:inline-block;background:var(--rust);color:#fff;text-decoration:none;font-weight:700;padding:10px 20px;border-radius:999px}
+.pnav{max-width:1000px;margin:28px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 clamp(18px,3vw,0px)}
+.pn{display:block;background:var(--paper);border:1px solid #eadfcb;border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--ink);font-weight:700}
+.pn small{display:block;color:var(--muted);font-weight:600}.pn.next{text-align:right}.pn:hover{border-color:var(--honey)}
+footer{text-align:center;padding:36px 16px 48px;color:var(--muted)}
+@media (max-width:760px){body{font-size:17px}.cols.n2,.cols.n3,.cols.n4{grid-template-columns:1fr}.top nav{display:none}.pnav{grid-template-columns:1fr}.pn.next{text-align:left}header.hero{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body>
+<div class="top"><a class="back" href="../index.html#menu">&larr; Back to the cafe</a>
+<nav aria-label="Site"><a href="../index.html#menu">Projects</a><a href="../index.html#about">About</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="../index.html#contact">Contact</a></nav></div>
+<header class="hero"><h1>Interactive Learning on Data and Machine Learning</h1><p class="sub">Engaging eLearning Content for Non-Technical Learners</p><p class="tag">Engaging Leaning Content for Non-Technical Learners</p><img class="hero-img" src="img/0cd709aa418f.webp" alt="Interactive Learning on Data and Machine Learning cover"></header>
+<main>
+<section class="block"><h3>Project Overview</h3>
+<p>This project was for <strong>the US Navy</strong> and conducted by <strong>CMU's Technology for Effective and Efficient Learning (TEEL) Lab</strong>.</p>
+<p>My role was <strong>Learning Engineer</strong>, where I collaborated closely with SMEs and designed <strong>over 100+ screens</strong> for 4 tasks, incorporating content, activities, and visuals within <strong>2 months</strong>.</p></section>
+<section class="block cols n2"><div class="col"><h3>Problem</h3>
+<p>The <strong>US Navy</strong> wants current soldiers to have a basic understanding of <strong>AI/ML</strong> to work with specialists during their service. However, it's challenging to teach such topics due to a lack of expertise in teaching and motivation.</p></div><div class="col"><h3>Solution</h3>
+<ul>
+<li><strong>Developed interactive learning content</strong> tailored to be accessible for learners with only high school knowledge, using easy-to-understand language.</li>
+<li><strong>Incorporated motivational tasks</strong> to enhance engagement, including interactive scenarios and problem-solving exercises that reflect real-world applications.</li>
+<li><strong>Highlighted practical Navy applications</strong> of AI/ML to help learners see the relevance and transferability of their skills, enhancing both understanding and motivation.</li>
+<li>Designed the course to be <strong>visually engaging</strong> and included <strong>real-world examples</strong> to aid in comprehension and stimulate interest.</li>
+</ul></div></section>
+<section class="block cols n4"><div class="col"><h3>Tools</h3>
+<ul>
+<li>Sail()</li>
+<li>Figma</li>
+</ul></div><div class="col"><h3>Team</h3>
+<ul>
+<li>2 Instructional Designers (Me)</li>
+<li>1 UX designer</li>
+<li>2 Developers</li>
+<li>1 Project Manager</li>
+<li>2 Subject Matter Experts</li>
+</ul></div><div class="col"><h3>My Role</h3>
+<ul>
+<li>Instructional Design</li>
+<li>UX Design</li>
+<li>UX Research</li>
+</ul></div><div class="col"><h3>Timeline</h3>
+<ul>
+<li>Overall: 7 weeks</li>
+<li>Discovery &amp; Research: 1 week</li>
+<li>Design &amp; Testing: 6 weeks</li>
+</ul>
+<hr /></div></section>
+<section class="block"><ol class="process"><li><span>1</span>Storyboard Design</li><li><span>2</span>Research-based Design</li><li><span>3</span>Visual Design</li><li><span>4</span>Interactive Activities</li><li><span>5</span>Final Deliverable</li></ol></section>
+<section class="block"><h3>Storyboard Design</h3>
+<p>I joined the team in the middle of the project, so the Learning Objectives were already determined. Therefore, my design started with the <strong>storyboard aligned with all the Learning Objectives</strong>.</p>
+<p>We decided to use <strong>airplane predictive maintenance</strong> for the storyline. Since the learners are in the Navy, we want to keep learners a bit of distance from their day-to-day life but can still relate to the learning content. Additionally, the final transfer task will be in the Navy scenario.</p>
+<p>The blue bubbles below are activity designs. I chose different activities based on the learning content characteristics.</p>
+<ul>
+<li>Identifying Data Type is for <strong>remembering and understanding concepts</strong>, so activities should target memorization and correcting mistakes.</li>
+<li>Cleaning Poor Quality Data is on the <strong>skill application level</strong>. Therefore, the activities should be hands-on and guide learners with a worked example.</li>
+</ul>
+<figure><a href="img/7d084949314b.webp" target="_blank" rel="noopener"><img src="img/7d084949314b.webp" alt="Learning Objectives" loading="lazy"></a><figcaption>Learning Objectives</figcaption></figure></section>
+<section class="block"><figure><a href="img/0072ac877f05.webp" target="_blank" rel="noopener"><img src="img/0072ac877f05.webp" alt="Task 1 Learner Behavior Graph" loading="lazy"></a><figcaption>Task 1 Learner Behavior Graph</figcaption></figure></section>
+<section class="block"><h3>Research-based Design</h3>
+<p>I <strong>researched relevant topics (airplane predictive maintenance and ML learning for beginners)</strong> from research papers and tutorial articles to ensure all the content was accurate and reflected real-world scenarios.</p>
+<p>Meanwhile, considering the learners' knowledge level as non-technical learners, I changed the technical content to <strong>be easy to understand</strong> with visuals.</p>
+<figure><a href="img/3a7faff5785f.webp" target="_blank" rel="noopener"><img src="img/3a7faff5785f.webp" alt="Learner screen on the left, with the technical instructions on the right" loading="lazy"></a><figcaption>Learner screen on the left, with the technical instructions on the right</figcaption></figure></section>
+<section class="block"><figure><a href="img/f4fabe5dd108.webp" target="_blank" rel="noopener"><img src="img/f4fabe5dd108.webp" alt="Visual Design Example" loading="lazy"></a><figcaption>Visual Design Example</figcaption></figure>
+
+<h3>Visual Design</h3>
+<p>To make the content more engaging, I also created <strong>related images</strong> using ChatGPT, <strong>data tables</strong> that mimic real-world scenarios, and other types of data, such as <strong>textual and audio data</strong>.</p></section>
+<section class="block"><h3>Interactive Activities</h3>
+<p>I chose different learning activities considering the learning content. The activities used include:</p>
+<ul>
+<li>Worked Example</li>
+<li>Apply Cases</li>
+<li>Drag and Drop Activity</li>
+</ul>
+<p>For example, I used Drag and Drop Activity for learners to practice their understanding of new concepts. The activity has <strong>immediate feedback</strong>, helping learners enhance the right memorization and correct mistakes.</p>
+<div class="video"><iframe src="https://www.youtube.com/embed/qkQuuWRnRWE" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<hr /></section>
+<section class="block"><h3>Final Deliverable</h3>
+<p>Here is an example of Task 3 instructional content. The content has engaging elements, <strong>such as conversations with NPCs, data tables, and animations</strong>.</p>
+<p>You can also try the content by interacting with this prototype!</p>
+<p><em>Learning Context: learners start to understand how to conduct predictive maintenance for airplane engines.</em></p></section>
+<section class="block"><p><a href="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2FZKFEYNQhT2ujqxrTZJV0dD%2FP2-(The-Role-of-Data)%3Fnode-id%3D2947-151600%26t%3DzIKlXWekiHHs4AJI-1%26scaling%3Dmin-zoom%26page-id%3D2947%253A151598%26starting-point-node-id%3D2947%253A151600" target="_blank" rel="noopener">Prototype: https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2FZKFEYNQhT2ujqxrTZJV0dD%2FP2-(The-Role-of-Data)%3Fnode-id%3D2947-151600%26t%3DzIKlXWekiHHs4AJI-1%26scaling%3Dmin-zoom%26page-id%3D2947%253A151598%26starting-point-node-id%3D2947%253A151600</a></p></section>
+</main>
+<nav class="pnav" aria-label="More projects"><a class="pn" href="assessmate-product-guide.html"><small>&larr; Previous</small>AssessMate Product Guide</a><a class="pn next" href="adaptive-learning-on-subnetting.html"><small>Next &rarr;</small>Adaptive learning on Subnetting</a></nav>
+<footer>Thanks for stopping by the cafe. <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></footer>
+</body></html>

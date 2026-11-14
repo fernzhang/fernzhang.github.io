@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gamify Data Science Learning | Fern Zhang</title>
+<meta name="description" content="A scenario-based e-learning data science program in Articulate Rise and Storyline for employees at Honda Research Institute USA">
+<style>
+@font-face{font-family:"Nunito";src:url("../fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
+:root{--chalk:#1f3329;--cream:#f8f1e4;--paper:#fffaf1;--honey:#c98a4b;--rust:#a8532c;--ink:#3a2a1f;--muted:#7a6656;--sage:#8b9a7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:18px;line-height:1.65}
+a{color:var(--rust)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+.top{position:sticky;top:0;z-index:5;background:rgba(31,51,41,.96);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:10px clamp(16px,4vw,40px)}
+.top a{color:var(--cream);text-decoration:none;font-weight:700}
+.back{display:inline-flex;gap:8px;align-items:center;background:var(--honey);color:#2a1a0f!important;padding:8px 16px;border-radius:999px}
+.back:hover{background:#d99b5c}
+.top nav a{margin-left:20px;opacity:.9}.top nav a:hover{opacity:1;text-decoration:underline}
+header.hero{background:var(--chalk);color:var(--cream);padding:56px clamp(16px,5vw,48px) 0;text-align:center}
+header.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:0 auto 12px;max-width:900px}
+header.hero .sub{font-size:clamp(17px,2vw,21px);opacity:.9;max-width:760px;margin:0 auto 8px}
+header.hero .tag{color:var(--honey);font-weight:700;margin:0 auto 28px}
+header.hero p{max-width:760px}
+hr{border:0;border-top:1px solid #eadfcb;margin:24px 0}
+@media (max-width:1000px) and (min-width:761px){.cols.n4{grid-template-columns:repeat(2,1fr)}}
+.hero-img{display:block;width:min(1000px,100%);margin:20px auto 0;border-radius:16px 16px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
+main{max-width:1000px;margin:0 auto;background:var(--paper);padding:24px clamp(18px,5vw,64px) 48px;border-radius:0 0 16px 16px;box-shadow:0 10px 30px rgba(58,42,31,.08)}
+.block{margin:28px 0}
+h2{font-size:30px;line-height:1.2;margin:40px 0 12px;color:var(--chalk)}
+h3{font-size:23px;line-height:1.3;margin:28px 0 8px;color:var(--chalk)}
+.section-head h2{text-align:center;border-top:2px dashed var(--honey);padding-top:32px}
+p,li{max-width:72ch}
+strong{color:#2a1a0f}
+.cols{display:grid;gap:12px 36px}
+.cols.n2{grid-template-columns:repeat(2,1fr)}.cols.n3{grid-template-columns:repeat(3,1fr)}.cols.n4{grid-template-columns:repeat(4,1fr)}
+.cols .col h3{margin-top:12px}
+figure{margin:24px 0}figure img{width:100%;height:auto;border-radius:12px;border:1px solid #eadfcb;display:block}
+figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:8px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.gallery figure{margin:0}.gallery p:empty{display:none}
+.video{position:relative;aspect-ratio:16/9;margin:24px 0;border-radius:12px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.process{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:none}
+.process li{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid #eadfcb;border-radius:999px;padding:8px 18px 8px 8px;font-weight:700;max-width:none}
+.process span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;font-size:15px}
+.quote{margin:24px 0;padding:28px 32px;background:var(--chalk);color:var(--cream);border-radius:16px;font-size:21px;line-height:1.5}
+.quote p{margin:0 0 12px;max-width:none}.quote cite{color:var(--honey);font-style:normal;font-weight:700}
+.btn{display:inline-block;background:var(--rust);color:#fff;text-decoration:none;font-weight:700;padding:10px 20px;border-radius:999px}
+.pnav{max-width:1000px;margin:28px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 clamp(18px,3vw,0px)}
+.pn{display:block;background:var(--paper);border:1px solid #eadfcb;border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--ink);font-weight:700}
+.pn small{display:block;color:var(--muted);font-weight:600}.pn.next{text-align:right}.pn:hover{border-color:var(--honey)}
+footer{text-align:center;padding:36px 16px 48px;color:var(--muted)}
+@media (max-width:760px){body{font-size:17px}.cols.n2,.cols.n3,.cols.n4{grid-template-columns:1fr}.top nav{display:none}.pnav{grid-template-columns:1fr}.pn.next{text-align:left}header.hero{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body>
+<div class="top"><a class="back" href="../index.html#menu">&larr; Back to the cafe</a>
+<nav aria-label="Site"><a href="../index.html#menu">Projects</a><a href="../index.html#about">About</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="../index.html#contact">Contact</a></nav></div>
+<header class="hero"><h1>Gamify Data Science Learning</h1><p class="sub">A scenario-based e-learning data science program in Articulate Rise and Storyline for employees at Honda Research Institute USA</p><p class="tag">Interactive data literacy training for current employees</p><img class="hero-img" src="img/50f292c17ebd.webp" alt="Gamify Data Science Learning cover"></header>
+<main>
+<section class="block"><h3>Project Overview</h3>
+<p>Our Client is <strong>Honda Research Institute USA</strong>. I worked as the curriculum designer to create an interactive data science training for managers and practitioners to upskill and reskill. My main contribution includes identifying knowledge gaps, designing instruction, and employing gamification elements.</p>
+<p>Check the Articulate courses here:</p>
+<p>For Managers:</p>
+<ul>
+<li><a href="https://rise.articulate.com/share/FP5lGHZRCDBDoV-rubcv6AR4XTpP9dET" target="_blank" rel="noopener">Module 1</a></li>
+<li><a href="https://rise.articulate.com/share/TuVWJjzqTFQylc53YpLpE3b9vQbPvz2i" target="_blank" rel="noopener">Module 2</a></li>
+</ul>
+<p>For Practitioners:</p>
+<ul>
+<li><a href="https://storage.googleapis.com/fern_elearing_portfolio/Data%20Quest%20Course%20-%20Storyline%20output/story.html" target="_blank" rel="noopener">Course link</a></li>
+</ul></section>
+<section class="block cols n2"><div class="col"><h3>Problem</h3>
+<p>Data science training is a challenge for both managers and practitioners at HRI, and we identified 3 problems.</p>
+<ul>
+<li>First, <strong>Resource Navigation</strong>. Employees often find themselves overwhelmed by the significant volume of resources available.</li>
+<li>Second, <strong>Lack of Motivation</strong>. There is a widespread inability to recognize the utility value of data science in employees’ daily tasks.</li>
+<li>Lastly, <strong>Lack of Learning Culture</strong>. The absence of a supportive learning culture within companies further hinders progress.</li>
+</ul></div><div class="col"><h3>Solution</h3>
+<p>Based on the problems, we created a gamified training program for managers and practitioners.</p>
+<p>A <strong>simulation-based</strong> training program for managers to understand the value of data science and to learn basic data science.</p></div></section>
+<section class="block cols n3"><div class="col"><h3>Tools</h3>
+<ul>
+<li>Articulate Rise, Articulate Storyline</li>
+</ul></div><div class="col"><h3>Team</h3>
+<ul>
+<li>1 instructional designer (me)</li>
+<li>1 UI designer</li>
+<li>1 game designer</li>
+<li>1 data science expert</li>
+<li>1 project manager</li>
+</ul></div><div class="col"><h3>Timeline</h3>
+<ul>
+<li>Jan 2024 - Apr 2024</li>
+<li>Discovery &amp; Research: 1 month</li>
+<li>Design &amp; testing: 2 months</li>
+</ul></div></section>
+<section class="block section-head"><h2>My Design Process</h2></section>
+<section class="block"><ol class="process"><li><span>1</span>Research</li><li><span>2</span>Learning Objectives</li><li><span>3</span>Manager Program</li><li><span>4</span>User Testing</li><li><span>5</span>Next Steps</li></ol></section>
+<section class="block"><figure><a href="img/d273f5793de6.webp" target="_blank" rel="noopener"><img src="img/d273f5793de6.webp" alt="Design Guidelines" loading="lazy"></a><figcaption>Design Guidelines</figcaption></figure>
+
+<h3>Research - Literature Review</h3>
+<p>First, I conducted a literature review on topics related to employees, data literacy, and gamification to guide our design process. The findings are divided into 3 points.</p>
+<ul>
+<li>We chose gamification because of its nature in <strong>increasing intrinsic motivation</strong>, which leads to better learning performance of <strong>up to 40%</strong>.</li>
+<li>We will start with <strong>backward design</strong>, identifying learning objectives, and then designing instructions. The gamification elements will be added to align with the instructional content. This will be an i<strong>terative process</strong>.</li>
+<li>Empirical research has found that data training for non-technical employees should not be intimidating; <strong>using friendly and welcoming language</strong> can be more effective.</li>
+</ul></section>
+<section class="block"><h3>Research - Interviews</h3>
+<p>Next, I conducted user interviews for primary research to build a cognitive task analysis model. Together with the team, we prepared an interview script with 16 open-ended questions, focusing on <strong>our learners' knowledge level, attitudes towards gamified learning, and daily use of data.</strong> I interviewed 4 users from Honda and other automotive companies.</p>
+<p>I also worked with 2 SMEs, who are data science professors, for think-aloud interviews to build a theoretical cognitive task analysis model. I identified the steps experts take to finish a given data-related task, and then compared the employee's model with this one, to <strong>identify the employee's knowledge gap</strong>.</p>
+<figure><a href="img/b3c2b274dff7.webp" target="_blank" rel="noopener"><img src="img/b3c2b274dff7.webp" alt="The green box is the knowledge gap for the manager persona from the CTA model" loading="lazy"></a><figcaption>The green box is the knowledge gap for the manager persona from the CTA model</figcaption></figure></section>
+<section class="block"><h3>Learning Objectives</h3>
+<p>After synthesizing the insights from the interviews and identifying the knowledge gaps, we decided on the learning objectives.</p></section>
+<section class="block cols n2"><div class="col"><h3>Managers</h3>
+<ul>
+<li><strong>Frame the Problem with Data</strong>. Motivated to employ a data-driven mindset. Ability to systematically identify and articulate a business problem, determine relevant data requirements, and formulate a clear, data-driven problem statement that guides subsequent analysis.</li>
+<li><strong>Understand and Use Basic Data Science Concepts.</strong> Understand key data science concepts, such as statistical significance, recognizing their applications and limitations to inform decision-making.</li>
+</ul></div><div class="col"><h3>Practitioners</h3>
+<ul>
+<li>Learners will <strong>select and gather appropriate datasets and variables</strong> aligned with defined business requirements with at least 90% accuracy.</li>
+<li>Learners will <strong>evaluate their analyses and data presentations</strong> against defined business requirements, ensuring at least 90% accuracy in alignment with business objectives.</li>
+</ul></div></section>
+<section class="block"><h3>Goals Specification</h3>
+<p>In order to create an effective storyline, I first started to specify the learning goals of each module into 6 categories: <strong>Knowledge, Skills, and Disposition at cognitive and metacognitive levels</strong>, with explanations and examples. Next, I designed the storyline to cover all the goals logically.</p>
+<figure><a href="img/938a1377a606.webp" target="_blank" rel="noopener"><img src="img/938a1377a606.webp" alt="Module 1 Goal Chart" loading="lazy"></a><figcaption>Module 1 Goal Chart</figcaption></figure></section>
+<section class="block"><figure><a href="img/38ae3dbb0150.webp" target="_blank" rel="noopener"><img src="img/38ae3dbb0150.webp" alt="Design rationale for each element" loading="lazy"></a><figcaption>Design rationale for each element</figcaption></figure>
+
+<h3>Design Rationale</h3>
+<p>I chose 3 main design elements based on the knowledge component breakdown from the learning objectives: <strong>Simulation videos, interactive instructional content, and diverse in-unit assessment with immediate feedback</strong>. The program will be divided into multiple modules, each for 20-30 minutes to fit employees' schedules.</p></section>
+<section class="block"><div class="video"><iframe src="https://www.youtube.com/embed/O2BdV-bWWXs" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<h3>Simulation Example</h3>
+<p>This is an example of a simulation for a motivation task. The goal of this simulation is for learners to see the real-world causes and effects of using data-driven approaches.</p></section>
+<section class="block"><h3>Interactive Learning</h3>
+<p>For example, when learners are introduced to a simple linear regression model, there are hot spots for them to explore the model's characteristics.</p>
+<div class="video"><iframe src="https://www.youtube.com/embed/3duDy7LhmW0" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div></section>
+<section class="block"><div class="video"><iframe src="https://www.youtube.com/embed/7sMpJgwDpAI" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<h3>Gamification</h3>
+<p>This is the dashboard and game setting for the practitioner's training. Gamification with a fake competition increased learners' motivation and did not overwhelm them.</p></section>
+<section class="block"><h3>User Testing</h3>
+<p>I conducted user testing with a manager at Honda, with user testing questions. He expressed <strong>strong interest in the gamification elements</strong> and <strong>liked the short time commitment</strong> (30 minutes for 2 modules) for the learning experience.</p></section>
+<section class="block"><blockquote class="quote"><p>“Very pleasantly surprised...Very easy to understand, actual interaction was very fun, solidified concepts for me... If I could do these two modules in 30 minutes, it would be a large advantage.”</p><cite>Rajeev, Honda Research Institute</cite></blockquote></section>
+<section class="block cols n3"><div class="col"><h3>Evaluation</h3>
+<p>There was an increase in self-reported confidence levels from the survey:</p>
+<ul>
+<li>The survey question was: “Are you interested in learning about business?”</li>
+<li>The answer of "yes" increased from 22% to 75%</li>
+</ul></div><div class="col"><h3>Learning</h3>
+<p>An increase in learners' pre/post-test was also observed:</p>
+<ul>
+<li>Average learning gains increased by 20%</li>
+<li>From 61% to 70% of pre/post-test</li>
+</ul></div><div class="col"><h3>Takeaways</h3>
+<p>From this experience, I was able to gain skills in</p>
+<ul>
+<li>Cross-functional collaboration</li>
+<li>Gamification</li>
+<li>Project management</li>
+</ul></div></section>
+<section class="block"><h3>Thank you for reading my case study!</h3>
+<p>You can also check out our team's final video on this project.</p></section>
+</main>
+<nav class="pnav" aria-label="More projects"><a class="pn" href="tools-for-online-learning.html"><small>&larr; Previous</small>Tools For Online Learning</a><a class="pn next" href="corporate-security-control-implementation.html"><small>Next &rarr;</small>Corporate Security Control Implementation</a></nav>
+<footer>Thanks for stopping by the cafe. <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></footer>
+</body></html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Corporate Security Control Implementation | Fern Zhang</title>
+<meta name="description" content="A gamified learning experience for cybersecurity training in Articulate Storyline">
+<style>
+@font-face{font-family:"Nunito";src:url("../fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
+:root{--chalk:#1f3329;--cream:#f8f1e4;--paper:#fffaf1;--honey:#c98a4b;--rust:#a8532c;--ink:#3a2a1f;--muted:#7a6656;--sage:#8b9a7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:18px;line-height:1.65}
+a{color:var(--rust)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+.top{position:sticky;top:0;z-index:5;background:rgba(31,51,41,.96);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:10px clamp(16px,4vw,40px)}
+.top a{color:var(--cream);text-decoration:none;font-weight:700}
+.back{display:inline-flex;gap:8px;align-items:center;background:var(--honey);color:#2a1a0f!important;padding:8px 16px;border-radius:999px}
+.back:hover{background:#d99b5c}
+.top nav a{margin-left:20px;opacity:.9}.top nav a:hover{opacity:1;text-decoration:underline}
+header.hero{background:var(--chalk);color:var(--cream);padding:56px clamp(16px,5vw,48px) 0;text-align:center}
+header.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:0 auto 12px;max-width:900px}
+header.hero .sub{font-size:clamp(17px,2vw,21px);opacity:.9;max-width:760px;margin:0 auto 8px}
+header.hero .tag{color:var(--honey);font-weight:700;margin:0 auto 28px}
+header.hero p{max-width:760px}
+hr{border:0;border-top:1px solid #eadfcb;margin:24px 0}
+@media (max-width:1000px) and (min-width:761px){.cols.n4{grid-template-columns:repeat(2,1fr)}}
+.hero-img{display:block;width:min(1000px,100%);margin:20px auto 0;border-radius:16px 16px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
+main{max-width:1000px;margin:0 auto;background:var(--paper);padding:24px clamp(18px,5vw,64px) 48px;border-radius:0 0 16px 16px;box-shadow:0 10px 30px rgba(58,42,31,.08)}
+.block{margin:28px 0}
+h2{font-size:30px;line-height:1.2;margin:40px 0 12px;color:var(--chalk)}
+h3{font-size:23px;line-height:1.3;margin:28px 0 8px;color:var(--chalk)}
+.section-head h2{text-align:center;border-top:2px dashed var(--honey);padding-top:32px}
+p,li{max-width:72ch}
+strong{color:#2a1a0f}
+.cols{display:grid;gap:12px 36px}
+.cols.n2{grid-template-columns:repeat(2,1fr)}.cols.n3{grid-template-columns:repeat(3,1fr)}.cols.n4{grid-template-columns:repeat(4,1fr)}
+.cols .col h3{margin-top:12px}
+figure{margin:24px 0}figure img{width:100%;height:auto;border-radius:12px;border:1px solid #eadfcb;display:block}
+figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:8px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.gallery figure{margin:0}.gallery p:empty{display:none}
+.video{position:relative;aspect-ratio:16/9;margin:24px 0;border-radius:12px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.process{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:none}
+.process li{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid #eadfcb;border-radius:999px;padding:8px 18px 8px 8px;font-weight:700;max-width:none}
+.process span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;font-size:15px}
+.quote{margin:24px 0;padding:28px 32px;background:var(--chalk);color:var(--cream);border-radius:16px;font-size:21px;line-height:1.5}
+.quote p{margin:0 0 12px;max-width:none}.quote cite{color:var(--honey);font-style:normal;font-weight:700}
+.btn{display:inline-block;background:var(--rust);color:#fff;text-decoration:none;font-weight:700;padding:10px 20px;border-radius:999px}
+.pnav{max-width:1000px;margin:28px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 clamp(18px,3vw,0px)}
+.pn{display:block;background:var(--paper);border:1px solid #eadfcb;border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--ink);font-weight:700}
+.pn small{display:block;color:var(--muted);font-weight:600}.pn.next{text-align:right}.pn:hover{border-color:var(--honey)}
+footer{text-align:center;padding:36px 16px 48px;color:var(--muted)}
+@media (max-width:760px){body{font-size:17px}.cols.n2,.cols.n3,.cols.n4{grid-template-columns:1fr}.top nav{display:none}.pnav{grid-template-columns:1fr}.pn.next{text-align:left}header.hero{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body>
+<div class="top"><a class="back" href="../index.html#menu">&larr; Back to the cafe</a>
+<nav aria-label="Site"><a href="../index.html#menu">Projects</a><a href="../index.html#about">About</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="../index.html#contact">Contact</a></nav></div>
+<header class="hero"><h1>Corporate Security Control Implementation</h1><p class="sub">A gamified learning experience for cybersecurity training in Articulate Storyline</p><p class="tag"></p><img class="hero-img" src="img/43f8985af080.webp" alt="Corporate Security Control Implementation cover"></header>
+<main>
+<section class="block"><p>A gamified learning experience for cybersecurity training</p></section>
+<section class="block cols n2"><div class="col"><h3>Overview</h3>
+<p>Our client was a local community college in Pittsburgh, whose emphasis was workforce training and readiness. The target learners were facing the challenge of implementing security control actions into different emergent scenarios.</p>
+<p>I was the project manager and learning experience designer. The project was handed to me when it was half-developed. However, we received pushback when presenting this idea to our client.</p>
+<p>My responsibility was to <strong>quickly identify alternative pathways</strong>, <strong>lead the learning experience process to deliver results timely</strong>, and <strong>update the team's workflow</strong> to prevent similar issues from happening in the future.</p></div><div class="col"><h3>Goal</h3>
+<p>The project goal was to improve learners' performance in implementing security control measurements in different scenarios, increasing their report accuracy rate by 30%.</p></div></section>
+<section class="block"><h3>Try out the course here!</h3>
+<p>Link: https://storage.googleapis.com/fern_elearing_portfolio/Cyber%20Security%20Control%20Course%20-%20Storyline%20output/story.html</p>
+<p>Security Control Course</p></section>
+<section class="block cols n4"><div class="col"><h3>Role</h3>
+<p>Project Manager</p>
+<p>Learning Experience Designer</p></div><div class="col"><h3>Tools</h3>
+<p>Figma, Articulate Storyline</p></div><div class="col"><h3>Team</h3>
+<p>1 LX Designer, 1 SME</p></div><div class="col"><h3>Timeline</h3>
+<p>Oct - Dec 2024</p></div></section>
+<section class="block"><ol class="process"><li><span>1</span>Project Challenge</li><li><span>2</span>Needs Analysis</li><li><span>3</span>Project Management</li><li><span>4</span>Interactive Learning Design</li><li><span>5</span>Implementation and Evaluation</li><li><span>6</span>Learning and Next Steps</li></ol></section>
+<section class="block cols n2"><div class="col"><h3>Project Challenge</h3>
+<p>This project started development before I joined the team. The original project was a simulation where learners needed to implement regulatory policies and frameworks for security control.</p>
+<p>My first meeting was to present the project prototype to the client. However, the client turned down the idea because the prototype was too difficult for the target learners.</p>
+<p>As the project manager and learning experience designer, I took the initiative to find solutions to several problems here:</p>
+<ul>
+<li>How could I lead the team to <strong>quickly pivot to a feasible idea</strong>?</li>
+<li>How could I adjust the timeline and <strong>maximize available resources</strong> to deliver results?</li>
+<li>What were <strong>the root causes</strong> of this misalignment with the client?</li>
+<li>How could we <strong>document</strong> this and prevent it from happening again?</li>
+</ul></div><div class="col"><h3>Actions</h3>
+<p>First of all, I evaluated the priority of all tasks and determined to focus on the first two questions because of their <strong>high priority</strong>. I took the following steps to analyze the situation.</p>
+<ul>
+<li>Since I was new on the team, I researched the <strong>existing materials</strong> to understand the design decision of the project and the project's <strong>needs analysis</strong></li>
+<li>I found out that the original learning solution was designed very similarly to the real working environment for the target learners. However, as the client pointed out, learners were struggling, thus, the training concept was too difficult.</li>
+<li>In addition, there was no prior research conducted on learner analysis or task analysis, indicating that the original proposal was <strong>not solving the root cause</strong>.</li>
+<li>I quickly informed the team, SME, and stakeholders about my findings, acknowledging the flaw in the analysis and sharing the updated timeline:</li>
+<li>I would take a week to conduct a thorough analysis to understand the learners' knowledge gap and identify learning objectives.</li>
+<li>Then, I would host a brainstorming session to discuss possible ways to pivot the current project, minimizing waste.</li>
+<li>After the client approved the new idea, I would adjust the project timeline accordingly to ensure delivery within 2 months.</li>
+</ul></div></section>
+<section class="block"><figure><a href="img/b593e0befab5.webp" target="_blank" rel="noopener"><img src="img/b593e0befab5.webp" alt="Control Type Identification, the first step, is crucial for successful implementation" loading="lazy"></a><figcaption>Control Type Identification, the first step, is crucial for successful implementation</figcaption></figure>
+
+<h3>Task Analysis</h3>
+<p>I read through existing resources, talked with the SME, and analyzed past learners' data to <strong>conduct a task analysis</strong> and <strong>identify knowledge gaps</strong>.</p>
+<p>The expert cognitive model showed that there were three crucial steps to successful security control implementation: <strong>control type identification, effective measure identification, and implementation planning</strong>.</p>
+<p>By examining learners' past reports and synthesizing the patterns, I discovered that the most common errors were control type identification: <strong>70% of the mistakes were due to the inability to choose the correct control type</strong>.</p>
+<p>This also proved that the original design was not effective because it targeted the second step: effective measures identification.</p></section>
+<section class="block"><h3>Learner Analysis</h3>
+<p>I also conducted learner analysis to ensure we could choose the optimal delivery methods for the learners, ensuring the right difficulty level.</p>
+<p>I was able to collect both quantitative and qualitative data from our learners through enrollment data, interviews, past performances, and observation.</p>
+<p>The main takeaway was that our learners <strong>did not possess a technical background in cybersecurity and preferred  bite-size learning</strong>. Therefore, an engaging e-learning project would be most effective.</p>
+<figure><a href="img/827e65758c68.webp" target="_blank" rel="noopener"><img src="img/827e65758c68.webp" alt="Learner Profile" loading="lazy"></a><figcaption>Learner Profile</figcaption></figure></section>
+<section class="block"><figure><a href="img/ab8a65adaa78.webp" target="_blank" rel="noopener"><img src="img/ab8a65adaa78.webp" alt="Workflow Diagram" loading="lazy"></a><figcaption>Workflow Diagram</figcaption></figure>
+
+<h3>Project Management</h3>
+<p>After identifying a possible pathway for quick iteration, I took several steps for efficient project management.</p>
+<p>First, based on the analysis, I aligned with the SME to articulate the course's learning objective:</p>
+<ul>
+<li><em>Learners should be able to compare and contrast the various types of controls at an accuracy rate of over 80%.</em></li>
+</ul>
+<p>Next, I hosted the meeting with the other LXD and SME to brainstorm ideas for developing the project and maximizing the use of existing resources.</p>
+<ul>
+<li>The finding was that the existing reference materials covered the security control type topics, which would <strong>save time in understanding and writing the technical content.</strong></li>
+<li>I also persuaded the team to use gamification and simulation for engaging learning design, by using research evidence and measuring existing simulation story resources.</li>
+</ul>
+<p>Third, I communicated with the client for updates and seeking approval. With <strong>extensive evidence and research</strong>, the client agreed to adopt the project to focus on comparing and contrasting security controls.</p>
+<p>Lastly, I shared the approval with the team to celebrate our small wins (especially important during hard times), and updated the timeline accordingly to ensure there would be no delay in deployment.</p></section>
+<section class="block"><h3>Interactive Learning Design</h3>
+<p>I leveraged several learning design elements to ensure the course was interactive and accessible to the target learners, including</p>
+<ul>
+<li>Simulation</li>
+<li>Worked example and scaffolding</li>
+<li>Gamification</li>
+</ul></section>
+<section class="block"><div class="video"><iframe src="https://www.youtube.com/embed/odPx36batII" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<h3>Simulation</h3>
+<p>I chose to use simulation to provide a safe, realistic environment to practice and apply new skills for learners, <strong>increasing learner's motivation, knowledge retention, and confidence</strong>.</p>
+<p>From the brainstorming session, I also agreed with the other LXD that we could <strong>reuse the narratives designed for the original project to enhance our efficiency</strong>. Therefore, we adopted the story of Zylex Global Tech, an electronic medical records system company, facing multiple cybersecurity concerns prior to its IPO.</p></section>
+<section class="block"><h3>Worked Example and Knowledge Checks</h3>
+<p>As I identified in the learner's analysis, the target learners were not from a technical background, <strong>requiring step-by-step guidance to master knowledge and skills</strong>. Therefore, I included worked examples and scaffolding before leading the learners to work on problems on their own.</p>
+<p>This could enhance learners' understanding and confidence by seeing concrete progress.</p>
+<div class="video"><iframe src="https://www.youtube.com/embed/QsSKLlHxjV4" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div></section>
+<section class="block"><div class="video"><iframe src="https://www.youtube.com/embed/r10a48Jefec" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+<h3>Knowledge Checks</h3>
+<p>Here are examples of knowledge checks with explanatory feedback to learners.</p></section>
+<section class="block"><h3>Gamification</h3>
+<p>I chose to use gamification to increase learner's engagement with the course instead of passive learning.</p>
+<p>The design of this gamification was <strong>closely aligned with the learning objective</strong>: <em>Learners should be able to compare and contrast the various types of controls at an accuracy rate of over 80%.</em></p>
+<p>The scoring system required learners to earn at least 300 coins to move on to the next module, which would translate to learners needing to <strong>answer 80% of the questions correctly</strong>.</p>
+<p>This design also <strong>prevented learners from gaming the system</strong> and required repetition for learning.</p>
+<div class="video"><iframe src="https://www.youtube.com/embed/h1a3siH-Ysc" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div></section>
+<section class="block"><figure><a href="img/d02469ac06ca.webp" target="_blank" rel="noopener"><img src="img/d02469ac06ca.webp" alt="Certificate Example" loading="lazy"></a><figcaption>Certificate Example</figcaption></figure>
+
+<h3>Course Certificate</h3>
+<p>As I learned from the client, one pain point of target learners was the low completion rate of the training. Many learners started but didn't finish the training.</p>
+<p>To <strong>motivate learners</strong>, I designed a certificate of completion, which they could print out and share with others.</p></section>
+<section class="block"><h3>Implementation</h3>
+<p>By regularly updating and reviewing our timelines, I was able to lead the team to deliver the course on time, with rounds of internal testing among team members, SME, and stakeholders.</p>
+<p>From the learner's analysis, I understood that learners were not familiar with using e-learning tools, such as Articulate Storyline. To better facilitate the learning experience, I also created a short tutorial video to <strong>highlight design features of the course</strong>, so learners can truly enjoy the benefits of them.</p>
+<p>Button</p>
+<div class="video"><iframe src="https://www.youtube.com/embed/0mrhyb5s7e4" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div></section>
+<section class="block"><figure><a href="img/adbe1fc63170.webp" target="_blank" rel="noopener"><img src="img/adbe1fc63170.webp" alt="Question Error Rate" loading="lazy"></a><figcaption>Question Error Rate</figcaption></figure>
+
+<h3>Evaluation</h3>
+<p>I collected both <strong>quantitative</strong> and <strong>qualitative</strong> data for learning evaluation, using pre/post-test scores, surveys, and interviews.</p>
+<p><strong>Theaverage learning gain was 15%</strong>, indicating the course was effective in improving learners' understanding of security control types. From performance data, I saw that learners with security control training were <strong>10% less likely</strong> to commit a mistake in their report about security control identification.</p>
+<p>However, I was interested in diving deep to see how I could maximize the learning gains and achieve the business goal for the next iteration. I examined the pre/post-test quiz question data and found out that one question had a significantly higher error rate: <strong>compare and contrast managerial and operational control</strong>.</p>
+<p>To further understand the root cause, I analyzed survey data and conducted interviews with learners.</p>
+<ul>
+<li>Learners stated that managerial and operational control were difficult to distinguish, especially when learners first approached this topic</li>
+<li>Learners liked the practice but would like to see <strong>more examples</strong> of comparing and contrasting managerial and operational controls</li>
+</ul></section>
+<section class="block cols n2"><div class="col"><h3>Learnings</h3>
+<p>I shared the findings from the evaluation with the SME and the other LXD, we agreed to expand on more practices and detailed and segmented instructions on comparing and contrasting managerial and operational control for our next iteration.</p>
+<p>After the deployment, I also spent time <strong>reflecting on and documenting the redesign process,</strong> emphasizing the importance of <strong>comprehensive needs analysis</strong>.</p>
+<p>Since I was new to the team, I decided to start putting together a standardized workflow document for future projects, <strong>keeping regular updates</strong> with inputs from colleagues across functional teams.</p>
+<p>I led the team to follow the workflow carefully for all the following projects, and the communication with clients and stakeholders became much smoother, without incorrectly identifying the training needs of the learners.</p>
+<p>What I learned from this process was <strong>the importance of a structured and standardized process of learning experience design</strong>, following evidence-based principles. In addition, I was able to enhance my <strong>project management skills</strong> to handle tight timelines and identify improvement opportunities through <strong>detailed evaluation</strong>.</p></div><div class="col"><h3>Next steps</h3>
+<p>I'm leading the team to prepare for the next iteration.</p>
+<ul>
+<li>I'm managing the <strong>communication with the SME</strong> to collaboratively create more practice questions for practicing comparing and contrasting managerial and operational control.</li>
+<li>To ensure transparent communication, I also <strong>organize regular meetings with the client</strong> to share updates on the course. Our client was extremely happy about the design opportunities designed from evaluation and looked forward to our iteration.</li>
+</ul></div></section>
+</main>
+<nav class="pnav" aria-label="More projects"><a class="pn" href="gamify-data-science-learning.html"><small>&larr; Previous</small>Gamify Data Science Learning</a><a class="pn next" href="assessmate-product-guide.html"><small>Next &rarr;</small>AssessMate Product Guide</a></nav>
+<footer>Thanks for stopping by the cafe. <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></footer>
+</body></html>

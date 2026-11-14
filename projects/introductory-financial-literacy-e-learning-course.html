@@ -3,157 +3,224 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Introductory Financial Literacy E-Learning Course | Fern Zhang</title>
 <meta name="description" content="An e-learning course for first-year college students to navigate their finances">
+<link rel="preload" href="../fonts/CabinetGrotesk-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Nunito";src:url("../fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
-:root{--chalk:#1f3329;--cream:#f8f1e4;--paper:#fffaf1;--honey:#c98a4b;--rust:#a8532c;--ink:#3a2a1f;--muted:#7a6656;--sage:#8b9a7a}
+@font-face{font-family:"Cabinet Grotesk";src:url("../fonts/CabinetGrotesk-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Cabinet Grotesk";src:url("../fonts/CabinetGrotesk-500.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Cabinet Grotesk";src:url("../fonts/CabinetGrotesk-700.woff2") format("woff2");font-weight:700;font-display:swap}
+:root{
+  --bg:#f4f1e8;--tile:#e7e1d3;--line:#d6cebd;
+  --ink:#2e2a26;--text:#57524c;--muted:#6b655e;
+  --accent:#8c5f2c;--accent-soft:#c99a5e;
+  --wrap:1112px;--gut:clamp(20px,5vw,40px);--gap:clamp(20px,2.6vw,36px);
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:18px;line-height:1.65}
-a{color:var(--rust)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
-.top{position:sticky;top:0;z-index:5;background:rgba(31,51,41,.96);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:10px clamp(16px,4vw,40px)}
-.top a{color:var(--cream);text-decoration:none;font-weight:700}
-.back{display:inline-flex;gap:8px;align-items:center;background:var(--honey);color:#2a1a0f!important;padding:8px 16px;border-radius:999px}
-.back:hover{background:#d99b5c}
-.top nav a{margin-left:20px;opacity:.9}.top nav a:hover{opacity:1;text-decoration:underline}
-header.hero{background:var(--chalk);color:var(--cream);padding:56px clamp(16px,5vw,48px) 0;text-align:center}
-header.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin:0 auto 12px;max-width:900px}
-header.hero .sub{font-size:clamp(17px,2vw,21px);opacity:.9;max-width:760px;margin:0 auto 8px}
-header.hero .tag{color:var(--honey);font-weight:700;margin:0 auto 28px}
-header.hero p{max-width:760px}
-hr{border:0;border-top:1px solid #eadfcb;margin:24px 0}
-@media (max-width:1000px) and (min-width:761px){.cols.n4{grid-template-columns:repeat(2,1fr)}}
-.hero-img{display:block;width:min(1000px,100%);margin:20px auto 0;border-radius:16px 16px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
-main{max-width:1000px;margin:0 auto;background:var(--paper);padding:24px clamp(18px,5vw,64px) 48px;border-radius:0 0 16px 16px;box-shadow:0 10px 30px rgba(58,42,31,.08)}
-.block{margin:28px 0}
-h2{font-size:30px;line-height:1.2;margin:40px 0 12px;color:var(--chalk)}
-h3{font-size:23px;line-height:1.3;margin:28px 0 8px;color:var(--chalk)}
-.section-head h2{text-align:center;border-top:2px dashed var(--honey);padding-top:32px}
-p,li{max-width:72ch}
-strong{color:#2a1a0f}
-.cols{display:grid;gap:12px 36px}
-.cols.n2{grid-template-columns:repeat(2,1fr)}.cols.n3{grid-template-columns:repeat(3,1fr)}.cols.n4{grid-template-columns:repeat(4,1fr)}
-.cols .col h3{margin-top:12px}
-figure{margin:24px 0}figure img{width:100%;height:auto;border-radius:12px;border:1px solid #eadfcb;display:block}
-figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:8px}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.gallery figure{margin:0}.gallery p:empty{display:none}
-.video{position:relative;aspect-ratio:16/9;margin:24px 0;border-radius:12px;overflow:hidden;background:#000}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.process{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:none}
-.process li{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid #eadfcb;border-radius:999px;padding:8px 18px 8px 8px;font-weight:700;max-width:none}
-.process span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;font-size:15px}
-.quote{margin:24px 0;padding:28px 32px;background:var(--chalk);color:var(--cream);border-radius:16px;font-size:21px;line-height:1.5}
-.quote p{margin:0 0 12px;max-width:none}.quote cite{color:var(--honey);font-style:normal;font-weight:700}
-.btn{display:inline-block;background:var(--rust);color:#fff;text-decoration:none;font-weight:700;padding:10px 20px;border-radius:999px}
-.pnav{max-width:1000px;margin:28px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 clamp(18px,3vw,0px)}
-.pn{display:block;background:var(--paper);border:1px solid #eadfcb;border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--ink);font-weight:700}
-.pn small{display:block;color:var(--muted);font-weight:600}.pn.next{text-align:right}.pn:hover{border-color:var(--honey)}
-footer{text-align:center;padding:36px 16px 48px;color:var(--muted)}
-@media (max-width:760px){body{font-size:17px}.cols.n2,.cols.n3,.cols.n4{grid-template-columns:1fr}.top nav{display:none}.pnav{grid-template-columns:1fr}.pn.next{text-align:left}header.hero{padding-top:36px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style></head>
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 18px/1.55 "Cabinet Grotesk",ui-sans-serif,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:10px 16px;z-index:20}
+.skip:focus{left:8px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.top.scrolled{border-bottom-color:var(--line)}
+.top .in{width:min(var(--wrap),100% - 2*var(--gut));margin:auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{color:var(--ink);text-decoration:none;font-weight:700;font-size:19px;letter-spacing:.01em}
+.top nav{display:flex;gap:28px}
+.top nav a{color:var(--ink);text-decoration:none;font-size:16px;font-weight:500;padding:6px 0;border-bottom:1px solid transparent}
+.top nav a:hover{border-bottom-color:var(--ink)}
+
+/* 12-column grid, positions come from the UXfolio layout */
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);width:min(var(--wrap),100% - 2*var(--gut));margin:auto;align-items:center}
+.grid.cols{align-items:start}
+.mod{min-width:0}
+.sec{padding:calc(var(--pt) * 1.2px) 0 calc(var(--pb) * 1.2px)}
+.prose .m-text>*{max-width:68ch}
+
+/* type */
+h1,h2,h3,h4{color:var(--ink);font-weight:500;line-height:1.2;margin:0 0 .6em;text-wrap:balance}
+h1{font-size:clamp(36px,4.6vw,56px);letter-spacing:-.015em;line-height:1.08;font-weight:700}
+h2{font-size:clamp(26px,2.6vw,32px);letter-spacing:-.01em}
+h3{font-size:clamp(22px,2vw,25px);color:var(--accent)}
+h4{font-size:20px;font-weight:700}
+.mod>*+h3,.mod>*+h2{margin-top:1.4em}
+p{margin:0 0 1em;text-wrap:pretty}
+.mod>:last-child{margin-bottom:0}
+strong{color:var(--ink);font-weight:700}
+ul,ol{margin:0 0 1em;padding-left:1.3em}
+li{margin:.3em 0;padding-left:.2em}
+li>p{margin:0}
+li::marker{color:var(--accent)}
+ol>li::marker{font-weight:700}
+hr{width:min(var(--wrap),100% - 2*var(--gut));margin:0 auto;border:0;border-top:1px solid var(--line)}
+
+/* hero */
+.hero{padding:clamp(40px,7vw,88px) 0 clamp(48px,7vw,96px);min-height:min(520px,70vh)}
+.hero.no-media{min-height:0}
+.hero.no-media .hero-text{grid-column:1/11!important}
+.tagline{font-size:clamp(20px,2.1vw,26px);line-height:1.35;color:var(--accent);font-weight:500;margin:0;max-width:30ch}
+.hero-text h1{margin-bottom:.45em}
+
+/* figures */
+figure{margin:0}
+.pic img{max-width:min(100%,var(--w));margin:auto}
+.zoom{all:unset;display:block;cursor:zoom-in;border-radius:2px}
+.zoom:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;color:var(--muted)}
+.embed iframe{display:block;width:100%;border:0;border-radius:4px;background:var(--tile)}
+.video iframe{aspect-ratio:16/9}
+.proto iframe{aspect-ratio:4/3;min-height:420px}
+
+/* device frames for mockup images */
+.device .screen{background:#1d1b19;padding:clamp(6px,.9vw,11px);border-radius:12px;box-shadow:0 30px 60px -30px rgba(46,42,38,.45)}
+.device .screen img{border-radius:3px;width:100%}
+.desktop .screen{padding-bottom:clamp(22px,2.6vw,34px)}
+.desktop .base{width:22%;height:clamp(40px,5vw,64px);margin:0 auto;background:linear-gradient(#2a2725,#141210);clip-path:polygon(12% 0,88% 0,100% 100%,0 100%)}
+.laptop .screen{border-radius:14px 14px 0 0;padding-bottom:clamp(8px,1vw,14px)}
+.laptop .base{height:clamp(10px,1.2vw,15px);margin:0 -5%;background:linear-gradient(#d7d3cb,#a9a59d);border-radius:0 0 14px 14px/0 0 10px 10px}
+
+/* process */
+.process ol{list-style:none;margin:0 auto;padding:0;width:min(var(--wrap),100% - 2*var(--gut));display:grid;grid-template-columns:repeat(var(--n),1fr)}
+.process li{position:relative;margin:0;padding:0;text-align:center}
+.process li:not(:first-child)::before{content:"";position:absolute;top:28px;left:calc(-50% + 44px);right:calc(50% + 44px);border-top:1px solid var(--ink)}
+.process a,.process .nolink{display:flex;flex-direction:column;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+.process .n{display:grid;place-items:center;width:56px;height:56px;border:1.5px solid var(--ink);border-radius:50%;font-weight:700;font-size:20px;color:var(--ink);transition:background .2s ease-out,color .2s ease-out}
+.process .l{font-size:17px;line-height:1.3;max-width:14ch}
+.process a:hover .n{background:var(--ink);color:var(--bg)}
+.process a:hover .l{color:var(--ink)}
+.sec-header+.sec-process,.sec-header{padding-bottom:calc(var(--pb) * 1px)}
+
+/* gallery */
+.gallery{width:min(var(--wrap),100% - 2*var(--gut));margin:auto;display:grid;gap:var(--gap);align-items:start}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.slider{width:min(900px,100% - 2*var(--gut));margin:auto}
+.track{list-style:none;margin:0;padding:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:24px;align-items:center}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;margin:0;padding:0}
+.slide img{max-height:72vh;width:auto;object-fit:contain}
+.ctrl{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:20px}
+.ctrl button{width:44px;height:44px;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:50%;font:inherit;font-size:18px;cursor:pointer;transition:background .2s ease-out,color .2s ease-out}
+.ctrl button:hover{background:var(--ink);color:var(--bg)}
+.ctrl button:disabled{opacity:.35;cursor:default;background:transparent;color:var(--ink)}
+.count{font-size:15px;color:var(--muted);min-width:4ch;text-align:center;font-variant-numeric:tabular-nums}
+
+/* testimonial and call to action */
+.quote{margin:0;position:relative;padding-top:56px}
+.quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font-size:120px;line-height:1;color:var(--accent-soft);font-weight:700}
+.quote p{font-size:clamp(22px,2.4vw,30px);line-height:1.38;color:var(--ink);font-weight:500;margin-bottom:18px}
+.quote cite{font-style:normal;color:var(--accent);font-size:17px;font-weight:500}
+.cta{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
+.cta h4{font-size:22px;font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);text-decoration:none;padding:14px 24px;border-radius:4px;font-weight:500;font-size:17px;transition:background .2s ease-out}
+.btn:hover{background:var(--accent)}
+
+/* read more + contact */
+.more{padding:clamp(64px,9vw,120px) 0 clamp(48px,6vw,80px);border-top:1px solid var(--line);margin-top:clamp(32px,5vw,64px)}
+.more .in,.foot .in{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
+.more h2{margin-bottom:36px}
+.related{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.related li{margin:0;padding:0}
+.related a{display:block;text-decoration:none;color:var(--text)}
+.thumb{display:grid;place-items:center;aspect-ratio:1;background:var(--tile);overflow:hidden;margin-bottom:18px;transition:background .3s ease-out}
+.thumb img{width:88%;height:88%;object-fit:contain;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.related a:hover .thumb{background:#ded6c4}
+.related a:hover .thumb img{transform:scale(1.035)}
+.rt{display:block;color:var(--ink);font-weight:700;font-size:19px;line-height:1.3;margin-bottom:6px}
+.related a:hover .rt{text-decoration:underline;text-underline-offset:3px}
+.rs{display:block;font-size:16px;line-height:1.45}
+.foot{padding:clamp(48px,6vw,80px) 0 40px}
+.foot h2{font-size:clamp(24px,2.4vw,30px);margin-bottom:12px}
+.foot .mail{font-size:19px}
+.foot .base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:20px;border-top:1px solid var(--ink);font-size:15px;color:var(--muted)}
+.foot .base a{color:var(--muted)}
+
+/* lightbox */
+dialog.lb{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh;overflow:visible}
+dialog.lb::backdrop{background:rgba(30,27,24,.86)}
+dialog.lb img{max-width:94vw;max-height:88vh;width:auto;background:var(--bg)}
+dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;border:1px solid var(--bg);color:var(--bg);width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer}
+
+@media (max-width:860px){
+  .grid{row-gap:28px}
+  .grid.cols{row-gap:16px}
+  .grid>.mod{grid-column:1/-1!important}
+  .sec{padding:calc(var(--pt) * 1px) 0 calc(var(--pb) * 1px)}
+  .hero{min-height:0}
+  .hero .hero-media{order:-1}
+  .process ol{grid-template-columns:1fr;gap:0;width:min(420px,100% - 2*var(--gut))}
+  .process li{text-align:left;padding-bottom:22px}
+  .process li:not(:first-child)::before{top:auto;bottom:calc(100% - 0px);left:22px;right:auto;height:22px;border-top:0;border-left:1px solid var(--ink)}
+  .process a,.process .nolink{flex-direction:row;gap:16px}
+  .process .n{width:44px;height:44px;font-size:17px;flex:none}
+  .process .l{max-width:none}
+  .process li:last-child{padding-bottom:0}
+  .g3,.g2{grid-template-columns:1fr}
+  .related{grid-template-columns:repeat(2,1fr)}
+  .top nav{gap:18px}
+}
+@media (max-width:560px){
+  body{font-size:17px}
+  .related{grid-template-columns:1fr}
+  .thumb{aspect-ratio:4/3}
+  .brand{font-size:17px}
+  .top nav a{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
 <body>
-<div class="top"><a class="back" href="../index.html#menu">&larr; Back to the cafe</a>
-<nav aria-label="Site"><a href="../index.html#menu">Projects</a><a href="../index.html#about">About</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a><a href="../index.html#contact">Contact</a></nav></div>
-<header class="hero"><h1>Introductory Financial Literacy E-Learning Course</h1><p class="sub">An e-learning course for first-year college students to navigate their finances</p><p class="tag">E-Learning Design Principles Course Project</p><img class="hero-img" src="img/d3350b155100.webp" alt="Introductory Financial Literacy E-Learning Course cover"></header>
-<main>
-<section class="block"><h3>Project Overview</h3>
-<p>We designed a 30-minute introductory course for <strong>university students to learn about saving and budgeting</strong>, using innovative and research-proven learning science principles. We used an <strong>AI-generated video</strong> using a script we wrote for the innovative approach. A pre and post-test experiment shows that participants have <strong>an average 16% increase in quiz scores</strong>.</p>
-<p>Link: https://proton.oli.cmu.edu/sections/saving_and_budgeting__intro_to/enroll</p>
-<p>Try out the course</p></section>
-<section class="block cols n2"><div class="col"><h3>Problem</h3>
-<p>Financial literacy is a strong predictor of retirement planning and wealth and leads to better investment outcomes. <strong>30-40% of wealth inequality near retirement is accounted for by financial literacy.</strong><br />
-Meanwhile, the general public has a low financial literacy level, and there are <strong>no widely established courses</strong>.</p></div><div class="col"><h3>Solution</h3>
-<p>The nature of online courses enables accessibility for universities without sufficient resources in the status quo. The use of AI-generated videos aims to increase students' motivation.</p>
-<p>Read the final report <a href="https://drive.google.com/file/d/11igi16MOnJBNe1grwkpgoY_zhlV6XusQ/view" target="_blank" rel="noopener">here</a>.</p></div></section>
-<section class="block cols n4"><div class="col"><h3>Tools</h3>
-<ul>
-<li>OLI Torus</li>
-<li>Figma</li>
-<li>D-ID</li>
-</ul></div><div class="col"><h3>Team</h3>
-<ul>
-<li>1 learning designer (me)</li>
-<li>1 UI/UX designer</li>
-<li>1 developer</li>
-<li>1 project manager</li>
-</ul></div><div class="col"><h3>My Role</h3>
-<ul>
-<li>Instructional Design</li>
-<li>Research</li>
-<li>Project management</li>
-</ul></div><div class="col"><h3>Timeline</h3>
-<ul>
-<li>Oct 2023 - Dec 2023</li>
-</ul></div></section>
-<section class="block section-head"><h2>My Design Process</h2></section>
-<section class="block"><ol class="process"><li><span>1</span>Design Model</li><li><span>2</span>Cognitive Model Iteration</li><li><span>3</span>Design Alignment</li><li><span>4</span>Instructional Principles</li><li><span>5</span>Learner Testing</li><li><span>6</span>Next Steps</li></ol></section>
-<section class="block"><figure><a href="img/dea31b0befe0.webp" target="_blank" rel="noopener"><img src="img/dea31b0befe0.webp" alt="Design Model Figure" loading="lazy"></a><figcaption>Design Model Figure</figcaption></figure>
-
-<h3>Design Model</h3>
-<p>Adapted from E-Learning Principles, this course design uses data, GPT prompt engineering, Cognitive Task Analysis (CTA), and theory to design and iterate <strong>goals</strong>, <strong>assessment</strong>, and <strong>instructional design</strong>.</p>
-<p>Button</p></section>
-<section class="block"><h3>Cognitive Model Iterations</h3>
-<p>During the ideation phase of the Cognitive Task Analysis Model, I conducted both <strong>expert's structured interviews</strong> and 2 rounds of <strong>novice think-aloud</strong>.<br />
-The key findings are:</p>
-<ul>
-<li><em>Learners do not normally see the importance of financial literacy.</em></li>
-<li><em>Learners do not plan for emergency funds.</em></li>
-<li><em>Learners do not strategically reflect on their savings and budgeting.</em></li>
-</ul>
-<p>However, these are the key steps described in the expert interview. Thus, these steps are included in the cognitive model to ensure that learners can acquire all the necessary skills for saving and budgeting.</p>
-<figure><a href="img/0628457e1668.webp" target="_blank" rel="noopener"><img src="img/0628457e1668.webp" alt="Theoretical CTA Model" loading="lazy"></a><figcaption>Theoretical CTA Model</figcaption></figure></section>
-<section class="block"><figure><a href="img/062cc6fc2d0d.webp" target="_blank" rel="noopener"><img src="img/062cc6fc2d0d.webp" alt="" loading="lazy"></a></figure>
-
-<h3>Design Alignment</h3>
-<p>To align goals, assessment, and instruction, we begin by setting up clear learning objectives. Keeping our goals in mind, we designed assessments that precisely measure the intended outcomes, with assessment tasks that match different types of learning objectives.</p>
-<p>We also develop instructional strategies that align with those objectives and prepare students for assessments.</p></section>
-<section class="block"><h3>Instructional Principles</h3>
-<p>We choose <strong>Embodiment &amp; Multimedia</strong> as our innovative principle. From the expert interview, we learned that financial literacy is a personal topic, so people tend to prefer to listen to people with similar backgrounds. Videos with this type of speaker can be persuasive and increase learners' motivation.</p>
-<p>From CTA, we categorized the knowledge components of all necessary steps to achieve the goal. We chose the following research-proven principles targeting specific knowledge components:</p>
-<ul>
-<li>Learning by Doing</li>
-<li>Personalization</li>
-<li>Self-Explanation</li>
-<li>Worked Example</li>
-<li>Immediate Feedback</li>
-</ul>
-<p>Link: https://www.youtube.com/shorts/h-n1yCo-8Fg?feature=share</p>
-<p>Click here to see the AI-generated video</p>
-<figure><a href="img/5d92af1364ac.webp" target="_blank" rel="noopener"><img src="img/5d92af1364ac.webp" alt="Example of Knowledge Component with Associated Principles" loading="lazy"></a><figcaption>Example of Knowledge Component with Associated Principles</figcaption></figure></section>
-<section class="block"><h3>Embodiment &amp; Multimedia</h3>
-<p>Here is the AI-generated video embedded in the course module.</p>
-<div class="video"><iframe src="https://www.youtube.com/embed/h-n1yCo-8Fg" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div></section>
-<section class="block"><h3>Immediate Feedback</h3>
-<p>Here are two examples of immediate feedback when learners work on a multiple-choice question:</p></section>
-<section class="block gallery"><figure><a href="img/e5b2fb3173a1.webp" target="_blank" rel="noopener"><img src="img/e5b2fb3173a1.webp" alt="Immediate feedback example for choosing the wrong answer" loading="lazy"></a></figure>
-
-<figure><a href="img/7018acba41a6.webp" target="_blank" rel="noopener"><img src="img/7018acba41a6.webp" alt="Immediate feedback example for choosing the right answer" loading="lazy"></a></figure></section>
-<section class="block"><h3>Learner Testing</h3>
-<p>We conducted two rounds of learner testing, focusing on both usability and learning.<br />
-‍<br />
-The key takeaways are:</p>
-<ul>
-<li>Modules need to be <strong>closely connected</strong>. Learners do not see why certain module is related to saving and budgeting, such as inflation.</li>
-<li>AI-generated video should use a more casual tone to <strong>sound more like a college-age student</strong>.</li>
-<li>Open-ended questions need to provide more guidance to <strong>avoid unguided learning</strong>.</li>
-</ul>
-<figure><a href="img/dc4ecb73536f.webp" target="_blank" rel="noopener"><img src="img/dc4ecb73536f.webp" alt="This is an example of an added page for explaining the connection between modules." loading="lazy"></a><figcaption>This is an example of an added page for explaining the connection between modules.</figcaption></figure></section>
-<section class="block"><h3>Next steps</h3>
-<p>We did not find significant differences from our A/B testing. Here are some possible ways to look ahead.</p></section>
-<section class="block cols n2"><div class="col"><h3>01</h3>
-<p>We used an AI video instead of a human video. Based on the personalization principle, a human instructor might have a better effect.</p>
-<p>It might be more effective to use a recorded video of a human instructor. Although we use a personal tone and a college-age AI avatar as the video instructor, this selection is not general enough.</p></div><div class="col"><h3>02</h3>
-<p>Our innovative principle is the embodiment principle, which can also be <strong>counterproductive as a violation of coherence</strong>: Overly immersive or physically demanding learning experiences can overwhelm learners with sensory input. This sensory overload or distraction can make it difficult for learners to focus on the core concepts being taught, leading to reduced coherence in the learning process.</p></div></section>
-<section class="block"><h3>Learnings</h3>
-<ul>
-<li><strong>Empirical Cognitive Task Analysis.</strong> I interviewed both novices and experts in the financial literacy domain. Asking appropriate questions during think-aloud is crucial to gaining true novice insights.</li>
-<li><strong>Learner Testing.</strong> We iterated our design based on two rounds of learner testing feedback. I learned to synthesize the feedback and designed plans of iteration.</li>
-<li><strong>Instructional Design.</strong> I was able to implement theories of learning sciences into a real application, and I need to be aware of the effect of employing different theories at the same time - they may become counter-productive if not designed carefully.</li>
-</ul></section>
-<section class="block"><h3>Thank you for reading my project!</h3>
-<p>If you are interested, feel free to check out my other projects!</p></section>
+<a class="skip" href="#main">Skip to content</a>
+<div class="top"><div class="in">
+  <a class="brand" href="../index.html">Fern Zhang</a>
+  <nav aria-label="Site"><a href="../index.html">Back to the cafe</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a></nav>
+</div></div>
+<main id="main">
+<header class="hero grid"><div class="mod hero-text" style="grid-column:1/8"><h1>Introductory Financial Literacy E-Learning Course</h1><p class="tagline">E-Learning Design Principles Course Project</p></div><div class="mod hero-media" style="grid-column:8/13"><figure class="device laptop"><div class="screen"><img src="img/d3350b155100.webp" alt="Project image" width="981" height="931" fetchpriority=high decoding="async"></div><div class="base"></div></figure></div></header>
+<section class="sec sec-general" id="s3" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>Project Overview</h3><p>We designed a 30-minute introductory course for <strong>university students to learn about saving and budgeting</strong>, using innovative and research-proven learning science principles. We used an <strong>AI-generated video</strong> using a script we wrote for the innovative approach. A pre and post-test experiment shows that participants have <strong>an average 16% increase in quiz scores</strong>.</p></div></div></section>
+<section class="sec sec-columns" id="s5" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-column:1/7"><h3>Problem</h3><p>Financial literacy is a strong predictor of retirement planning and wealth and leads to better investment outcomes. <strong>30-40% of wealth inequality near retirement is accounted for by financial literacy.</strong><br>Meanwhile, the general public has a low financial literacy level, and there are <strong>no widely established courses</strong>.</p></div><div class="mod m-column" style="grid-column:7/13"><h3>Solution</h3><p>The nature of online courses enables accessibility for universities without sufficient resources in the status quo. The use of AI-generated videos aims to increase students' motivation.</p><p>Read the final report <a href="https://drive.google.com/file/d/11igi16MOnJBNe1grwkpgoY_zhlV6XusQ/view" target="_blank" rel="noopener">here</a>.</p></div></div></section>
+<section class="sec sec-columns" id="s6" style="--pt:60;--pb:60"><div class="grid cols"><div class="mod m-column" style="grid-column:1/4"><h3>Tools</h3><ul><li><p>OLI Torus</p></li><li><p>Figma</p></li><li><p>D-ID</p></li></ul></div><div class="mod m-column" style="grid-column:4/7"><h3>Team</h3><ul><li><p>1 learning designer (me)</p></li><li><p>1 UI/UX designer</p></li><li><p>1 developer</p></li><li><p>1 project manager</p></li></ul></div><div class="mod m-column" style="grid-column:7/10"><h3>My Role</h3><ul><li><p>Instructional Design</p></li><li><p>Research</p></li><li><p>Project management</p></li></ul></div><div class="mod m-column" style="grid-column:10/13"><h3>Timeline</h3><ul><li><p>Oct 2023 - Dec 2023</p></li></ul></div></div></section>
+<section class="sec sec-header" id="s7" style="--pt:30;--pb:30"><div class="grid"><div class="mod" style="grid-column:1/13"><h2 class="sec-title">My Design Process</h2></div></div></section>
+<section class="sec sec-process" style="--pt:30;--pb:30"><nav class="process" aria-label="Design process steps"><ol style="--n:6"><li><a href="#s9"><span class="n" aria-hidden="true">1</span><span class="l">Design Model</span></a></li><li><a href="#s10"><span class="n" aria-hidden="true">2</span><span class="l">Cognitive Model Iteration</span></a></li><li><a href="#s12"><span class="n" aria-hidden="true">3</span><span class="l">Design Alignment</span></a></li><li><a href="#s13"><span class="n" aria-hidden="true">4</span><span class="l">Instructional Principles</span></a></li><li><a href="#s20"><span class="n" aria-hidden="true">5</span><span class="l">Learner Testing</span></a></li><li><a href="#s21"><span class="n" aria-hidden="true">6</span><span class="l">Next Steps</span></a></li></ol></nav></section>
+<section class="sec sec-general" id="s9" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-column:1/7"><figure class="pic" style="--w:800px"><button class="zoom" type="button" data-src="img/dea31b0befe0.webp" aria-label="Enlarge image: Design Model Figure"><img src="img/dea31b0befe0.webp" alt="Design Model Figure" width="800" height="631" loading=lazy decoding="async"></button><figcaption>Design Model Figure</figcaption></figure></div><div class="mod m-text" style="grid-column:8/13"><h3>Design Model</h3><p>Adapted from E-Learning Principles, this course design uses data, GPT&nbsp;prompt engineering, Cognitive Task Analysis (CTA), and theory to design and iterate <strong>goals</strong>, <strong>assessment</strong>, and <strong>instructional design</strong>.</p></div></div></section>
+<section class="sec sec-general" id="s10" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-column:1/6"><h3>Cognitive Model Iterations</h3><p>During the ideation phase of the Cognitive Task Analysis Model, I conducted both <strong>expert's structured interviews</strong> and 2 rounds of <strong>novice think-aloud</strong>.<br>The key findings are:</p><ol><li><p><em>Learners do not normally see the importance of financial literacy.</em></p></li><li><p><em>Learners do not plan for emergency funds.</em></p></li><li><p><em>Learners do not strategically reflect on their savings and budgeting.</em></p></li></ol><p>However, these are the key steps described in the expert interview. Thus, these steps are included in the cognitive model to ensure that learners can acquire all the necessary skills for saving and budgeting.</p></div><div class="mod m-media" style="grid-column:7/13"><figure class="pic" style="--w:800px"><button class="zoom" type="button" data-src="img/0628457e1668.webp" aria-label="Enlarge image: Theoretical CTA Model"><img src="img/0628457e1668.webp" alt="Theoretical CTA Model" width="800" height="378" loading=lazy decoding="async"></button><figcaption>Theoretical CTA Model</figcaption></figure></div></div></section>
+<section class="sec sec-general" id="s12" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-column:1/7"><figure class="pic" style="--w:1080px"><button class="zoom" type="button" data-src="img/062cc6fc2d0d.webp" aria-label="Enlarge image: Project image"><img src="img/062cc6fc2d0d.webp" alt="Project image" width="1080" height="600" loading=lazy decoding="async"></button></figure></div><div class="mod m-text" style="grid-column:8/13"><h3>Design Alignment</h3><p>To align goals, assessment, and instruction, we begin by setting up clear learning objectives. Keeping our goals in mind, we designed assessments that precisely measure the intended outcomes, with assessment tasks that match different types of learning objectives.</p><p>We also develop instructional strategies that align with those objectives and prepare students for assessments.</p></div></div></section>
+<section class="sec sec-general" id="s13" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-column:1/6"><h3>Instructional Principles</h3><p>We choose <strong>Embodiment &amp;&nbsp;Multimedia</strong> as our innovative principle. From the expert interview, we learned that financial literacy is a personal topic, so people tend to prefer to listen to people with similar backgrounds. Videos with this type of speaker can be persuasive and increase learners' motivation.</p><p>From CTA, we categorized the knowledge components of all necessary steps to achieve the goal. We chose the following research-proven principles targeting specific knowledge components:</p><ul><li><p>Learning by Doing</p></li><li><p>Personalization</p></li><li><p>Self-Explanation</p></li><li><p>Worked Example</p></li><li><p>Immediate Feedback</p></li></ul></div><div class="mod m-media" style="grid-column:7/13"><figure class="pic" style="--w:792px"><button class="zoom" type="button" data-src="img/5d92af1364ac.webp" aria-label="Enlarge image: Example of Knowledge Component with Associated Principles"><img src="img/5d92af1364ac.webp" alt="Example of Knowledge Component with Associated Principles" width="792" height="453" loading=lazy decoding="async"></button><figcaption>Example of Knowledge Component with Associated Principles</figcaption></figure></div></div></section>
+<section class="sec sec-general" id="s16" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-column:1/5"><h3>Embodiment &amp; Multimedia</h3><p>Here is the AI-generated video embedded in the course module.</p></div><div class="mod m-media" style="grid-column:6/13"><figure class="embed video"><iframe src="https://www.youtube.com/embed/h-n1yCo-8Fg" title="Embodiment &amp; Multimedia Demo Video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe><figcaption>Embodiment &amp; Multimedia Demo Video</figcaption></figure></div></div></section>
+<section class="sec sec-general" id="s17" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>Immediate Feedback</h3><p>Here are two examples of immediate feedback when learners work on a multiple-choice question:</p></div></div></section>
+<section class="sec sec-gallery" style="--pt:30;--pb:30"><div class="gallery g2"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/e5b2fb3173a1.webp" aria-label="Enlarge image: Immediate feedback example for choosing the wrong answer"><img src="img/e5b2fb3173a1.webp" alt="Immediate feedback example for choosing the wrong answer" width="1600" height="733" loading=lazy decoding="async"></button></figure><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/7018acba41a6.webp" aria-label="Enlarge image: Immediate feedback example for choosing the right answer"><img src="img/7018acba41a6.webp" alt="Immediate feedback example for choosing the right answer" width="1600" height="832" loading=lazy decoding="async"></button></figure></div></section>
+<section class="sec sec-general" id="s20" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-column:1/6"><h3>Learner Testing</h3><p>We conducted two rounds of learner testing, focusing on both usability and learning.<br>‍<br>The key takeaways are:</p><ol><li><p>Modules need to be <strong>closely connected</strong>. Learners do not see why certain module is related to saving and budgeting, such as inflation.</p></li><li><p>AI-generated video should use a more casual tone to <strong>sound more like a college-age student</strong>.</p></li><li><p>Open-ended questions need to provide more guidance to <strong>avoid unguided learning</strong>.</p></li></ol></div><div class="mod m-media" style="grid-column:7/13"><figure class="device laptop"><div class="screen"><img src="img/dc4ecb73536f.webp" alt="This is an example of an added page for explaining the connection between modules." width="736" height="606" loading=lazy decoding="async"></div><div class="base"></div><figcaption>This is an example of an added page for explaining the connection between modules.</figcaption></figure></div></div></section>
+<section class="sec sec-general" id="s21" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>Next steps</h3><p>We did not find significant differences from our A/B testing. Here are some possible ways to look ahead.</p></div></div></section>
+<section class="sec sec-columns" id="s22" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-column:1/7"><h3>01</h3><p>We used an AI video instead of a human video. Based on the personalization principle, a human instructor might have a better effect.</p><p>It might be more effective to use a recorded video of a human instructor. Although we use a personal tone and a college-age AI avatar as the video instructor, this selection is not general enough.</p></div><div class="mod m-column" style="grid-column:7/13"><h3>02</h3><p>Our innovative principle is the embodiment principle, which can also be <strong>counterproductive as a violation of coherence</strong>: Overly immersive or physically demanding learning experiences can overwhelm learners with sensory input. This sensory overload or distraction can make it difficult for learners to focus on the core concepts being taught, leading to reduced coherence in the learning process.</p></div></div></section>
+<section class="sec sec-general" id="s23" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>Learnings</h3><ol><li><p><strong>Empirical Cognitive Task Analysis.</strong> I interviewed both novices and experts in the financial literacy domain. Asking appropriate questions during think-aloud is crucial to gaining true novice insights.</p></li><li><p><strong>Learner Testing.</strong> We iterated our design based on two rounds of learner testing feedback. I learned to synthesize the feedback and designed plans of iteration.</p></li><li><p><strong>Instructional Design.</strong> I was able to implement theories of learning sciences into a real application, and I need to be aware of the effect of employing different theories at the same time - they may become counter-productive if not designed carefully.</p></li></ol></div></div></section>
+<section class="sec sec-general" id="s24" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>Thank you for reading my project!</h3><p>If you are interested, feel free to check out my other projects!</p></div></div></section>
 </main>
-<nav class="pnav" aria-label="More projects"><a class="pn" href="revision-assessment-with-ai.html"><small>&larr; Previous</small>Revision Assessment with AI</a><a class="pn next" href="mandarin-bridge-course.html"><small>Next &rarr;</small>Mandarin Bridge Course with a Focus on Motivation and Engagement</a></nav>
-<footer>Thanks for stopping by the cafe. <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></footer>
+<section class="more" aria-labelledby="more-h"><div class="in">
+  <h2 id="more-h">Read more of my case studies</h2>
+  <ul class="related"><li><a href="mandarin-bridge-course.html"><span class="thumb"><img src="img/79a8ffd53adc.webp" alt="" width="1600" height="1067" loading="lazy"></span><span class="rt">Mandarin Bridge Course with a Focus on Motivation and Engagement</span><span class="rs">An innovative Mandarin Bridge Course (Instructor-led) for students at Environmental Charter School, Pittsburgh</span></a></li><li><a href="tools-for-online-learning.html"><span class="thumb"><img src="img/0291bb142f80.webp" alt="" width="1600" height="1600" loading="lazy"></span><span class="rt">Tools For Online Learning</span><span class="rs">A collection of mini projects using different e-learning tools, such as Articulate Rise, xAPI, and Python</span></a></li><li><a href="gamify-data-science-learning.html"><span class="thumb"><img src="img/50f292c17ebd.webp" alt="" width="956" height="538" loading="lazy"></span><span class="rt">Gamify Data Science Learning</span><span class="rs">A scenario-based e-learning data science program in Articulate Rise and Storyline for employees at Honda Research Institute USA</span></a></li></ul>
+</div></section>
+<footer class="foot"><div class="in">
+  <h2>Contact me here if you want to collaborate</h2>
+  <a class="mail" href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a>
+  <div class="base"><span>&copy; 2026 Fern Zhang</span><a href="#main">Back to top &uarr;</a></div>
+</div></footer>
+<dialog class="lb" aria-label="Enlarged image"><button type="button" aria-label="Close">&times;</button><img alt=""></dialog>
+<script>
+(()=>{
+  const top=document.querySelector('.top');
+  const onS=()=>top.classList.toggle('scrolled',scrollY>8);addEventListener('scroll',onS,{passive:true});onS();
+  const lb=document.querySelector('dialog.lb'),li=lb.querySelector('img');
+  document.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{li.src=b.dataset.src;li.alt=b.querySelector('img').alt;lb.showModal()}));
+  lb.addEventListener('click',e=>{if(e.target===lb||e.target.closest('button'))lb.close()});
+  document.querySelectorAll('.slider').forEach(s=>{
+    const t=s.querySelector('.track'),n=t.children.length,c=s.querySelector('.count'),p=s.querySelector('.prev'),x=s.querySelector('.next');
+    const cur=()=>Math.round(t.scrollLeft/t.clientWidth);
+    const upd=()=>{const i=cur();c.textContent=(i+1)+' / '+n;p.disabled=i===0;x.disabled=i===n-1};
+    const go=d=>t.scrollTo({left:(cur()+d)*t.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    p.onclick=()=>go(-1);x.onclick=()=>go(1);t.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});upd();
+  });
+})();
+</script>
 </body></html>

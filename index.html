@@ -110,7 +110,8 @@ section{padding:72px 28px}
 /* About + footer */
 .about{background:#efe3cf}
 .about .wrap{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center}
-.photo{aspect-ratio:1;border-radius:24px;background:repeating-linear-gradient(45deg,#e5d3b8 0 12px,#ead9c0 12px 24px);display:grid;place-items:center;color:var(--muted);font-weight:700;text-align:center;padding:20px}
+.photo{display:block;width:100%;height:auto;object-fit:cover;aspect-ratio:1;border-radius:24px;background:repeating-linear-gradient(45deg,#e5d3b8 0 12px,#ead9c0 12px 24px);display:grid;place-items:center;color:var(--muted);font-weight:700;text-align:center;padding:20px}
+img.photo{padding:0;background:none;box-shadow:0 10px 24px rgba(58,42,31,.16)}
 .about h2{font-size:34px;margin:0 0 12px}
 .about p{font-size:17px;line-height:1.6;margin:0 0 14px;max-width:620px}
 .note{display:inline-block;background:#fff3c4;border:1px dashed #d8b75a;border-radius:8px;padding:2px 8px;font-size:13px;font-weight:700;color:#7a5a12}
@@ -243,12 +244,11 @@ html.intro-on{overflow:hidden}html.intro-on .intro{display:block}
 
 <section class="about" id="about">
   <div class="wrap">
-    <div class="photo">Your photo here</div>
+    <img class="photo" src="img/fern-headshot.webp" alt="Fern Zhang smiling at an outdoor café table" width="600" height="600" loading="lazy">
     <div>
       <h2>Meet Fern</h2>
       <p>Fern is a Learning Design Manager who designs eLearning, instructor-led and blended programs that people enjoy and remember. She loves turning complex topics into clear, engaging experiences.</p>
       <p>Outside work she likes to cook, take road trips and keep Fernnie well fed.</p>
-      <span class="note">Draft About copy for the mockup. Replace with your own words.</span>
     </div>
   </div>
 </section>

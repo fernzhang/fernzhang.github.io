@@ -37,6 +37,7 @@ nav.site a:focus-visible{outline:2px solid #fff3c4;outline-offset:3px;border-rad
 .grid.cols{align-items:start}
 .mod{min-width:0}
 .sec{padding:max(calc(var(--pt) * 1.2px),32px) 0 calc(var(--pb) * 1.2px)}
+.sec+.sec-gallery{padding-top:max(calc(var(--pt) * 1.2px),8px)}
 .prose .m-text>*{max-width:68ch}
 
 /* type */
@@ -58,7 +59,7 @@ li>p{margin:0}
 li::marker{color:var(--accent)}
 ol>li::marker{font-weight:800}
 hr{width:min(var(--wrap),100% - 2*var(--gut));height:22px;margin:0 auto;border:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22' fill='%23c98a4b'%3E%3Cellipse cx='12' cy='15' rx='5.2' ry='4.6'/%3E%3Cellipse cx='5' cy='9' rx='2.2' ry='2.8'/%3E%3Cellipse cx='9.3' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='14.7' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='19' cy='9' rx='2.2' ry='2.8'/%3E%3C/svg%3E") center/22px 20px no-repeat,linear-gradient(var(--line),var(--line)) left center/calc(50% - 24px) 1px no-repeat,linear-gradient(var(--line),var(--line)) right center/calc(50% - 24px) 1px no-repeat}
-.callout{margin:0;background:var(--chalk);color:#f3ead8;border:12px solid #8a5a33;border-radius:16px;padding:clamp(22px,3vw,32px) clamp(24px,3.4vw,40px);box-shadow:inset 0 0 40px rgba(0,0,0,.35),0 14px 30px rgba(70,40,15,.18);font-size:clamp(17px,1.5vw,19px);line-height:1.6;font-weight:600}
+.callout{font-size:clamp(17px,1.5vw,19px);line-height:1.6;font-weight:600}
 .callout::before{content:"Result";display:block;margin-bottom:8px;color:#f3d58a;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
 
 /* hero standard: 6 + 6 columns, media fills its half, text never squeezed */
@@ -103,6 +104,14 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 /* gallery */
 .gallery{width:min(var(--wrap),100% - 2*var(--gut));margin:auto;display:grid;gap:var(--gap);align-items:start}
 .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.gallery{width:min(960px,100% - 2*var(--gut))}
+.gallery.g2{width:calc((min(var(--wrap),100% - 2*var(--gut)) - 11*var(--gap)) * 8 / 12 + 7*var(--gap))}
+.gallery .pic{margin:0}
+.gallery .zoom{display:block;text-align:center}
+.gallery .pic img{display:block;width:auto;height:auto;max-width:100%;max-height:420px;margin:0 auto}
+.gallery figcaption{text-align:center}
+.mod.center{text-align:center}
+.mod.center ul,.mod.center ol{display:inline-block;text-align:left}
 .slider{width:min(900px,100% - 2*var(--gut));margin:auto}
 .track{list-style:none;margin:0;padding:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:24px;align-items:center}
 .track::-webkit-scrollbar{display:none}
@@ -117,10 +126,10 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 .count{font-size:15px;color:var(--muted);min-width:4ch;text-align:center;font-variant-numeric:tabular-nums}
 
 /* testimonial and call to action */
-.quote{margin:0;position:relative;padding-top:56px}
-.quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font-size:120px;line-height:1;color:var(--accent-soft);font-weight:800}
-.quote p{font-size:clamp(22px,2.4vw,30px);line-height:1.38;color:var(--ink);font-weight:700;margin-bottom:18px}
-.quote cite{font-style:normal;color:var(--accent);font-size:17px;font-weight:700}
+.quote,.callout{margin:0;background:var(--chalk);color:#f3ead8;border:12px solid #8a5a33;border-radius:16px;padding:clamp(22px,3vw,32px) clamp(24px,3.4vw,40px);box-shadow:inset 0 0 40px rgba(0,0,0,.35),0 14px 30px rgba(70,40,15,.18)}
+.quote::before{content:"\201C";display:block;height:.5em;margin-bottom:12px;font-size:64px;line-height:1;color:#f3d58a;font-weight:800}
+.quote p{font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#faf6ec;font-weight:600;margin:0 0 14px}
+.quote cite{font-style:normal;color:#f3d58a;font-size:15px;font-weight:700}
 .cta{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
 .cta .h4{font-size:22px}
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff8ec;text-decoration:none;padding:14px 26px;border-radius:99px;font-weight:800;box-shadow:0 6px 16px -8px rgba(168,83,44,.7);font-size:17px;transition:background .2s ease-out}
@@ -175,6 +184,7 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
   .process .l{max-width:none}
   .process li:last-child{padding-bottom:0}
   .g3,.g2{grid-template-columns:1fr}
+  .gallery.g2{width:min(var(--wrap),100% - 2*var(--gut))}
   .related{grid-template-columns:repeat(2,1fr)}
   nav.site{padding:0 20px}
   nav.site ul{gap:18px}
@@ -209,7 +219,7 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
 <section class="sec sec-general" id="s9" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">Aligning Assessment with Goals</h2><p>We meticulously aligned our assessment with all the learning goals. To ensure effective assessment from instructors, we also created <strong>detailed instructions for implementation and</strong> <strong>clear rubrics</strong> for instructors to follow.</p><p>Below is an example of the Storybook assessment.</p></div></div></section>
 <section class="sec sec-gallery" style="--pt:30;--pb:30"><div class="gallery g3"><figure class="pic" style="--w:632px"><button class="zoom" type="button" data-src="img/dfe304d9e5b0.webp" aria-label="Enlarge image: Goal Alignment"><img src="img/dfe304d9e5b0.webp" alt="Goal Alignment" width="632" height="686" loading=lazy decoding="async"></button></figure><figure class="pic" style="--w:600px"><button class="zoom" type="button" data-src="img/51ab8d9b15bd.webp" aria-label="Enlarge image: Assessment Implementation"><img src="img/51ab8d9b15bd.webp" alt="Assessment Implementation" width="600" height="450" loading=lazy decoding="async"></button></figure><figure class="pic" style="--w:623px"><button class="zoom" type="button" data-src="img/38c98006bdf5.webp" aria-label="Enlarge image: Grading Rubrics"><img src="img/38c98006bdf5.webp" alt="Grading Rubrics" width="623" height="706" loading=lazy decoding="async"></button></figure></div></section>
 <section class="sec sec-general" id="s11" style="--pt:30;--pb:0"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">Instruction</h2><p>We referred to the <strong>Understanding by Design framework</strong> to design our course units to fit into the Environmental Charter School's programs. Since we had a limit of 10 hours of instruction, we decided to break down the learning content into 3 units, with 3 hours for the first two, and 4 hours for the last one.</p><p>To help instructors implement the instruction smoothly, we produced <strong>a detailed unit sequence</strong> to guide instruction, including daily instructional content and aligned assessment.</p></div></div></section>
-<section class="sec sec-gallery" style="--pt:0;--pb:10"><div class="slider" role="region" aria-roledescription="carousel" aria-label="Image gallery"><ul class="track"><li class="slide" aria-label="1 of 2"><figure class="pic" style="--w:820px"><button class="zoom" type="button" data-src="img/cc5b4cee4226.webp" aria-label="Enlarge image: Understanding by Design: Mandarin Bridge&#x27;s Fit in the School&#x27;s Programs"><img src="img/cc5b4cee4226.webp" alt="Understanding by Design: Mandarin Bridge&#x27;s Fit in the School&#x27;s Programs" width="820" height="848" loading=lazy decoding="async"></button><figcaption>Understanding by Design: Mandarin Bridge&#x27;s Fit in the School&#x27;s Programs</figcaption></figure></li><li class="slide" aria-label="2 of 2"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/6571d3fa7e75.webp" aria-label="Enlarge image: Module Sequence"><img src="img/6571d3fa7e75.webp" alt="Module Sequence" width="1600" height="1644" loading=lazy decoding="async"></button><figcaption>Module Sequence</figcaption></figure></li></ul><div class="ctrl"><button type="button" class="prev" aria-label="Previous image">&larr;</button><span class="count" aria-live="polite">1 / 2</span><button type="button" class="next" aria-label="Next image">&rarr;</button></div></div></section>
+<section class="sec sec-gallery" style="--pt:0;--pb:10"><div class="gallery g2"><figure class="pic" style="--w:820px"><button class="zoom" type="button" data-src="img/cc5b4cee4226.webp" aria-label="Enlarge image: Understanding by Design: Mandarin Bridge&#x27;s Fit in the School&#x27;s Programs"><img src="img/cc5b4cee4226.webp" alt="Understanding by Design: Mandarin Bridge&#x27;s Fit in the School&#x27;s Programs" width="820" height="848" loading=lazy decoding="async"></button><figcaption>Understanding by Design: Mandarin Bridge&#x27;s Fit in the School&#x27;s Programs</figcaption></figure><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/6571d3fa7e75.webp" aria-label="Enlarge image: Module Sequence"><img src="img/6571d3fa7e75.webp" alt="Module Sequence" width="1600" height="1644" loading=lazy decoding="async"></button><figcaption>Module Sequence</figcaption></figure></div></section>
 <section class="sec sec-general" id="s14" style="--pt:0;--pb:10"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">Instruction Highlight - Innovative Activities</h2><p>We designed a variety of innovative and engaging activities to <strong>enhance students' motivation</strong> throughout the course, as well as <strong>encourage them to practice using the language</strong>.</p><p>Some of the highlights include <strong><em>Role-Play Games</em></strong> and <strong><em>Supermarket Scavenger Hunt</em></strong>.</p></div></div></section>
 <section class="sec sec-general" id="s15" style="--pt:30;--pb:10"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2>Role Play Game Example</h2></div></div></section>
 <section class="sec sec-gallery" style="--pt:30;--pb:30"><div class="gallery g2"><figure class="pic" style="--w:671px"><button class="zoom" type="button" data-src="img/cd3f2c5126f4.webp" aria-label="Enlarge image: Project image"><img src="img/cd3f2c5126f4.webp" alt="Project image" width="671" height="383" loading=lazy decoding="async"></button></figure><figure class="pic" style="--w:650px"><button class="zoom" type="button" data-src="img/68615cdbab3d.webp" aria-label="Enlarge image: Project image"><img src="img/68615cdbab3d.webp" alt="Project image" width="650" height="424" loading=lazy decoding="async"></button></figure></div></section>

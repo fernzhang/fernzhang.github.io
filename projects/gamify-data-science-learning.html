@@ -37,6 +37,7 @@ nav.site a:focus-visible{outline:2px solid #fff3c4;outline-offset:3px;border-rad
 .grid.cols{align-items:start}
 .mod{min-width:0}
 .sec{padding:max(calc(var(--pt) * 1.2px),32px) 0 calc(var(--pb) * 1.2px)}
+.sec+.sec-gallery{padding-top:max(calc(var(--pt) * 1.2px),8px)}
 .prose .m-text>*{max-width:68ch}
 
 /* type */
@@ -58,7 +59,7 @@ li>p{margin:0}
 li::marker{color:var(--accent)}
 ol>li::marker{font-weight:800}
 hr{width:min(var(--wrap),100% - 2*var(--gut));height:22px;margin:0 auto;border:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22' fill='%23c98a4b'%3E%3Cellipse cx='12' cy='15' rx='5.2' ry='4.6'/%3E%3Cellipse cx='5' cy='9' rx='2.2' ry='2.8'/%3E%3Cellipse cx='9.3' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='14.7' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='19' cy='9' rx='2.2' ry='2.8'/%3E%3C/svg%3E") center/22px 20px no-repeat,linear-gradient(var(--line),var(--line)) left center/calc(50% - 24px) 1px no-repeat,linear-gradient(var(--line),var(--line)) right center/calc(50% - 24px) 1px no-repeat}
-.callout{margin:0;background:var(--chalk);color:#f3ead8;border:12px solid #8a5a33;border-radius:16px;padding:clamp(22px,3vw,32px) clamp(24px,3.4vw,40px);box-shadow:inset 0 0 40px rgba(0,0,0,.35),0 14px 30px rgba(70,40,15,.18);font-size:clamp(17px,1.5vw,19px);line-height:1.6;font-weight:600}
+.callout{font-size:clamp(17px,1.5vw,19px);line-height:1.6;font-weight:600}
 .callout::before{content:"Result";display:block;margin-bottom:8px;color:#f3d58a;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
 
 /* hero standard: 6 + 6 columns, media fills its half, text never squeezed */
@@ -103,6 +104,14 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 /* gallery */
 .gallery{width:min(var(--wrap),100% - 2*var(--gut));margin:auto;display:grid;gap:var(--gap);align-items:start}
 .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.gallery{width:min(960px,100% - 2*var(--gut))}
+.gallery.g2{width:calc((min(var(--wrap),100% - 2*var(--gut)) - 11*var(--gap)) * 8 / 12 + 7*var(--gap))}
+.gallery .pic{margin:0}
+.gallery .zoom{display:block;text-align:center}
+.gallery .pic img{display:block;width:auto;height:auto;max-width:100%;max-height:420px;margin:0 auto}
+.gallery figcaption{text-align:center}
+.mod.center{text-align:center}
+.mod.center ul,.mod.center ol{display:inline-block;text-align:left}
 .slider{width:min(900px,100% - 2*var(--gut));margin:auto}
 .track{list-style:none;margin:0;padding:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:24px;align-items:center}
 .track::-webkit-scrollbar{display:none}
@@ -117,10 +126,10 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 .count{font-size:15px;color:var(--muted);min-width:4ch;text-align:center;font-variant-numeric:tabular-nums}
 
 /* testimonial and call to action */
-.quote{margin:0;position:relative;padding-top:56px}
-.quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font-size:120px;line-height:1;color:var(--accent-soft);font-weight:800}
-.quote p{font-size:clamp(22px,2.4vw,30px);line-height:1.38;color:var(--ink);font-weight:700;margin-bottom:18px}
-.quote cite{font-style:normal;color:var(--accent);font-size:17px;font-weight:700}
+.quote,.callout{margin:0;background:var(--chalk);color:#f3ead8;border:12px solid #8a5a33;border-radius:16px;padding:clamp(22px,3vw,32px) clamp(24px,3.4vw,40px);box-shadow:inset 0 0 40px rgba(0,0,0,.35),0 14px 30px rgba(70,40,15,.18)}
+.quote::before{content:"\201C";display:block;height:.5em;margin-bottom:12px;font-size:64px;line-height:1;color:#f3d58a;font-weight:800}
+.quote p{font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#faf6ec;font-weight:600;margin:0 0 14px}
+.quote cite{font-style:normal;color:#f3d58a;font-size:15px;font-weight:700}
 .cta{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
 .cta .h4{font-size:22px}
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff8ec;text-decoration:none;padding:14px 26px;border-radius:99px;font-weight:800;box-shadow:0 6px 16px -8px rgba(168,83,44,.7);font-size:17px;transition:background .2s ease-out}
@@ -175,6 +184,7 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
   .process .l{max-width:none}
   .process li:last-child{padding-bottom:0}
   .g3,.g2{grid-template-columns:1fr}
+  .gallery.g2{width:min(var(--wrap),100% - 2*var(--gut))}
   .related{grid-template-columns:repeat(2,1fr)}
   nav.site{padding:0 20px}
   nav.site ul{gap:18px}
@@ -198,7 +208,7 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
 </nav>
 <main id="main">
 <header class="hero grid"><div class="mod hero-text" style="grid-row:1;grid-column:1/7"><h1>Gamify Data Science Learning</h1><p class="tagline">Interactive data literacy training for current employees</p></div><div class="mod hero-media" style="grid-row:1;grid-column:7/13"><figure class="device desktop"><div class="screen"><img src="img/50f292c17ebd.webp" alt="Gamify Data Science Learning course screen" width="956" height="538" fetchpriority=high decoding="async"></div><div class="base"></div></figure></div></header>
-<section class="sec sec-columns" id="s1" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h2 class="h3">Project Overview</h2></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><p>Our Client is <strong>Honda Research Institute USA</strong>. I worked as the curriculum designer to create an interactive data science training for managers and practitioners to upskill and reskill. My main contribution includes identifying knowledge gaps, designing instruction, and employing gamification elements.</p><p>Check the Articulate courses here:</p><p>For Managers:</p><ul><li><p><a href="https://rise.articulate.com/share/FP5lGHZRCDBDoV-rubcv6AR4XTpP9dET" target="_blank" rel="noopener">Module 1</a></p></li><li><p><a href="https://rise.articulate.com/share/TuVWJjzqTFQylc53YpLpE3b9vQbPvz2i" target="_blank" rel="noopener">Module 2</a></p></li></ul><p>For Practitioners:</p><ul><li><p><a href="https://storage.googleapis.com/fern_elearing_portfolio/Data%20Quest%20Course%20-%20Storyline%20output/story.html" target="_blank" rel="noopener">Course link</a></p></li></ul></div></div></section>
+<section class="sec sec-columns" id="s1" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-column:3/11"><h2 class="h3">Project Overview</h2><p>Our Client is <strong>Honda Research Institute USA</strong>. I worked as the curriculum designer to create an interactive data science training for managers and practitioners to upskill and reskill. My main contribution includes identifying knowledge gaps, designing instruction, and employing gamification elements.</p><p>Check the Articulate courses here:</p><p>For Managers:</p><ul><li><p><a href="https://rise.articulate.com/share/FP5lGHZRCDBDoV-rubcv6AR4XTpP9dET" target="_blank" rel="noopener">Module 1</a></p></li><li><p><a href="https://rise.articulate.com/share/TuVWJjzqTFQylc53YpLpE3b9vQbPvz2i" target="_blank" rel="noopener">Module 2</a></p></li></ul><p>For Practitioners:</p><ul><li><p><a href="https://storage.googleapis.com/fern_elearing_portfolio/Data%20Quest%20Course%20-%20Storyline%20output/story.html" target="_blank" rel="noopener">Course link</a></p></li></ul></div></div></section>
 <section class="sec sec-columns" id="s2" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h2 class="h3">Problem</h2><p>Data science training is a challenge for both managers and practitioners at HRI, and we identified 3 problems.</p><ol><li><p>First, <strong>Resource Navigation</strong>. Employees often find themselves overwhelmed by the significant volume of resources available.</p></li><li><p>Second, <strong>Lack of Motivation</strong>. There is a widespread inability to recognize the utility value of data science in employees’ daily tasks.</p></li><li><p>Lastly, <strong>Lack of Learning Culture</strong>. The absence of a supportive learning culture within companies further hinders progress.</p></li></ol></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><h2 class="h3">Solution</h2><p>Based on the problems, we created a gamified training program for managers and practitioners.</p><p>A <strong>simulation-based</strong> training program for managers to understand the value of data science and to learn basic data science.</p></div></div></section>
 <section class="sec sec-columns" id="s4" style="--pt:60;--pb:60"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/5"><h2 class="h3">Tools</h2><ul><li><p>Articulate Rise, Articulate Storyline</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:5/9"><h2 class="h3">Team</h2><ul><li><p>1 instructional designer (me)</p></li><li><p>1 UI designer</p></li><li><p>1 game designer</p></li><li><p>1 data science expert</p></li><li><p>1 project manager</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:9/13"><h2 class="h3">Timeline</h2><ul><li><p>Jan 2024 - Apr 2024</p></li><li><p>Discovery &amp; Research: 1 month</p></li><li><p>Design &amp; testing: 2 months</p></li></ul></div></div></section>
 <section class="sec sec-header" id="s5" style="--pt:30;--pb:20"><div class="grid"><div class="mod" style="grid-column:1/13"><h2 class="sec-title">My Design Process</h2></div></div></section>
@@ -213,9 +223,9 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
 <section class="sec sec-general" id="s16" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/5"><h2 class="h3">Interactive Learning</h2><p>For example, when learners are introduced to a simple linear regression model, there are hot spots for them to explore the model's characteristics.</p></div><div class="mod m-media" style="grid-row:1;grid-column:6/13"><figure class="embed video"><iframe src="https://www.youtube.com/embed/3duDy7LhmW0" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div></div></section>
 <section class="sec sec-general" id="s17" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-media" style="grid-row:1;grid-column:1/8"><figure class="embed video"><iframe src="https://www.youtube.com/embed/7sMpJgwDpAI" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div><div class="mod m-text" style="grid-row:1;grid-column:9/13"><h2 class="h3">Gamification</h2><p>This is the dashboard and game setting for the practitioner's training. Gamification with a fake competition increased learners' motivation and did not overwhelm them.</p></div></div></section>
 <section class="sec sec-general" id="s19" style="--pt:60;--pb:20"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">User Testing</h2><p>I conducted user testing with a manager at Honda, with user testing questions. He expressed <strong>strong interest in the gamification elements</strong> and <strong>liked the short time commitment</strong> (30 minutes for 2 modules) for the learning experience.</p></div></div></section>
-<section class="sec sec-testimonial" style="--pt:30;--pb:30"><div class="grid"><div class="mod" style="grid-column:2/12"><blockquote class="quote"><p>Very pleasantly surprised...Very easy to understand, actual interaction was very fun, solidified concepts for me... If I could do these two modules in 30 minutes, it would be a large advantage.</p><cite>Rajeev, Honda Research Institute</cite></blockquote></div></div></section>
+<section class="sec sec-testimonial" style="--pt:30;--pb:30"><div class="grid"><div class="mod" style="grid-column:3/11"><blockquote class="quote"><p>Very pleasantly surprised...Very easy to understand, actual interaction was very fun, solidified concepts for me... If I could do these two modules in 30 minutes, it would be a large advantage.</p><cite>Rajeev, Honda Research Institute</cite></blockquote></div></div></section>
 <section class="sec sec-columns" id="s22" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h2 class="h3">Evaluation</h2><p>There was an increase in self-reported confidence levels from the survey:</p><ul><li><p>The survey question was: “Are you interested in learning about business?”</p></li><li><p>The answer of "yes" increased from 22% to 75%</p></li></ul><h2 class="h3">Learning</h2><p>An increase in learners' pre/post-test was also observed:</p><ul><li><p>Average learning gains increased by 20%</p><ul><li><p>From 61% to 70% of pre/post-test</p></li></ul></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><h2 class="h3">Takeaways</h2><p>From this experience, I was able to gain skills in</p><ul><li><p>Cross-functional collaboration</p></li><li><p>Gamification</p></li><li><p>Project management</p></li></ul></div></div></section>
-<section class="sec sec-general" id="s24" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2 class="h3">Thank you for reading my case study!</h2><p>You can also check out our team's final video on this project.</p></div></div></section>
+<section class="sec sec-general" id="s24" style="--pt:30;--pb:30"><div class="grid prose"><div class="mod center m-text" style="grid-column:3/11"><h2 class="h3">Thank you for reading my case study!</h2><p>You can also check out our team's final video on this project.</p></div></div></section>
 </main>
 <section class="more" aria-labelledby="more-h"><div class="in">
   <span class="eyebrow">More from the menu</span>

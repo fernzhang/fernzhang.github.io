@@ -86,6 +86,8 @@ section{padding:72px 28px}
 .special p{margin:0 0 24px;font-size:17px;line-height:1.55;color:#e6dcc8}
 .btn[aria-disabled="true"]{background:#5b4a3a;color:#f3ead8;cursor:default}
 .special-preview.has-img{aspect-ratio:16/9;border:0;padding:0;overflow:hidden;display:block;box-shadow:0 10px 24px rgba(0,0,0,.35)}.special-preview.has-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}.special-preview.has-img:hover img{transform:scale(1.03)}
+/* the walk needs a keyboard and mouse, so phones and tablets only get the case study */
+@media (max-width:860px),(hover:none) and (pointer:coarse){.play-walk{display:none!important}}
 .special-actions{display:flex;flex-wrap:wrap;gap:12px}.btn.ghost{background:transparent;color:#f3d58a;box-shadow:inset 0 0 0 2px #f3d58a}.btn.ghost:hover,.btn.ghost:focus-visible{background:#f3d58a;color:var(--chalk)}
 .board .special-link{margin-top:1.6cqw;color:#f3d58a;font-weight:700;font-size:1.35cqw;text-decoration:underline dashed;text-underline-offset:.35em}
 .board .special-link:hover,.board .special-link:focus-visible{color:#fff3c4}
@@ -250,7 +252,7 @@ html.intro-on{overflow:hidden}html.intro-on .intro{display:block}
         <span class="eyebrow">Today's special</span>
         <h2 id="specialTitle">3D Gamification of a Site Walk</h2>
         <p>A gamified walkthrough where learners explore a food site, spot the risks and practice the right call, designed and built with AI.</p>
-        <div class="special-actions"><a class="btn" href="projects/3d-gamification-of-a-site-walk.html">Read the case study</a><a class="btn ghost" href="site-walk/">Play the walk</a></div>
+        <div class="special-actions"><a class="btn" href="projects/3d-gamification-of-a-site-walk.html">Read the case study</a><a class="btn ghost play-walk" href="site-walk/">Play the walk</a></div>
       </div>
     </div>
   </div>

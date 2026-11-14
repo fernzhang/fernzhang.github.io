@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fern Zhang | Learning Design Manager</title>
+<style>
+@font-face{font-family:"Nunito";src:url("fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
+:root{--chalk:#1f3329;--cream:#f8f1e4;--paper:#fffaf1;--honey:#c98a4b;--rust:#a8532c;--ink:#3a2a1f;--muted:#7a6656;--sage:#8b9a7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Nunito",system-ui,sans-serif;color:var(--ink);background:var(--cream)}
+a{color:inherit}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:99;background:#fff;padding:8px 12px;border-radius:8px}
+
+/* Nav */
+nav{position:absolute;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 28px;background:linear-gradient(rgba(40,22,10,.55),rgba(40,22,10,0));color:#fff8ec}
+nav .brand{font-weight:800;font-size:18px;text-decoration:none;letter-spacing:.2px}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;font-weight:600;font-size:15px}
+nav a:hover,nav a:focus-visible{text-decoration:underline;text-underline-offset:5px}
+
+/* Hero */
+.hero{position:relative;container-type:inline-size;aspect-ratio:1672/941;max-height:100vh;width:100%;overflow:hidden;background:#6b4325 url("img/hero-autumn.webp") center/cover no-repeat}
+.board{position:absolute;left:39.1%;top:10.4%;width:53.6%;height:49.5%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;color:#faf6ec;padding:0 3cqw 0 5cqw}
+.board h1{margin:0;font-weight:800;font-size:5.5cqw;line-height:1.05;letter-spacing:.02em}
+.board .role{margin:1.1cqw 0 0;font-weight:600;font-size:2.15cqw;color:#ead6b4}
+.board .tag{margin:1.4cqw 0 0;font-weight:400;font-size:1.55cqw;color:#cfc4b0}
+.fernnie{position:absolute;left:25.7%;bottom:20%;height:50%;transform:translateX(-50%);background:none;border:0;padding:0;cursor:pointer;filter:drop-shadow(0 1.2cqw .8cqw rgba(60,30,10,.35)) saturate(1.03) sepia(.06)}
+.fernnie .cat-wrap{position:relative;display:block;height:100%}
+.fernnie img{height:100%;display:block}
+.fernnie .tail{position:absolute;inset:0;transform-origin:31.8% 92.8%}
+.fernnie .meow{position:absolute;inset:0;opacity:0;transition:opacity .12s ease}
+.fernnie.meowing .meow{opacity:1}
+.fernnie:hover .tail,.fernnie:focus-visible .tail{animation:tailwave 1.8s ease-in-out infinite}
+@keyframes tailwave{0%,100%{transform:rotate(0)}25%{transform:rotate(3deg)}55%{transform:rotate(-2deg)}80%{transform:rotate(1.5deg)}}
+.fernnie:focus-visible{outline:3px solid #fff3c4;outline-offset:6px;border-radius:12px}
+.hint{position:absolute;left:25.7%;bottom:15.5%;transform:translateX(-50%);background:rgba(255,250,241,.92);color:var(--ink);font-size:max(12px,1cqw);font-weight:700;padding:.35em .9em;border-radius:99px;box-shadow:0 2px 8px rgba(0,0,0,.15);animation:bob 2.4s ease-in-out infinite;pointer-events:none}
+@keyframes bob{50%{transform:translate(-50%,-4px)}}
+.bubble{position:absolute;left:13%;top:9%;width:max(220px,22cqw);background:var(--paper);color:var(--ink);border-radius:18px;padding:16px 18px 14px;box-shadow:0 10px 30px rgba(40,20,5,.3);opacity:0;transform:translateY(8px) scale(.96);transform-origin:bottom center;pointer-events:none;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility 0s .25s;z-index:5}
+.bubble.open{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .25s ease,transform .25s ease}
+.bubble::after{content:"";position:absolute;left:58%;bottom:-12px;border:12px solid transparent;border-bottom:0;border-top-color:var(--paper)}
+.bubble p{margin:0 0 12px;font-size:max(15px,1.25cqw);font-weight:700;line-height:1.35}
+.bubble .row{display:flex;gap:10px;align-items:center}
+.btn{display:inline-block;background:var(--rust);color:#fff;border:0;border-radius:99px;padding:9px 18px;font:700 15px "Nunito",sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover,.btn:focus-visible{background:#8e4322}
+.link-btn{background:none;border:0;color:var(--muted);font:600 14px "Nunito",sans-serif;cursor:pointer}
+.cue{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);color:#fff8ec;text-decoration:none;font-weight:700;font-size:max(14px,1.2cqw);background:rgba(58,30,12,.45);padding:.5em 1.2em;border-radius:99px;backdrop-filter:blur(2px)}
+.cue:hover,.cue:focus-visible{background:rgba(58,30,12,.7)}
+
+/* Menu */
+section{padding:72px 28px}
+.wrap{max-width:1180px;margin:0 auto}
+.menu-head{text-align:center;margin-bottom:40px}
+.menu-head .eyebrow{display:inline-block;background:var(--chalk);color:#f3ead8;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:6px}
+.menu-head h2{font-size:clamp(28px,3.4vw,40px);margin:14px 0 6px;font-weight:800}
+.menu-head p{margin:0;color:var(--muted);font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.card{position:relative;display:flex;flex-direction:column;text-align:left;background:var(--paper);border:1px solid #ecdcc4;border-radius:20px;padding:0;overflow:hidden;cursor:pointer;font:inherit;color:inherit;box-shadow:0 2px 0 #ecdcc4;transition:transform .25s ease,box-shadow .25s ease}
+.card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 16px 30px rgba(90,50,20,.15)}
+.card:focus-visible{outline:3px solid var(--rust);outline-offset:3px}
+.card .art{height:250px;display:flex;align-items:flex-end;justify-content:center;padding:18px 14px 0;background:radial-gradient(circle at 50% 75%,#f1e2c8 0 45%,transparent 46%),linear-gradient(#f7ecda,#fbf4e8)}
+.card .art img{max-height:100%;max-width:100%;object-fit:contain;transition:transform .3s ease}
+.card:hover .art img{transform:scale(1.04)}
+.card .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pill{align-self:flex-start;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--rust);background:#f6e3d2;padding:4px 10px;border-radius:99px}
+.card h3{margin:2px 0 0;font-size:20px;line-height:1.25;font-weight:800}
+.card .desc{margin:0;color:var(--muted);font-size:15px;line-height:1.45;flex:1}
+.card .meta{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed #e3cfb2;padding-top:12px;font-size:14px;font-weight:700}
+.card .meta .go{color:var(--rust)}
+
+/* Drawer (category menu) */
+.scrim{position:fixed;inset:0;background:rgba(30,18,8,.45);opacity:0;pointer-events:none;transition:.25s;z-index:40}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(520px,100%);background:var(--paper);z-index:41;transform:translateX(100%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.2)}
+.drawer.open{transform:none;visibility:visible;transition:transform .3s ease}
+.drawer header{display:flex;gap:16px;align-items:center;padding:22px 24px;background:var(--chalk);color:#f6eedd}
+.drawer header img{height:90px}
+.drawer header h2{margin:4px 0 0;font-size:22px}
+.drawer header .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#cfc4b0;font-weight:700}
+.drawer .close{margin-left:auto;align-self:flex-start;background:none;border:0;color:#f6eedd;font-size:28px;cursor:pointer;line-height:1}
+.drawer ol{list-style:none;margin:0;padding:20px 24px 32px;overflow:auto;display:flex;flex-direction:column;gap:14px}
+.drink{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #ecdcc4;border-radius:16px;padding:16px;text-decoration:none;transition:.2s}
+.drink:hover,.drink:focus-visible{border-color:var(--honey);box-shadow:0 8px 20px rgba(90,50,20,.12)}
+.drink svg{flex:none}
+.drink h3{margin:0 0 4px;font-size:16.5px;line-height:1.3}
+.drink p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
+.drink .v{display:inline-block;margin-top:8px;color:var(--rust);font-weight:700;font-size:14px}
+
+/* About + footer */
+.about{background:#efe3cf}
+.about .wrap{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center}
+.photo{aspect-ratio:1;border-radius:24px;background:repeating-linear-gradient(45deg,#e5d3b8 0 12px,#ead9c0 12px 24px);display:grid;place-items:center;color:var(--muted);font-weight:700;text-align:center;padding:20px}
+.about h2{font-size:34px;margin:0 0 12px}
+.about p{font-size:17px;line-height:1.6;margin:0 0 14px;max-width:620px}
+.note{display:inline-block;background:#fff3c4;border:1px dashed #d8b75a;border-radius:8px;padding:2px 8px;font-size:13px;font-weight:700;color:#7a5a12}
+footer{background:var(--chalk);color:#e9dfcc;text-align:center;padding:36px 20px;font-size:15px}
+footer a{font-weight:700}
+
+/* Responsive */
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:700px){
+  nav ul{gap:14px}nav .brand{display:none}nav{justify-content:center}
+  .hero{aspect-ratio:auto;height:auto;background:none;display:flex;flex-direction:column}
+  .board{position:static;width:100%;height:auto;background:var(--chalk);padding:76px 20px 28px}
+  .board h1{font-size:40px}.board .role{font-size:18px;margin-top:8px}.board .tag{font-size:15px;margin-top:8px}
+  .scene{position:relative;aspect-ratio:4/3;background:url("img/hero-autumn.webp") 18% 100%/auto 135% no-repeat}
+  .fernnie{left:38%;bottom:6%;height:78%}.hint{left:38%;bottom:2%}
+  .bubble{left:auto;right:4%;top:6%;width:56%}.bubble::after{left:18%}
+  .cue{display:none}
+  .grid{grid-template-columns:1fr}
+  .about .wrap{grid-template-columns:1fr}.photo{max-width:220px}
+}
+@media (min-width:701px){.scene{position:absolute;inset:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#menu">Skip to projects</a>
+<nav aria-label="Main">
+  <a class="brand" href="#top">Fern Zhang</a>
+  <ul><li><a href="#menu">Projects</a></li><li><a href="#about">About</a></li><li><a href="#" aria-disabled="true">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="board">
+    <h1>Fern Zhang</h1>
+    <p class="role">Learning Design Manager</p>
+    <p class="tag">Thoughtful learning design, brewed with care, data, and learning science principles</p>
+  </div>
+  <div class="scene">
+    <div class="bubble" id="bubble" role="dialog" aria-label="Fernnie says hi">
+      <p>Hi, I'm Fernnie. Want to meet my human?</p>
+      <div class="row"><a class="btn" href="#about" id="meet">Meet her</a><button class="link-btn" id="bubbleClose">Maybe later</button></div>
+    </div>
+    <button class="fernnie" id="fernnie" aria-label="Fernnie the cat. Opens About Fern" aria-expanded="false" aria-controls="bubble">
+      <span class="cat-wrap"><img src="img/fernnie-body.webp" alt=""><img class="meow" src="img/fernnie-meow-body.webp" alt=""><img class="tail" src="img/fernnie-tail.webp" alt=""></span>
+    </button>
+    <span class="hint" id="hint" aria-hidden="true">Psst, click me</span>
+  </div>
+  <a class="cue" href="#menu">See today's menu &#8595;</a>
+</header>
+
+<main>
+<section id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <span class="eyebrow">Today's menu</span>
+      <h2>Pick a cat, see their specialties</h2>
+      <p>Each cat serves a different kind of learning design.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="photo">Your photo here</div>
+    <div>
+      <h2>Meet Fern</h2>
+      <p>Fern is a Learning Design Manager who designs eLearning, instructor-led and blended programs that people enjoy and remember. She loves turning complex topics into clear, engaging experiences.</p>
+      <p>Outside work she likes to cook, take road trips and keep Fernnie well fed.</p>
+      <span class="note">Draft About copy for the mockup. Replace with your own words.</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">Say hello: <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" tabindex="-1">
+  <header><img id="dImg" alt=""><div><div class="k" id="dKicker"></div><h2 id="dTitle"></h2></div><button class="close" id="dClose" aria-label="Close menu">&times;</button></header>
+  <ol id="dList"></ol>
+</aside>
+
+<script>
+const P = {
+ 1:["Gamify Data Science Learning","A scenario-based e-learning data science program in Articulate Rise and Storyline for employees at Honda Research Institute USA","https://mingmeizhang.net/p/02e6a426"],
+ 2:["Corporate Security Control Implementation","A gamified learning experience for cybersecurity training in Articulate Storyline","https://mingmeizhang.net/p/506434ed"],
+ 3:["AssessMate Product Guide","A microlearning course in Articulate Storyline for AssessMate users to understand AI literacy and use the product to create effective assessment","https://mingmeizhang.net/p/59bd34d2"],
+ 4:["Interactive Learning on Data and Machine Learning","Engaging eLearning Content for Non-Technical Learners","https://mingmeizhang.net/p/02171c12"],
+ 5:["Adaptive learning on Subnetting","An intelligent tutor system project on teaching technical content of Networking and Subnetting","https://mingmeizhang.net/p/6c1d5f47"],
+ 6:["Negotiation Pro","An interactive negotiation learning tool for sales professionals using Articulate and GPTS","https://mingmeizhang.net/p/020d35d2"],
+ 7:["Revision Assessment with AI","An AI-based assessment type recommender and an AI literacy course for instructors at the University of Tasmania, Australia","https://mingmeizhang.net/p/02fe032f"],
+ 8:["Introductory Financial Literacy E-Learning Course","An e-learning course for first-year college students to navigate their finances","https://mingmeizhang.net/p/02fe0314"],
+ 9:["Mandarin Bridge Course with a Focus on Motivation and Engagement","An innovative Mandarin Bridge Course (Instructor-led) for students at Environmental Charter School, Pittsburgh","https://mingmeizhang.net/p/02e6a451"],
+ 10:["Tools For Online Learning","A collection of mini projects using different e-learning tools, such as Articulate Rise, xAPI, and Python","https://mingmeizhang.net/p/02e6a43d"]
+};
+const CATS = [
+ {cat:"Game Cat",title:"Gamified and Scenario-Based Learning",desc:"Learning games and branching scenarios where people practice by playing.",drink:"Caramel macchiato",img:"game-cat",cup:"#c98a4b",p:[1,2]},
+ {cat:"Robot Cat",title:"AI in Learning",desc:"AI-powered tools and courses that help people learn and teach smarter.",drink:"Matcha latte",img:"robot-cat",cup:"#7f9a5a",p:[3,6,7]},
+ {cat:"Professor Cat",title:"Technical and Data Learning",desc:"Making data, machine learning and networking approachable for anyone.",drink:"Espresso",img:"professor-cat",cup:"#5a3a26",p:[4,5,10]},
+ {cat:"Teacher Cat",title:"Courses for Learners",desc:"Full courses built around motivation, engagement and real-life skills.",drink:"Chai latte",img:"teacher-cat",cup:"#b46a3c",p:[8,9]}
+];
+const cup = c => `<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><path d="M16 6c-2 3 2 4 0 7M22 5c-2 3 2 4 0 7M28 6c-2 3 2 4 0 7" stroke="#c9b79c" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M8 17h24v9a10 10 0 0 1-10 10h-4A10 10 0 0 1 8 26z" fill="${c}"/><path d="M32 20h2a4 4 0 0 1 0 8h-2" stroke="${c}" stroke-width="3" fill="none"/><ellipse cx="20" cy="39" rx="14" ry="2.5" fill="#e7d6bd"/></svg>`;
+const grid = document.getElementById('grid');
+CATS.forEach((c,i)=>{
+  const b=document.createElement('button'); b.className='card'; b.dataset.i=i;
+  b.innerHTML=`<div class="art"><img src="img/${c.img}.webp" alt="${c.cat}" loading="lazy"></div><div class="body"><span class="pill">${c.cat}</span><h3>${c.title}</h3><p class="desc">${c.desc}</p><div class="meta"><span>${c.p.length} projects</span><span class="go">See menu &rarr;</span></div></div>`;
+  b.addEventListener('click',()=>openDrawer(i,b)); grid.appendChild(b);
+});
+const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim'); let lastFocus=null;
+function openDrawer(i,from){
+  const c=CATS[i]; lastFocus=from;
+  dImg.src=`img/${c.img}.webp`; dKicker.textContent=`${c.cat}'s menu \u00b7 ${c.drink}`; dTitle.textContent=c.title;
+  dList.innerHTML=c.p.map(n=>`<li><a class="drink" href="${P[n][2]}" target="_blank" rel="noopener">${cup(c.cup)}<div><h3>${P[n][0]}</h3><p>${P[n][1]}</p><span class="v">View project &rarr;</span></div></a></li>`).join('');
+  drawer.classList.add('open'); scrim.classList.add('open'); drawer.focus();
+}
+function closeDrawer(){drawer.classList.remove('open');scrim.classList.remove('open');lastFocus&&lastFocus.focus()}
+dClose.onclick=closeDrawer; scrim.onclick=closeDrawer;
+const fern=document.getElementById('fernnie'), bubble=document.getElementById('bubble');
+function toggleBubble(open){bubble.classList.toggle('open',open);fern.setAttribute('aria-expanded',open);if(open){hint.style.display='none';meet.focus()}}
+let meowT;
+function meowFace(){fern.classList.add('meowing');clearTimeout(meowT);meowT=setTimeout(()=>fern.classList.remove('meowing'),1100)}
+fern.onclick=()=>{const open=!bubble.classList.contains('open');if(open)meowFace();toggleBubble(open)};
+bubbleClose.onclick=()=>{toggleBubble(false);fern.focus()};
+meet.onclick=()=>toggleBubble(false);
+const demo=new URLSearchParams(location.search).get('demo');
+if(demo==='bubble')toggleBubble(true); if(demo==='drawer')openDrawer(1,null);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(drawer.classList.contains('open'))closeDrawer();else if(bubble.classList.contains('open')){toggleBubble(false);fern.focus()}}});
+</script>
+</body>
+</html>

@@ -3,20 +3,18 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Revision Assessment with AI | Fern Zhang</title>
 <meta name="description" content="An AI-based assessment type recommender and an AI literacy course for instructors at the University of Tasmania, Australia">
-<link rel="preload" href="../fonts/CabinetGrotesk-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/Nunito.ttf" as="font" type="font/ttf" crossorigin>
 <style>
-@font-face{font-family:"Cabinet Grotesk";src:url("../fonts/CabinetGrotesk-400.woff2") format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Cabinet Grotesk";src:url("../fonts/CabinetGrotesk-500.woff2") format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"Cabinet Grotesk";src:url("../fonts/CabinetGrotesk-700.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Nunito";src:url("../fonts/Nunito.ttf") format("truetype");font-weight:200 1000;font-display:swap}
 :root{
-  --bg:#f4f1e8;--tile:#e7e1d3;--line:#d6cebd;
-  --ink:#2e2a26;--text:#57524c;--muted:#6b655e;
-  --accent:#8c5f2c;--accent-soft:#c99a5e;
-  --wrap:1112px;--gut:clamp(20px,5vw,40px);--gap:clamp(20px,2.6vw,36px);
+  --bg:#f8f1e4;--paper:#fffaf1;--tile:#efe3cf;--line:#e3d3ba;--card-line:#ecdcc4;
+  --ink:#3a2a1f;--text:#4f3f33;--muted:#6e5a4a;
+  --accent:#a8532c;--accent-soft:#c98a4b;--chalk:#1f3329;--bar:rgba(40,22,10,.94);
+  --wrap:1112px;--gut:clamp(20px,5vw,40px);--gap:clamp(20px,2.6vw,36px);--navh:60px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{margin:0;background:var(--bg);color:var(--text);font:400 18px/1.55 "Cabinet Grotesk",ui-sans-serif,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--navh) + 20px)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 18px/1.6 "Nunito",system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
 a:hover{text-decoration-thickness:2px}
@@ -24,14 +22,15 @@ a:hover{text-decoration-thickness:2px}
 .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:10px 16px;z-index:20}
 .skip:focus{left:8px}
 
-/* top bar */
-.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
-.top.scrolled{border-bottom-color:var(--line)}
-.top .in{width:min(var(--wrap),100% - 2*var(--gut));margin:auto;display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{color:var(--ink);text-decoration:none;font-weight:700;font-size:19px;letter-spacing:.01em}
-.top nav{display:flex;gap:28px}
-.top nav a{color:var(--ink);text-decoration:none;font-size:16px;font-weight:500;padding:6px 0;border-bottom:1px solid transparent}
-.top nav a:hover{border-bottom-color:var(--ink)}
+/* nav: same bar as the home page, sticky here */
+nav.site{position:sticky;top:0;z-index:20;height:var(--navh);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:0 28px;background:var(--bar);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border-bottom:1px solid rgba(255,214,150,.18);color:#fff8ec}
+nav.site a{color:#fff8ec;text-decoration:none;text-shadow:0 0 2px rgba(40,22,10,.9),0 1px 6px rgba(40,22,10,.75)}
+nav.site .brand{font-weight:800;font-size:18px;letter-spacing:.2px;padding:4px 0;white-space:nowrap}
+nav.site ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+nav.site li{margin:0;padding:0}
+nav.site ul a{font-weight:600;font-size:15px;display:inline-block;padding:4px 2px;white-space:nowrap}
+nav.site a:hover,nav.site a:focus-visible{text-decoration:underline;text-underline-offset:5px}
+nav.site a:focus-visible{outline:2px solid #fff3c4;outline-offset:3px;border-radius:4px}
 
 /* 12-column grid, positions come from the UXfolio layout */
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);width:min(var(--wrap),100% - 2*var(--gut));margin:auto;align-items:center}
@@ -41,41 +40,42 @@ a:hover{text-decoration-thickness:2px}
 .prose .m-text>*{max-width:68ch}
 
 /* type */
-h1,h2,h3,h4{color:var(--ink);font-weight:500;line-height:1.2;margin:0 0 .6em;text-wrap:balance}
-h1{font-size:clamp(36px,4.6vw,56px);letter-spacing:-.015em;line-height:1.08;font-weight:700}
-h2{font-size:clamp(26px,2.6vw,32px);letter-spacing:-.01em}
+h1,h2,h3,h4{color:var(--ink);font-weight:800;line-height:1.2;margin:0 0 .6em;text-wrap:balance}
+h1{font-size:clamp(36px,4.6vw,56px);letter-spacing:-.01em;line-height:1.1;font-weight:800}
+h2{font-size:clamp(26px,2.8vw,34px)}
 h3{font-size:clamp(22px,2vw,25px);color:var(--accent)}
-h4{font-size:20px;font-weight:700}
+h4{font-size:20px}
 .mod>*+h3,.mod>*+h2{margin-top:1.4em}
 p{margin:0 0 1em;text-wrap:pretty}
 .mod>:last-child{margin-bottom:0}
-strong{color:var(--ink);font-weight:700}
+strong{color:var(--ink);font-weight:800}
 ul,ol{margin:0 0 1em;padding-left:1.3em}
 li{margin:.3em 0;padding-left:.2em}
 li>p{margin:0}
 li::marker{color:var(--accent)}
-ol>li::marker{font-weight:700}
-hr{width:min(var(--wrap),100% - 2*var(--gut));margin:0 auto;border:0;border-top:1px solid var(--line)}
+ol>li::marker{font-weight:800}
+hr{width:min(var(--wrap),100% - 2*var(--gut));height:22px;margin:0 auto;border:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22' fill='%23c98a4b'%3E%3Cellipse cx='12' cy='15' rx='5.2' ry='4.6'/%3E%3Cellipse cx='5' cy='9' rx='2.2' ry='2.8'/%3E%3Cellipse cx='9.3' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='14.7' cy='4.6' rx='2.2' ry='2.9'/%3E%3Cellipse cx='19' cy='9' rx='2.2' ry='2.8'/%3E%3C/svg%3E") center/22px 20px no-repeat,linear-gradient(var(--line),var(--line)) left center/calc(50% - 24px) 1px no-repeat,linear-gradient(var(--line),var(--line)) right center/calc(50% - 24px) 1px no-repeat}
+.callout{margin:0;background:var(--paper);border:1px solid var(--card-line);border-left:6px solid var(--accent-soft);border-radius:18px;padding:clamp(22px,3vw,34px) clamp(22px,3.4vw,40px);font-size:clamp(21px,2.2vw,26px);line-height:1.42;font-weight:700;color:var(--ink);box-shadow:0 2px 0 var(--card-line)}
 
 /* hero */
-.hero{padding:clamp(40px,7vw,88px) 0 clamp(48px,7vw,96px);min-height:min(520px,70vh)}
+.hero{padding:clamp(48px,7vw,96px) 0 clamp(48px,7vw,96px);min-height:min(520px,70vh)}
 .hero.no-media{min-height:0}
 .hero.no-media .hero-text{grid-column:1/11!important}
-.tagline{font-size:clamp(20px,2.1vw,26px);line-height:1.35;color:var(--accent);font-weight:500;margin:0;max-width:30ch}
+.tagline{font-size:clamp(20px,2.1vw,26px);line-height:1.38;color:var(--accent);font-weight:600;margin:0;max-width:30ch}
 .hero-text h1{margin-bottom:.45em}
 
 /* figures */
 figure{margin:0}
-.pic img{max-width:min(100%,var(--w));margin:auto}
+.pic img{max-width:min(100%,var(--w));margin:auto;border-radius:10px}
 .zoom{all:unset;display:block;cursor:zoom-in;border-radius:2px}
 .zoom:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;color:var(--muted)}
-.embed iframe{display:block;width:100%;border:0;border-radius:4px;background:var(--tile)}
+.embed iframe{display:block;width:100%;border:0;border-radius:14px;background:var(--tile)}
 .video iframe{aspect-ratio:16/9}
 .proto iframe{aspect-ratio:4/3;min-height:420px}
 
 /* device frames for mockup images */
-.device .screen{background:#1d1b19;padding:clamp(6px,.9vw,11px);border-radius:12px;box-shadow:0 30px 60px -30px rgba(46,42,38,.45)}
+.device .screen{background:#2a1d14;padding:clamp(6px,.9vw,11px);border-radius:12px;box-shadow:0 30px 60px -30px rgba(70,40,15,.45)}
 .device .screen img{border-radius:3px;width:100%}
 .desktop .screen{padding-bottom:clamp(22px,2.6vw,34px)}
 .desktop .base{width:22%;height:clamp(40px,5vw,64px);margin:0 auto;background:linear-gradient(#2a2725,#141210);clip-path:polygon(12% 0,88% 0,100% 100%,0 100%)}
@@ -85,11 +85,11 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 /* process */
 .process ol{list-style:none;margin:0 auto;padding:0;width:min(var(--wrap),100% - 2*var(--gut));display:grid;grid-template-columns:repeat(var(--n),1fr)}
 .process li{position:relative;margin:0;padding:0;text-align:center}
-.process li:not(:first-child)::before{content:"";position:absolute;top:28px;left:calc(-50% + 44px);right:calc(50% + 44px);border-top:1px solid var(--ink)}
+.process li:not(:first-child)::before{content:"";position:absolute;top:28px;left:calc(-50% + 44px);right:calc(50% + 44px);border-top:2px dashed var(--accent-soft)}
 .process a,.process .nolink{display:flex;flex-direction:column;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
-.process .n{display:grid;place-items:center;width:56px;height:56px;border:1.5px solid var(--ink);border-radius:50%;font-weight:700;font-size:20px;color:var(--ink);transition:background .2s ease-out,color .2s ease-out}
+.process .n{display:grid;place-items:center;width:56px;height:56px;border:2px solid var(--accent-soft);background:var(--paper);border-radius:50%;font-weight:800;font-size:20px;color:var(--ink);transition:background .2s ease-out,color .2s ease-out}
 .process .l{font-size:17px;line-height:1.3;max-width:14ch}
-.process a:hover .n{background:var(--ink);color:var(--bg)}
+.process a:hover .n{background:var(--chalk);border-color:var(--chalk);color:#f3ead8}
 .process a:hover .l{color:var(--ink)}
 .sec-header+.sec-process,.sec-header{padding-bottom:calc(var(--pb) * 1px)}
 
@@ -102,114 +102,123 @@ figcaption{margin-top:14px;text-align:center;font-size:16px;line-height:1.45;col
 .slide{flex:0 0 100%;scroll-snap-align:center;margin:0;padding:0}
 .slide img{max-height:72vh;width:auto;object-fit:contain}
 .ctrl{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:20px}
-.ctrl button{width:44px;height:44px;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:50%;font:inherit;font-size:18px;cursor:pointer;transition:background .2s ease-out,color .2s ease-out}
-.ctrl button:hover{background:var(--ink);color:var(--bg)}
-.ctrl button:disabled{opacity:.35;cursor:default;background:transparent;color:var(--ink)}
+.ctrl button{width:44px;height:44px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:50%;font:inherit;font-size:18px;cursor:pointer;transition:background .2s ease-out,color .2s ease-out}
+.ctrl button:hover{background:var(--chalk);border-color:var(--chalk);color:#f3ead8}
+.ctrl button:disabled{opacity:.35;cursor:default;background:var(--paper);border-color:var(--ink);color:var(--ink)}
 .count{font-size:15px;color:var(--muted);min-width:4ch;text-align:center;font-variant-numeric:tabular-nums}
 
 /* testimonial and call to action */
 .quote{margin:0;position:relative;padding-top:56px}
-.quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font-size:120px;line-height:1;color:var(--accent-soft);font-weight:700}
-.quote p{font-size:clamp(22px,2.4vw,30px);line-height:1.38;color:var(--ink);font-weight:500;margin-bottom:18px}
-.quote cite{font-style:normal;color:var(--accent);font-size:17px;font-weight:500}
+.quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font-size:120px;line-height:1;color:var(--accent-soft);font-weight:800}
+.quote p{font-size:clamp(22px,2.4vw,30px);line-height:1.38;color:var(--ink);font-weight:700;margin-bottom:18px}
+.quote cite{font-style:normal;color:var(--accent);font-size:17px;font-weight:700}
 .cta{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
-.cta h4{font-size:22px;font-weight:500}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);text-decoration:none;padding:14px 24px;border-radius:4px;font-weight:500;font-size:17px;transition:background .2s ease-out}
-.btn:hover{background:var(--accent)}
+.cta h4{font-size:22px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff8ec;text-decoration:none;padding:14px 26px;border-radius:99px;font-weight:800;box-shadow:0 6px 16px -8px rgba(168,83,44,.7);font-size:17px;transition:background .2s ease-out}
+.btn:hover{background:#8a4122}
 
-/* read more + contact */
-.more{padding:clamp(64px,9vw,120px) 0 clamp(48px,6vw,80px);border-top:1px solid var(--line);margin-top:clamp(32px,5vw,64px)}
-.more .in,.foot .in{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
-.more h2{margin-bottom:36px}
+/* read more: same cards as the home page menu */
+.more{padding:clamp(64px,8vw,104px) 0;background:var(--tile);margin-top:clamp(32px,5vw,64px)}
+.more .in{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
+.more h2{text-align:center;margin-bottom:36px}
+.more .eyebrow{display:block;width:max-content;margin:0 auto 14px;background:var(--chalk);color:#f3ead8;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:6px}
 .related{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
-.related li{margin:0;padding:0}
-.related a{display:block;text-decoration:none;color:var(--text)}
-.thumb{display:grid;place-items:center;aspect-ratio:1;background:var(--tile);overflow:hidden;margin-bottom:18px;transition:background .3s ease-out}
-.thumb img{width:88%;height:88%;object-fit:contain;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-.related a:hover .thumb{background:#ded6c4}
-.related a:hover .thumb img{transform:scale(1.035)}
-.rt{display:block;color:var(--ink);font-weight:700;font-size:19px;line-height:1.3;margin-bottom:6px}
-.related a:hover .rt{text-decoration:underline;text-underline-offset:3px}
-.rs{display:block;font-size:16px;line-height:1.45}
-.foot{padding:clamp(48px,6vw,80px) 0 40px}
-.foot h2{font-size:clamp(24px,2.4vw,30px);margin-bottom:12px}
-.foot .mail{font-size:19px}
-.foot .base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:20px;border-top:1px solid var(--ink);font-size:15px;color:var(--muted)}
-.foot .base a{color:var(--muted)}
+.related li{margin:0;padding:0;display:flex}
+.related a{display:flex;flex-direction:column;width:100%;text-decoration:none;color:var(--text);background:var(--paper);border:1px solid var(--card-line);border-radius:20px;overflow:hidden;box-shadow:0 2px 0 var(--card-line);transition:transform .25s ease,box-shadow .25s ease}
+.related a:hover,.related a:focus-visible{transform:translateY(-6px);box-shadow:0 16px 30px rgba(90,50,20,.15)}
+.related a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.thumb{display:grid;place-items:center;aspect-ratio:4/3;background:radial-gradient(circle at 50% 75%,#f1e2c8 0 45%,transparent 46%),linear-gradient(#f7ecda,#fbf4e8);overflow:hidden}
+.thumb img{width:84%;height:84%;object-fit:contain;transition:transform .3s ease}
+.related a:hover .thumb img{transform:scale(1.04)}
+.rt{display:block;color:var(--ink);font-weight:800;font-size:19px;line-height:1.3;margin:18px 20px 6px}
+.rs{display:block;font-size:15px;line-height:1.45;color:var(--muted);margin:0 20px;flex:1}
+.related a::after{content:"View project \2192";display:block;margin:14px 20px 18px;padding-top:12px;border-top:1px dashed #e3cfb2;color:var(--accent);font-weight:800;font-size:14px}
+
+/* footer: chalkboard, as on the home page */
+.foot{background:var(--chalk);color:#e9dfcc;text-align:center;padding:clamp(44px,6vw,64px) 0 28px}
+.foot .in{width:min(var(--wrap),100% - 2*var(--gut));margin:auto}
+.foot h2{color:#faf6ec;font-size:clamp(24px,2.6vw,30px);margin-bottom:10px}
+.foot p{margin:0;font-size:17px}
+.foot a{color:#f3d58a;font-weight:700}
+.foot a:focus-visible{outline-color:#fff3c4}
+.foot .base{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:36px;padding-top:18px;border-top:1px solid rgba(243,234,216,.2);font-size:14px;color:#cfc3ad}
+.foot .base a{color:#e9dfcc;font-weight:600}
 
 /* lightbox */
 dialog.lb{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh;overflow:visible}
-dialog.lb::backdrop{background:rgba(30,27,24,.86)}
+dialog.lb::backdrop{background:rgba(31,22,15,.88)}
 dialog.lb img{max-width:94vw;max-height:88vh;width:auto;background:var(--bg)}
 dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;border:1px solid var(--bg);color:var(--bg);width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer}
 
 @media (max-width:860px){
   .grid{row-gap:28px}
   .grid.cols{row-gap:16px}
-  .grid>.mod{grid-column:1/-1!important}
+  .grid>.mod{grid-column:1/-1!important;grid-row:auto!important}
   .sec{padding:calc(var(--pt) * 1px) 0 calc(var(--pb) * 1px)}
   .hero{min-height:0}
   .hero .hero-media{order:-1}
   .process ol{grid-template-columns:1fr;gap:0;width:min(420px,100% - 2*var(--gut))}
   .process li{text-align:left;padding-bottom:22px}
-  .process li:not(:first-child)::before{top:auto;bottom:calc(100% - 0px);left:22px;right:auto;height:22px;border-top:0;border-left:1px solid var(--ink)}
+  .process li:not(:first-child)::before{top:auto;bottom:calc(100% - 0px);left:22px;right:auto;height:22px;border-top:0;border-left:2px dashed var(--accent-soft)}
   .process a,.process .nolink{flex-direction:row;gap:16px}
   .process .n{width:44px;height:44px;font-size:17px;flex:none}
   .process .l{max-width:none}
   .process li:last-child{padding-bottom:0}
   .g3,.g2{grid-template-columns:1fr}
   .related{grid-template-columns:repeat(2,1fr)}
-  .top nav{gap:18px}
+  nav.site{padding:0 20px}
+  nav.site ul{gap:18px}
 }
 @media (max-width:560px){
   body{font-size:17px}
   .related{grid-template-columns:1fr}
   .thumb{aspect-ratio:4/3}
-  .brand{font-size:17px}
-  .top nav a{font-size:15px}
+  nav.site{justify-content:center}
+  nav.site .brand{display:none}
+  nav.site ul{gap:14px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="top"><div class="in">
+<nav class="site" aria-label="Main">
   <a class="brand" href="../index.html">Fern Zhang</a>
-  <nav aria-label="Site"><a href="../index.html">Back to the cafe</a><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a></nav>
-</div></div>
+  <ul><li><a href="../index.html#menu">Projects</a></li><li><a href="../index.html#about">About</a></li><li><a href="../Fern-Zhang-Resume.pdf" target="_blank" rel="noopener">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
+</nav>
 <main id="main">
-<header class="hero grid"><div class="mod hero-text" style="grid-column:1/8"><h1>Revision Assessment with AI</h1><p class="tagline">AI &amp; learning science-based assessment recommender</p></div><div class="mod hero-media" style="grid-column:8/13"><figure class="device desktop"><div class="screen"><img src="img/3727dfae2a39.webp" alt="Revision Assessment with AI course screen" width="1002" height="651" fetchpriority=high decoding="async"></div><div class="base"></div></figure></div></header>
-<section class="sec sec-columns" id="s1" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-column:1/7"><h3>Project Overview</h3></div><div class="mod m-column" style="grid-column:7/13"><p>Our client is the <strong>University of Tasmania in Australia</strong>. In this project, we designed an <strong>AI-enabled assessment types suggestion system</strong> <strong>and a corresponding AI Literacy Course</strong> to help instructors at the two colleges (College of Arts, Law, and Education and College of Health and Medicine) navigate available assessment tools and best measure students' progress using research-based learning science principles.</p></div></div></section>
-<section class="sec sec-columns" id="s2" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-column:1/7"><h3>Problem</h3><ol><li><p>Current assessment tools do not truly reflect students' learning progress due to the emergency of GenAI.</p></li><li><p>Instructors are not equipped with AI/GenAI knowledge to design the most effective assessment tools.</p></li><li><p>Current assessments do not fully align with the college program's ultimate learning objectives for students.</p></li></ol></div><div class="mod m-column" style="grid-column:7/13"><h3>Solution</h3><p>We seek to develop <a href="https://assessmate-v3-23e3fff1c416.herokuapp.com/" target="_blank" rel="noopener"><strong>AssessMate</strong></a><strong>, an AI assessment type recommender, and an AI literacy course</strong> that address the University of Tasmania's challenges in <strong>assessment alignment, diversity, and AI literacy</strong> among instructors. Our goal is to provide a solution that suggests assessment types based on intended learning outcomes (ILOs) and domains, while also offering comprehensive training on AI basics across four skill sets: know and understand, use and apply, evaluate and create, and AI ethics.</p></div></div></section>
-<section class="sec sec-columns" id="s3" style="--pt:60;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-column:1/4"><h3>Tools</h3><ul><li><p>Figma</p></li><li><p>LLM</p></li><li><p>Prompt Engineering</p></li></ul></div><div class="mod m-column" style="grid-column:4/7"><h3>Team Avant-Garde (AG)</h3><ul><li><p>1 learning design lead (me)</p></li><li><p>1 project manager</p></li><li><p>1 research lead</p></li><li><p>1 UX/UI design lead</p></li><li><p>1 development lead</p></li></ul></div><div class="mod m-column" style="grid-column:7/10"><h3>My Role</h3><ul><li><p>Product Management</p></li><li><p>Research</p></li><li><p>Design</p></li></ul></div><div class="mod m-column" style="grid-column:10/13"><h3>Timeline</h3><ul><li><p>Jan 2024 - present</p></li><li><p>Overall: 7 months</p></li><li><p>Discovery &amp; Research: 1 month</p></li><li><p>Design &amp; testing: 6 months</p></li></ul></div></div></section>
+<header class="hero grid"><div class="mod hero-text" style="grid-row:1;grid-column:1/8"><h1>Revision Assessment with AI</h1><p class="tagline">AI &amp; learning science-based assessment recommender</p></div><div class="mod hero-media" style="grid-row:1;grid-column:8/13"><figure class="device desktop"><div class="screen"><img src="img/3727dfae2a39.webp" alt="Revision Assessment with AI course screen" width="1002" height="651" fetchpriority=high decoding="async"></div><div class="base"></div></figure></div></header>
+<section class="sec sec-columns" id="s1" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h3>Project Overview</h3></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><p>Our client is the <strong>University of Tasmania in Australia</strong>. In this project, we designed an <strong>AI-enabled assessment types suggestion system</strong> <strong>and a corresponding AI Literacy Course</strong> to help instructors at the two colleges (College of Arts, Law, and Education and College of Health and Medicine) navigate available assessment tools and best measure students' progress using research-based learning science principles.</p></div></div></section>
+<section class="sec sec-columns" id="s2" style="--pt:30;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/7"><h3>Problem</h3><ol><li><p>Current assessment tools do not truly reflect students' learning progress due to the emergency of GenAI.</p></li><li><p>Instructors are not equipped with AI/GenAI knowledge to design the most effective assessment tools.</p></li><li><p>Current assessments do not fully align with the college program's ultimate learning objectives for students.</p></li></ol></div><div class="mod m-column" style="grid-row:1;grid-column:7/13"><h3>Solution</h3><p>We seek to develop <a href="https://assessmate-v3-23e3fff1c416.herokuapp.com/" target="_blank" rel="noopener"><strong>AssessMate</strong></a><strong>, an AI assessment type recommender, and an AI literacy course</strong> that address the University of Tasmania's challenges in <strong>assessment alignment, diversity, and AI literacy</strong> among instructors. Our goal is to provide a solution that suggests assessment types based on intended learning outcomes (ILOs) and domains, while also offering comprehensive training on AI basics across four skill sets: know and understand, use and apply, evaluate and create, and AI ethics.</p></div></div></section>
+<section class="sec sec-columns" id="s3" style="--pt:60;--pb:30"><div class="grid cols"><div class="mod m-column" style="grid-row:1;grid-column:1/4"><h3>Tools</h3><ul><li><p>Figma</p></li><li><p>LLM</p></li><li><p>Prompt Engineering</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:4/7"><h3>Team Avant-Garde (AG)</h3><ul><li><p>1 learning design lead (me)</p></li><li><p>1 project manager</p></li><li><p>1 research lead</p></li><li><p>1 UX/UI design lead</p></li><li><p>1 development lead</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:7/10"><h3>My Role</h3><ul><li><p>Product Management</p></li><li><p>Research</p></li><li><p>Design</p></li></ul></div><div class="mod m-column" style="grid-row:1;grid-column:10/13"><h3>Timeline</h3><ul><li><p>Jan 2024 - present</p></li><li><p>Overall: 7 months</p></li><li><p>Discovery &amp; Research: 1 month</p></li><li><p>Design &amp; testing: 6 months</p></li></ul></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
 <section class="sec sec-header" id="s5" style="--pt:30;--pb:30"><div class="grid"><div class="mod" style="grid-column:1/13"><h2 class="sec-title">My Design Process</h2></div></div></section>
 <section class="sec sec-process" style="--pt:30;--pb:30"><nav class="process" aria-label="Design process steps"><ol style="--n:5"><li><a href="#s9"><span class="n" aria-hidden="true">1</span><span class="l">Research</span></a></li><li><a href="#s24"><span class="n" aria-hidden="true">2</span><span class="l">MVP1</span></a></li><li><a href="#s33"><span class="n" aria-hidden="true">3</span><span class="l">MVP2</span></a></li><li><a href="#s43"><span class="n" aria-hidden="true">4</span><span class="l">MVP3 Plan</span></a></li><li><a href="#s45"><span class="n" aria-hidden="true">5</span><span class="l">Next Steps</span></a></li></ol></nav></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
 <section class="sec sec-general" id="s8" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h2>Research</h2><p>Our team follows <strong>research-based educational design principles</strong>.</p><p>Therefore, we employed various research methods to support our design decisions.</p></div></div></section>
-<section class="sec sec-general" id="s9" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-column:1/7"><h3>Interviews</h3><p>During the ideation phase of the project, I conducted user interviews to build new personas and to inform the design. Together with the team, we prepared an interview script with 10 open-ended questions, focusing on our target audiences’ <strong>current use of assessment, pain points, and daily routine</strong>. We interviewed 3 professors remotely, and synthesized the following insights:</p><ol><li><p><strong>Instructors are excited and afraid of GenAI</strong>. They want to explore such technologies but do not have relevant knowledge. Meanwhile, they realize that students can use ChatGPT for certain assessments, preventing instructors from gauging students' true progress.</p></li><li><p><strong>Instructors do not have domain knowledge in learning sciences</strong> and time or motivation to align their learning objectives with their assessment.</p></li><li><p><strong>The two colleges have different pain points</strong>. Humanity and social science professors consider grading essays time-consuming while medicine professors worry about creating diverse case studies for hands-on practice.</p></li></ol></div><div class="mod m-media" style="grid-column:8/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/a24d542ada00.webp" aria-label="Enlarge image: Quotes from Interviews"><img src="img/a24d542ada00.webp" alt="Quotes from Interviews" width="1600" height="900" loading=lazy decoding="async"></button><figcaption>Quotes from Interviews</figcaption></figure></div></div></section>
+<section class="sec sec-general" id="s9" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/7"><h3>Interviews</h3><p>During the ideation phase of the project, I conducted user interviews to build new personas and to inform the design. Together with the team, we prepared an interview script with 10 open-ended questions, focusing on our target audiences’ <strong>current use of assessment, pain points, and daily routine</strong>. We interviewed 3 professors remotely, and synthesized the following insights:</p><ol><li><p><strong>Instructors are excited and afraid of GenAI</strong>. They want to explore such technologies but do not have relevant knowledge. Meanwhile, they realize that students can use ChatGPT for certain assessments, preventing instructors from gauging students' true progress.</p></li><li><p><strong>Instructors do not have domain knowledge in learning sciences</strong> and time or motivation to align their learning objectives with their assessment.</p></li><li><p><strong>The two colleges have different pain points</strong>. Humanity and social science professors consider grading essays time-consuming while medicine professors worry about creating diverse case studies for hands-on practice.</p></li></ol></div><div class="mod m-media" style="grid-row:1;grid-column:8/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/a24d542ada00.webp" aria-label="Enlarge image: Quotes from Interviews"><img src="img/a24d542ada00.webp" alt="Quotes from Interviews" width="1600" height="900" loading=lazy decoding="async"></button><figcaption>Quotes from Interviews</figcaption></figure></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
 <section class="sec sec-general" id="s11" style="--pt:30;--pb:10"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>Personas</h3><p>We wanted to form a deeper understanding of our users' goals, needs, experiences, and behaviors. So, we created 2 personas for each of our user segments. They were based on user interviews, and we kept updating them throughout the project as we gathered more data. These personas are important for guiding our design to ensure our product can meet the needs of different users.</p></div></div></section>
 <section class="sec sec-gallery" style="--pt:0;--pb:0"><div class="slider" role="region" aria-roledescription="carousel" aria-label="Image gallery"><ul class="track"><li class="slide" aria-label="1 of 2"><figure class="pic" style="--w:800px"><button class="zoom" type="button" data-src="img/9bb5ded7fdaf.webp" aria-label="Enlarge image: User Persona - Professor at College of Arts, Law, and Education"><img src="img/9bb5ded7fdaf.webp" alt="User Persona - Professor at College of Arts, Law, and Education" width="800" height="600" loading=lazy decoding="async"></button><figcaption>User Persona - Professor at College of Arts, Law, and Education</figcaption></figure></li><li class="slide" aria-label="2 of 2"><figure class="pic" style="--w:800px"><button class="zoom" type="button" data-src="img/501bc8954d20.webp" aria-label="Enlarge image: User Persona - Professor at College of Health and Medicine"><img src="img/501bc8954d20.webp" alt="User Persona - Professor at College of Health and Medicine" width="800" height="600" loading=lazy decoding="async"></button><figcaption>User Persona - Professor at College of Health and Medicine</figcaption></figure></li></ul><div class="ctrl"><button type="button" class="prev" aria-label="Previous image">&larr;</button><span class="count" aria-live="polite">1 / 2</span><button type="button" class="next" aria-label="Next image">&rarr;</button></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s14" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>Customer Journey</h3><p>After creating the personas, we realized that assessment is a complicated process. Thus, we created a customer journey map to understand better how instructors engage in the assessment phase and discover improvement opportunities.</p><p>We found design opportunities at 3 stages: <strong>designing assessment, grading assessment, and providing feedback and evaluation</strong>. However, we decided to focus on the problems at the <strong>design stage</strong> after these considerations:</p><ul><li><p><strong>Prerequisite</strong> – the appropriate type of assessment is essential for all of the following steps. Without the right assessment design, the instructors cannot ensure the effectiveness of the assessment.</p></li><li><p><strong>Magnitude</strong> – most instructors have issues developing innovative and effective assessments: especially in the GenAI era</p></li><li><p><strong>High Frequency</strong> – all instructors have to engage in assessment design</p></li><li><p><strong>Unique Value Proposition</strong> – no other products currently provide assessment types recommendation</p></li><li><p><strong>Feasibility</strong> – time constraints and AI ethical considerations</p></li></ul></div></div></section>
+<section class="sec sec-general" id="s14" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>Customer Journey</h3><p>After creating the personas, we realized that assessment is a complicated process. Thus, we created a customer journey map to understand better how instructors engage in the assessment phase and discover improvement opportunities.</p><p>We found design opportunities at 3 stages: <strong>designing assessment, grading assessment, and providing feedback and evaluation</strong>. However, we decided to focus on the problems at the <strong>design stage</strong> after these considerations:</p><ul><li><p><strong>Prerequisite</strong> – the appropriate type of assessment is essential for all of the following steps. Without the right assessment design, the instructors cannot ensure the effectiveness of the assessment.</p></li><li><p><strong>Magnitude</strong> – most instructors have issues developing innovative and effective assessments: especially in the GenAI era</p></li><li><p><strong>High Frequency</strong> – all instructors have to engage in assessment design</p></li><li><p><strong>Unique Value Proposition</strong> – no other products currently provide assessment types recommendation</p></li><li><p><strong>Feasibility</strong> – time constraints and AI ethical considerations</p></li></ul></div></div></section>
 <section class="sec sec-general" id="s15" style="--pt:0;--pb:10"><div class="grid"><div class="mod m-media" style="grid-column:3/11"><figure class="pic" style="--w:1199px"><button class="zoom" type="button" data-src="img/5bcb75632018.webp" aria-label="Enlarge image: Customer Journey Map"><img src="img/5bcb75632018.webp" alt="Customer Journey Map" width="1199" height="1051" loading=lazy decoding="async"></button><figcaption>Customer Journey Map</figcaption></figure></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s17" style="--pt:60;--pb:10"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>University Data &amp; Competitor Analysis</h3><p>Next, we conducted research on both the UTas' current assessment types and the market and concluded the following findings:</p><ol><li><p>Both colleges use exams and essays as primary assessment types, confirming our hypothesis that instructors do not use diverse assessment types.</p></li><li><p>We found that most AI assessment products in the market do not offer assessment type recommendations or use learning science principles for assessment generation, which led to several white space opportunities for us (in the following table).</p></li></ol></div></div></section>
+<section class="sec sec-general" id="s17" style="--pt:60;--pb:10"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>University Data &amp; Competitor Analysis</h3><p>Next, we conducted research on both the UTas' current assessment types and the market and concluded the following findings:</p><ol><li><p>Both colleges use exams and essays as primary assessment types, confirming our hypothesis that instructors do not use diverse assessment types.</p></li><li><p>We found that most AI assessment products in the market do not offer assessment type recommendations or use learning science principles for assessment generation, which led to several white space opportunities for us (in the following table).</p></li></ol></div></div></section>
 <section class="sec sec-gallery" style="--pt:0;--pb:10"><div class="slider" role="region" aria-roledescription="carousel" aria-label="Image gallery"><ul class="track"><li class="slide" aria-label="1 of 3"><figure class="pic" style="--w:1218px"><button class="zoom" type="button" data-src="img/55d728e67421.webp" aria-label="Enlarge image: Assessment Type Summary Across Two Colleges"><img src="img/55d728e67421.webp" alt="Assessment Type Summary Across Two Colleges" width="1218" height="378" loading=lazy decoding="async"></button><figcaption>Assessment Type Summary Across Two Colleges</figcaption></figure></li><li class="slide" aria-label="2 of 3"><figure class="pic" style="--w:1300px"><button class="zoom" type="button" data-src="img/7a2802b9533c.webp" aria-label="Enlarge image: Future State Product Positioning"><img src="img/7a2802b9533c.webp" alt="Future State Product Positioning" width="1300" height="651" loading=lazy decoding="async"></button><figcaption>Future State Product Positioning</figcaption></figure></li><li class="slide" aria-label="3 of 3"><figure class="pic" style="--w:1241px"><button class="zoom" type="button" data-src="img/b29a030bbbc7.webp" aria-label="Enlarge image: White Space Opportunities"><img src="img/b29a030bbbc7.webp" alt="White Space Opportunities" width="1241" height="384" loading=lazy decoding="async"></button><figcaption>White Space Opportunities</figcaption></figure></li></ul><div class="ctrl"><button type="button" class="prev" aria-label="Previous image">&larr;</button><span class="count" aria-live="polite">1 / 3</span><button type="button" class="next" aria-label="Next image">&rarr;</button></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s20" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>Product Idea</h3><p>Based on all of the insights, we came up with our product idea.</p><p><strong>AssessMate + AI Literacy Course</strong></p><p>AssessMate is the assessment type recommender that will use LLM and learning science theories to provide appropriate assessment type suggestions to instructors. More importantly, AssessMate can help create ChatGPT-proof assessments to prevent students from exploiting the use of GenAI. The AI Literacy Course focuses on how to understand and use AI in assessment further.</p></div></div></section>
+<section class="sec sec-general" id="s20" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>Product Idea</h3><p>Based on all of the insights, we came up with our product idea.</p><p><strong>AssessMate + AI Literacy Course</strong></p><p>AssessMate is the assessment type recommender that will use LLM and learning science theories to provide appropriate assessment type suggestions to instructors. More importantly, AssessMate can help create ChatGPT-proof assessments to prevent students from exploiting the use of GenAI. The AI Literacy Course focuses on how to understand and use AI in assessment further.</p></div></div></section>
 <section class="sec sec-gallery" style="--pt:0;--pb:30"><div class="slider" role="region" aria-roledescription="carousel" aria-label="Image gallery"><ul class="track"><li class="slide" aria-label="1 of 2"><figure class="pic" style="--w:1239px"><button class="zoom" type="button" data-src="img/782641f86a3c.webp" aria-label="Enlarge image: User Flow"><img src="img/782641f86a3c.webp" alt="User Flow" width="1239" height="619" loading=lazy decoding="async"></button><figcaption>User Flow</figcaption></figure></li><li class="slide" aria-label="2 of 2"><figure class="pic" style="--w:1241px"><button class="zoom" type="button" data-src="img/7983fdedfd93.webp" aria-label="Enlarge image: Assessment Type Generator Mechanism"><img src="img/7983fdedfd93.webp" alt="Assessment Type Generator Mechanism" width="1241" height="640" loading=lazy decoding="async"></button><figcaption>Assessment Type Generator Mechanism</figcaption></figure></li></ul><div class="ctrl"><button type="button" class="prev" aria-label="Previous image">&larr;</button><span class="count" aria-live="polite">1 / 2</span><button type="button" class="next" aria-label="Next image">&rarr;</button></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s24" style="--pt:0;--pb:10"><div class="grid"><div class="mod m-text" style="grid-column:1/5"><h3>MVP1</h3><p>We developed our<a href="https://chat.openai.com/g/g-XdZPKLxYJ-assessmate" target="_blank" rel="noopener"> first MVP</a> of AssessMate, a web application that leverages a customized GPT Assistant API with tailored instructions and knowledge, connected through Python.</p><p>The user interface is built using HTML, CSS, and JavaScript, and the application is deployed on Heroku for easy accessibility.</p></div><div class="mod m-media" style="grid-column:6/13"><figure class="embed video"><iframe src="https://www.youtube.com/embed/Rv6ioBl8-0Y" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div></div></section>
-<section class="sec sec-general" id="s26" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-column:1/7"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/8ad8184fca80.webp" aria-label="Enlarge image: MVP1 User Interface"><img src="img/8ad8184fca80.webp" alt="MVP1 User Interface" width="1600" height="900" loading=lazy decoding="async"></button><figcaption>MVP1 User Interface</figcaption></figure></div><div class="mod m-text" style="grid-column:8/13"><p>This is the starting page of AssessMate. Instructors enter their input to free chat with the system. There are a few instructions to help instructors understand how to improve their prompts.</p></div></div></section>
-<section class="sec sec-general" id="s27" style="--pt:10;--pb:20"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><p>After the instructor's input, AssessMate will first evaluate the input information, prompting the instructor to provide more relevant information if needed. Then, AssessMate will use the <strong>Backward Design principle</strong>, starting the suggestion with revised Learning Objectives (LOs).</p></div></div></section>
+<section class="sec sec-general" id="s24" style="--pt:0;--pb:10"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/5"><h3>MVP1</h3><p>We developed our<a href="https://chat.openai.com/g/g-XdZPKLxYJ-assessmate" target="_blank" rel="noopener"> first MVP</a> of AssessMate, a web application that leverages a customized GPT Assistant API with tailored instructions and knowledge, connected through Python.</p><p>The user interface is built using HTML, CSS, and JavaScript, and the application is deployed on Heroku for easy accessibility.</p></div><div class="mod m-media" style="grid-row:1;grid-column:6/13"><figure class="embed video"><iframe src="https://www.youtube.com/embed/Rv6ioBl8-0Y" title="Project video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></figure></div></div></section>
+<section class="sec sec-general" id="s26" style="--pt:30;--pb:30"><div class="grid"><div class="mod m-media" style="grid-row:1;grid-column:1/7"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/8ad8184fca80.webp" aria-label="Enlarge image: MVP1 User Interface"><img src="img/8ad8184fca80.webp" alt="MVP1 User Interface" width="1600" height="900" loading=lazy decoding="async"></button><figcaption>MVP1 User Interface</figcaption></figure></div><div class="mod m-text" style="grid-row:1;grid-column:8/13"><p>This is the starting page of AssessMate. Instructors enter their input to free chat with the system. There are a few instructions to help instructors understand how to improve their prompts.</p></div></div></section>
+<section class="sec sec-general" id="s27" style="--pt:10;--pb:20"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><p>After the instructor's input, AssessMate will first evaluate the input information, prompting the instructor to provide more relevant information if needed. Then, AssessMate will use the <strong>Backward Design principle</strong>, starting the suggestion with revised Learning Objectives (LOs).</p></div></div></section>
 <section class="sec sec-gallery" style="--pt:30;--pb:30"><div class="gallery g2"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/c0204f45b029.webp" aria-label="Enlarge image: Project image"><img src="img/c0204f45b029.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/658ce07d2252.webp" aria-label="Enlarge image: Project image"><img src="img/658ce07d2252.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></section>
-<section class="sec sec-general" id="s29" style="--pt:0;--pb:60"><div class="grid"><div class="mod m-text" style="grid-column:1/5"><p>Lastly, AssessMate will generate assessment recommendations and <strong>encourage instructors to consider the use of AI</strong>.</p></div><div class="mod m-media" style="grid-column:6/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/6dd745e150cb.webp" aria-label="Enlarge image: Project image"><img src="img/6dd745e150cb.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></div></section>
+<section class="sec sec-general" id="s29" style="--pt:0;--pb:60"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/5"><p>Lastly, AssessMate will generate assessment recommendations and <strong>encourage instructors to consider the use of AI</strong>.</p></div><div class="mod m-media" style="grid-row:1;grid-column:6/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/6dd745e150cb.webp" aria-label="Enlarge image: Project image"><img src="img/6dd745e150cb.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s31" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-text" style="grid-column:1/6"><h3>MVP1 User Testing Feedback</h3><p>We conducted user testing with instructors at the University of Tasmania and Carnegie Mellon University, with interview questions on both assessment qualities and usability. We synthesized the feedback into the following insights:</p><ol><li><p>AssessMate MVP1 designed 1 assessment for 1 ILO. However, instructors prefer <strong>each ILO to be assessed at least twice</strong> so that learners have more opportunities to demonstrate their learnings.</p></li><li><p>MVP1 generated assessment recommendations with various qualities: it performed worse in <strong>health and medicine domains</strong>.</p></li><li><p>Writing prompts might be difficult for some instructors, so <strong>more scaffolding</strong> is desired to help generate better results.</p></li><li><p>Instructors are interested in the use of AI options, but they are unsure what options are available to them.</p></li></ol><p>Based on the insights, we designed our actionable points and plan for MVP2.</p></div><div class="mod m-media" style="grid-column:7/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/5b8d90318524.webp" aria-label="Enlarge image: Project image"><img src="img/5b8d90318524.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></div></section>
+<section class="sec sec-general" id="s31" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/6"><h3>MVP1 User Testing Feedback</h3><p>We conducted user testing with instructors at the University of Tasmania and Carnegie Mellon University, with interview questions on both assessment qualities and usability. We synthesized the feedback into the following insights:</p><ol><li><p>AssessMate MVP1 designed 1 assessment for 1 ILO. However, instructors prefer <strong>each ILO to be assessed at least twice</strong> so that learners have more opportunities to demonstrate their learnings.</p></li><li><p>MVP1 generated assessment recommendations with various qualities: it performed worse in <strong>health and medicine domains</strong>.</p></li><li><p>Writing prompts might be difficult for some instructors, so <strong>more scaffolding</strong> is desired to help generate better results.</p></li><li><p>Instructors are interested in the use of AI options, but they are unsure what options are available to them.</p></li></ol><p>Based on the insights, we designed our actionable points and plan for MVP2.</p></div><div class="mod m-media" style="grid-row:1;grid-column:7/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/5b8d90318524.webp" aria-label="Enlarge image: Project image"><img src="img/5b8d90318524.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s33" style="--pt:60;--pb:30"><div class="grid"><div class="mod m-text" style="grid-column:1/7"><h3>MVP2</h3><p>The iterated AssessMate focused on improving user experience and response performance.</p><p>As the learning design lead, my main objective is to ensure the <strong>stable performance of AssessMate in generating assessment recommendations</strong>. Therefore, I consulted experts in learning sciences and LLM and conducted the literature review, determining the following pathways for MVP2 instructional design.</p><ol><li><p>I consulted AI/LLM experts to review AssessMate prompts, communicating with the team developer to improve response accuracy and speed.</p></li><li><p>I decided to work on <strong>Bloom's Taxonomy annotation</strong> with our team to ensure that the assessments recommended by AssessMate are appropriately challenging and relevant to the cognitive levels.</p></li><li><p>I planned to conduct <strong>more research on effective assessment in specific domains</strong>, such as health and medicine so that the AssessMate model can learn better to generate results.</p></li></ol></div><div class="mod m-media" style="grid-column:8/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/5c66dca0ea65.webp" aria-label="Enlarge image: Project image"><img src="img/5c66dca0ea65.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></div></section>
+<section class="sec sec-general" id="s33" style="--pt:60;--pb:30"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/7"><h3>MVP2</h3><p>The iterated AssessMate focused on improving user experience and response performance.</p><p>As the learning design lead, my main objective is to ensure the <strong>stable performance of AssessMate in generating assessment recommendations</strong>. Therefore, I consulted experts in learning sciences and LLM and conducted the literature review, determining the following pathways for MVP2 instructional design.</p><ol><li><p>I consulted AI/LLM experts to review AssessMate prompts, communicating with the team developer to improve response accuracy and speed.</p></li><li><p>I decided to work on <strong>Bloom's Taxonomy annotation</strong> with our team to ensure that the assessments recommended by AssessMate are appropriately challenging and relevant to the cognitive levels.</p></li><li><p>I planned to conduct <strong>more research on effective assessment in specific domains</strong>, such as health and medicine so that the AssessMate model can learn better to generate results.</p></li></ol></div><div class="mod m-media" style="grid-row:1;grid-column:8/13"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/5c66dca0ea65.webp" aria-label="Enlarge image: Project image"><img src="img/5c66dca0ea65.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
 <section class="sec sec-gallery" style="--pt:30;--pb:30"><div class="gallery g2"><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/3912ea801ee9.webp" aria-label="Enlarge image: Project image"><img src="img/3912ea801ee9.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure><figure class="pic" style="--w:1600px"><button class="zoom" type="button" data-src="img/3903d094004c.webp" aria-label="Enlarge image: Project image"><img src="img/3903d094004c.webp" alt="Project image" width="1600" height="900" loading=lazy decoding="async"></button></figure></div></section>
 <section class="sec sec-general" id="s36" style="--pt:0;--pb:30"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><p>We followed a standard research method (flow chart on the left) to annotate all ILOs from the University of Tasmania. After annotation and conflict resolution, we imported the annotated data to train MVP2 in its annotation ability.</p><p>The comparison (on the right) shows that MVP1 has a correct mapping rate of 70%, and <strong>MVP2 can map 90% of the ILOs correctly</strong>.</p></div></div></section>
@@ -219,24 +228,23 @@ dialog.lb button{position:absolute;top:-48px;right:0;background:transparent;bord
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
 <section class="sec sec-general" id="s41" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>MVP2 Workshop</h3><p>We conducted a live workshop at the end of the spring semester to gain feedback from 10+ instructors. The synthesized feedback guided our direction for MVP3.</p><ol><li><p>The instructors <strong>were impressed with the assessment recommendation</strong> generated by AssessMate.</p></li><li><p>The assessment recommendations, however, sometimes <strong>failed to consider student knowledge level.</strong> For example, 100-level courses mainly target first-year students, so the assessment should not involve complex assessment types, such as mock trial.</p></li><li><p>There was still confusion about the use of AI and its related examples in the user interface.</p></li></ol></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s43" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:1/9"><h3>MVP3 Plan</h3><p>We are now in the phase of MVP3. Currently, we have designed the following plan:</p><ol><li><p>Revise the Bloom's Taxonomy annotation rubric and reanalyze the ILOs. Achieve a coefficient of 0.75 for Cohen's Kappa interrater reliability.</p></li><li><p>Research on more <strong>innovative assessment</strong> literature and <strong>use of AI</strong> suggestions.</p></li><li><p>Start developing an <strong>AI Literacy Course</strong> for instructors.</p></li><li><p>Iterate on UI design and start developing a front-end interface.</p></li></ol><p>Stay tuned for our updates:)</p></div></div></section>
+<section class="sec sec-general" id="s43" style="--pt:60;--pb:60"><div class="grid prose"><div class="mod m-text" style="grid-column:3/11"><h3>MVP3 Plan</h3><p>We are now in the phase of MVP3. Currently, we have designed the following plan:</p><ol><li><p>Revise the Bloom's Taxonomy annotation rubric and reanalyze the ILOs. Achieve a coefficient of 0.75 for Cohen's Kappa interrater reliability.</p></li><li><p>Research on more <strong>innovative assessment</strong> literature and <strong>use of AI</strong> suggestions.</p></li><li><p>Start developing an <strong>AI Literacy Course</strong> for instructors.</p></li><li><p>Iterate on UI design and start developing a front-end interface.</p></li></ol><p>Stay tuned for our updates:)</p></div></div></section>
 <section class="sec sec-dividerline" style="--pt:30;--pb:30"><hr></section>
-<section class="sec sec-general" id="s45" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-text" style="grid-column:1/6"><h3>Next Steps</h3><p>I also created a product roadmap for all of our steps till the end of this project.</p></div><div class="mod m-media" style="grid-column:7/13"><figure class="pic" style="--w:1131px"><button class="zoom" type="button" data-src="img/e96e31dc58a2.webp" aria-label="Enlarge image: Project image"><img src="img/e96e31dc58a2.webp" alt="Project image" width="1131" height="675" loading=lazy decoding="async"></button></figure></div></div></section>
+<section class="sec sec-general" id="s45" style="--pt:60;--pb:60"><div class="grid"><div class="mod m-text" style="grid-row:1;grid-column:1/6"><h3>Next Steps</h3><p>I also created a product roadmap for all of our steps till the end of this project.</p></div><div class="mod m-media" style="grid-row:1;grid-column:7/13"><figure class="pic" style="--w:1131px"><button class="zoom" type="button" data-src="img/e96e31dc58a2.webp" aria-label="Enlarge image: Project image"><img src="img/e96e31dc58a2.webp" alt="Project image" width="1131" height="675" loading=lazy decoding="async"></button></figure></div></div></section>
 </main>
 <section class="more" aria-labelledby="more-h"><div class="in">
+  <span class="eyebrow">More from the menu</span>
   <h2 id="more-h">Read more of my case studies</h2>
   <ul class="related"><li><a href="introductory-financial-literacy-e-learning-course.html"><span class="thumb"><img src="img/d3350b155100.webp" alt="" width="981" height="931" loading="lazy"></span><span class="rt">Introductory Financial Literacy E-Learning Course</span><span class="rs">An e-learning course for first-year college students to navigate their finances</span></a></li><li><a href="mandarin-bridge-course.html"><span class="thumb"><img src="img/79a8ffd53adc.webp" alt="" width="1600" height="1067" loading="lazy"></span><span class="rt">Mandarin Bridge Course with a Focus on Motivation and Engagement</span><span class="rs">An innovative Mandarin Bridge Course (Instructor-led) for students at Environmental Charter School, Pittsburgh</span></a></li><li><a href="tools-for-online-learning.html"><span class="thumb"><img src="img/0291bb142f80.webp" alt="" width="1600" height="1600" loading="lazy"></span><span class="rt">Tools For Online Learning</span><span class="rs">A collection of mini projects using different e-learning tools, such as Articulate Rise, xAPI, and Python</span></a></li></ul>
 </div></section>
-<footer class="foot"><div class="in">
+<footer class="foot" id="contact"><div class="in">
   <h2>Contact me here if you want to collaborate</h2>
-  <a class="mail" href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a>
-  <div class="base"><span>&copy; 2026 Fern Zhang</span><a href="#main">Back to top &uarr;</a></div>
+  <p>Say hello: <a href="mailto:fernzhang9@gmail.com">fernzhang9@gmail.com</a></p>
+  <div class="base"><span>&copy; 2026 Fern Zhang</span><a href="../index.html">Back to the cafe</a><a href="#main">Back to top &uarr;</a></div>
 </div></footer>
 <dialog class="lb" aria-label="Enlarged image"><button type="button" aria-label="Close">&times;</button><img alt=""></dialog>
 <script>
 (()=>{
-  const top=document.querySelector('.top');
-  const onS=()=>top.classList.toggle('scrolled',scrollY>8);addEventListener('scroll',onS,{passive:true});onS();
   const lb=document.querySelector('dialog.lb'),li=lb.querySelector('img');
   document.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{li.src=b.dataset.src;li.alt=b.querySelector('img').alt;lb.showModal()}));
   lb.addEventListener('click',e=>{if(e.target===lb||e.target.closest('button'))lb.close()});

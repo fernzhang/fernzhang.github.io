@@ -153,9 +153,13 @@ footer a{font-weight:700}
   .drawer ol{padding:18px 16px 28px}
   .intro-skip{min-height:44px}
   section{padding:56px 16px}.special-board{padding:20px}.btn{white-space:nowrap}
-  .fernnie{left:30%}.hint{left:30%}
-  .bubble{width:auto;left:53%;right:3%;top:14%;padding:14px 14px 12px}.bubble p{font-size:15px}
-  .bubble::after{left:-11px;bottom:auto;top:30%;border:11px solid transparent;border-left:0;border-right-color:var(--paper)}
+  /* Phones: show only the left of the cafe (espresso machine, window, counter) so the empty chalkboard never appears;
+     the header text already sits in its own board above. Sizes use the hero width so Fernnie stays on the counter. */
+  .scene{aspect-ratio:auto;height:min(125cqw,78svh);background:url("img/hero-autumn.webp") 0 100%/257% auto no-repeat}
+  .fernnie{left:70%;bottom:28.5cqw;height:72cqw}.hint{left:70%;bottom:21cqw;white-space:nowrap}
+  @media (min-width:600px){.fernnie{height:62cqw}}
+  .bubble{left:3%;right:auto;width:46%;top:6cqw}
+  .bubble::after{left:auto;right:-11px;bottom:auto;top:30%;border:11px solid transparent;border-right:0;border-left-color:var(--paper)}
   .bubble .btn,.bubble .link-btn{white-space:nowrap}.bubble .row{flex-wrap:wrap;gap:4px 10px}
   .board .special-link{display:inline-flex;align-items:center;min-height:44px;margin-top:4px}
   footer a{display:inline-flex;align-items:center;min-height:44px}footer{padding:24px 20px}
